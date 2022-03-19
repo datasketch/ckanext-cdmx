@@ -39,3 +39,4 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         schema['resources'].update({
             'resource_filters': [toolkit.get_validator('ignore_missing')]
         })
+        return schema
