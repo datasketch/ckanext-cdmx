@@ -1,0 +1,14 @@
+# cdmx-js:
+#   filter: rjsmin
+#   output: ckanext-cdmx/%(version)s-cdmx.js
+#   contents:
+#     - js/cdmx.js
+#   extra:
+#     preload:
+#       - base/main
+
+# cdmx-css:
+#   filter: cssrewrite
+#   output: ckanext-cdmx/%(version)s-cdmx.css
+#   contents:
+#     - css/cdmx.css
