@@ -1,6 +1,6 @@
 {% ckan_extends %}
 
-{% block basic_fields_url %}
+{% block basic_fields %}
 {{ super() }}
 {{ form.input('resource_filters', id='field-resource_filters', label=_('Filtros'), placeholder='ej:columna_a,columna_d', value=data.resource_filters, error=errors.resource_filters, classes=['control-full']) }}
 {% endblock %}
