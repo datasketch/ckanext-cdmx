@@ -20,7 +20,8 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     def _modify_package_schema(self, schema):
         schema['resources'].update({
-            'resource_filters': [toolkit.get_validator('ignore_missing')]
+            'resource_filters': [toolkit.get_validator('ignore_missing')],
+            'resourse_stat_text': [toolkit.get_validator('ignore_missing')]
         })
         return schema
 
@@ -37,6 +38,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     def show_package_schema(self):
         schema = super(CdmxPlugin, self).show_package_schema()
         schema['resources'].update({
-            'resource_filters': [toolkit.get_validator('ignore_missing')]
+            'resource_filters': [toolkit.get_validator('ignore_missing')],
+            'resourse_stat_text': [toolkit.get_validator('ignore_missing')]
         })
         return schema

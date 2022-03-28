@@ -4,4 +4,5 @@
 {{ super() }}
 <p>-</p>
 {{ form.input('resource_filters', id='field-resource_filters', label=_('Filtros'), placeholder='ej:columna_a,columna_d', value=data.resource_filters, error=errors.resource_filters, classes=['control-full']) }}
+{{ form.input('resourse_stat_text', id='field-resourse_stat_text', label=_('Texto cintillo'), placeholder='ej: Observaciones', value=data.resourse_stat_text, error=errors.resourse_stat_text, classes=['control-full']) }}
 {% endblock %}
