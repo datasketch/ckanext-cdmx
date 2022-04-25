@@ -6,8 +6,13 @@ import ckan.plugins.toolkit as toolkit
 class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IDatasetForm)
+    plugins.implements(plugins.IConfigurable)
 
     # IConfigurer
+
+    def configure(self, config):
+        config['licenses_group_url'] = 'https://licenses.opendefinition.org/licenses/groups/od.json'
+        config['ckan.locale_default'] = 'es'
 
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
