@@ -3,6 +3,20 @@
 {% block basic_fields %}
 {{ super() }}
 <p>-</p>
+<div class="form-group">
+  <label class="control-label" for="field-date_format">
+    {{ _("Formato de fecha") }}
+  </label>
+  <div class="controls">
+    <select id="field-date_format" name="date_format" data-module="autocomplete">
+      <option value="">{{ _('Seleccione un formato de fecha') }}</option>
+      {% set readable_date_formats = h.readable_date_formats() %}
+      {% for date_format in h.date_formats()  %}
+        <option value="{{ date_format }}" {% if date_format in data.get('date_format', []) %}selected="selected"{% endif %}>{% if date_format in readable_date_formats %} {{ readable_date_formats[date_format ]}} {% else %} {{ date_format }} {% endif %}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
 {{ form.input('resource_filters', id='field-resource_filters', label=_('Filtros'), placeholder='ej:columna_a,columna_d', value=data.resource_filters, error=errors.resource_filters, classes=['control-full']) }}
 {{ form.input('resourse_stat_text', id='field-resourse_stat_text', label=_('Texto cintillo'), placeholder='ej: Observaciones', value=data.resourse_stat_text, error=errors.resourse_stat_text, classes=['control-full']) }}
 {% endblock %}

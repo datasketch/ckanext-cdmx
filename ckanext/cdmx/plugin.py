@@ -8,7 +8,6 @@ def create_date_formats():
     context = {'user': user['name']}
     try:
         data = {'id': 'date_formats'}
-        print(toolkit.get_action('vocabulary_show')(context, data))
         toolkit.get_action('vocabulary_show')(context, data)
     except toolkit.ObjectNotFound:
         data = {'name': 'date_formats'}
@@ -66,7 +65,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_filters': [toolkit.get_validator('ignore_missing')],
             'resourse_stat_text': [toolkit.get_validator('ignore_missing')]
         })
-        schema.update({
+        schema['resources'].update({
             'date_format': [
                 toolkit.get_validator('ignore_missing'),
                 toolkit.get_converter('convert_to_tags')('date_formats')
@@ -86,12 +85,12 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     def show_package_schema(self):
         schema = super(CdmxPlugin, self).show_package_schema()
+        schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema['resources'].update({
             'resource_filters': [toolkit.get_validator('ignore_missing')],
             'resourse_stat_text': [toolkit.get_validator('ignore_missing')]
         })
-        schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
-        schema.update({
+        schema['resources'].update({
             'date_format': [
                 toolkit.get_converter('convert_from_tags')('date_formats'),
                 toolkit.get_validator('ignore_missing')]
