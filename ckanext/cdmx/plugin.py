@@ -1,3 +1,4 @@
+from os import path
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
@@ -48,10 +49,11 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     # IConfigurer
 
     def configure(self, config):
-        config['licenses_group_url'] = 'https://licenses.opendefinition.org/licenses/groups/od.json'
+        config['licenses_group_url'] = 'file://' + path.dirname(__file__) + '/public/licenses.json'
         config['ckan.locale_default'] = 'es'
 
     def update_config(self, config_):
+        toolkit.add_public_directory(config_, 'public')
         toolkit.add_template_directory(config_, 'templates')
 
     def is_fallback(self):
