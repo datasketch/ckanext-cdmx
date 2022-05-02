@@ -3,6 +3,14 @@
 {% block basic_fields %}
 {{ super() }}
 <p>-</p>
+{{ form.input('resource_subtitle', id='field-resource_subtitle', label=_('Subtítulo'), placeholder='Lorem ipsum', value=data.resource_subtitle, error=errors.resource_subtitle, classes=['control-full']) }}
+
+{{ form.input('resource_chart', id='field-resource_chart', label=_('Gráfico'), placeholder='bar', value=data.resource_chart, error=errors.resource_chart, classes=['control-full']) }}
+
+{{ form.input('resource_default_var', id='field-resource_default_var', label=_('Campo de actualización'), placeholder='columna_a', value=data.resource_default_var, error=errors.resource_default_var, classes=['control-full']) }}
+
+{{ form.input('resource_update_field', id='field-resource_update_field', label=_('Campo de actualización'), value=data.resource_update_field, error=errors.resource_update_field, classes=['control-full']) }}
+
 <div class="form-group">
   <label class="control-label" for="field-date_format">
     {{ _("Formato de fecha") }}
@@ -17,6 +25,8 @@
     </select>
   </div>
 </div>
+
 {{ form.input('resource_filters', id='field-resource_filters', label=_('Filtros'), placeholder='ej:columna_a,columna_d', value=data.resource_filters, error=errors.resource_filters, classes=['control-full']) }}
+
 {{ form.input('resourse_stat_text', id='field-resourse_stat_text', label=_('Texto cintillo'), placeholder='ej: Observaciones', value=data.resourse_stat_text, error=errors.resourse_stat_text, classes=['control-full']) }}
 {% endblock %}

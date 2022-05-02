@@ -68,7 +68,12 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     def _modify_package_schema(self, schema):
         schema['resources'].update({
             'resource_filters': [toolkit.get_validator('ignore_missing')],
-            'resourse_stat_text': [toolkit.get_validator('ignore_missing')]
+            'resourse_stat_text': [toolkit.get_validator('ignore_missing')],
+            'resource_subtitle': [toolkit.get_validator('ignore_missing')],
+            'resource_update_field': [toolkit.get_validator('ignore_missing')],
+            'resource_chart': [toolkit.get_validator('ignore_missing')],
+            'resource_default_var': [toolkit.get_validator('ignore_missing')]
+
         })
         schema['resources'].update({
             'date_format': [
@@ -93,7 +98,11 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema['resources'].update({
             'resource_filters': [toolkit.get_validator('ignore_missing')],
-            'resourse_stat_text': [toolkit.get_validator('ignore_missing')]
+            'resourse_stat_text': [toolkit.get_validator('ignore_missing')],
+            'resource_subtitle': [toolkit.get_validator('ignore_missing')],
+            'resource_update_field': [toolkit.get_validator('ignore_missing')],
+            'resource_chart': [toolkit.get_validator('ignore_missing')],
+            'resource_default_var': [toolkit.get_validator('ignore_missing')]
         })
         schema['resources'].update({
             'date_format': [
