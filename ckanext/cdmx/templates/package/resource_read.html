@@ -1,5 +1,15 @@
 {% ckan_extends %}
 
+{% block content %}
+  {{ super() }}
+  <h2>HOLA MUNDO</h1>
+  {% if res.id == 'd543a7b1-f8cb-439f-8a5c-e56c5479eeb5' %}
+    <div style="position: relative;padding-bottom: calc(9 / 16 * 100%);">
+      <iframe style="position: absolute;height: 100%;width: 100%;top: 0;right: 0;bottom: 0;left: 0;" src="https://datasketch.shinyapps.io/cdmxApp/" frameborder="0"></iframe>
+    </div>
+  {% endif %}
+{% endblock %}
+
 {% block resource_read_title %}
   <div {% if res.resource_subtitle %}style="color: #3998a5"{% endif %}>
     {{ super() }}
@@ -12,17 +22,5 @@
 {% block data_preview %}
   {% if res.id != 'd543a7b1-f8cb-439f-8a5c-e56c5479eeb5' %}
     {{ super() }}
-  {% else %}
-    <div style="position: relative;padding-bottom: calc(9 / 16 * 100%);">
-      <iframe style="position: absolute;height: 100%;width: 100%;top: 0;right: 0;bottom: 0;left: 0;" src="https://datasketch.shinyapps.io/cdmxApp/" frameborder="0"></iframe>
-    </div>
-  {% endif %}
-{% endblock %}
-
-{% block primary_content %}
-  {% if res.id != 'd543a7b1-f8cb-439f-8a5c-e56c5479eeb5' %}
-    <div style="position: relative;padding-bottom: calc(9 / 16 * 100%);">
-      <iframe style="position: absolute;height: 100%;width: 100%;top: 0;right: 0;bottom: 0;left: 0;" src="https://datasketch.shinyapps.io/cdmxApp/" frameborder="0"></iframe>
-    </div>
   {% endif %}
 {% endblock %}
