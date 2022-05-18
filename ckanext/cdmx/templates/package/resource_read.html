@@ -25,3 +25,10 @@
     {{ super() }}
   {% endif %}
 {% endblock %}
+
+{% block resource_additional_information_inner %}
+  {% if res.id != 'd543a7b1-f8cb-439f-8a5c-e56c5479eeb5' %}
+    {{ super() }}
+  {% endif %} 
+{% endblock %}
+
