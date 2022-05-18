@@ -1,0 +1,10 @@
+{% ckan_extends %}
+
+{% block resource_read_title %}
+  <div {% if res.resource_subtitle %}style="color: #3998a5"{% endif %}>
+    {{ super() }}
+    {% if res.resource_subtitle %}
+      <p>{{ res.resource_subtitle }}</p>
+    {% endif %}
+  </div>
+{% endblock %}
