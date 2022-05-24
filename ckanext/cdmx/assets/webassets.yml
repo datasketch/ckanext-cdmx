@@ -7,8 +7,8 @@
 #     preload:
 #       - base/main
 
-# cdmx-css:
-#   filter: cssrewrite
-#   output: ckanext-cdmx/%(version)s-cdmx.css
-#   contents:
-#     - css/cdmx.css
+cdmx_css:
+  filter: cssmin
+  output: ckanext-cdmx/%(version)s-cdmx.css
+  contents:
+    - css/cdmx.css

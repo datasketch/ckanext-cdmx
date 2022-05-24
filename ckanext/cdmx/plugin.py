@@ -58,6 +58,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     def update_config(self, config_):
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_template_directory(config_, 'templates')
+        toolkit.add_resource('assets', 'cdmx_assets')
 
     def is_fallback(self):
         return True
