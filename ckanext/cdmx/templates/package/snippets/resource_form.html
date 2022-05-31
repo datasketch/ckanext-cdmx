@@ -21,6 +21,8 @@
   </div>
 </div>
 
+{{ form.input('resource_priority_date', id='field-resource_priority_date', label=_('Fecha a priorizar'), placeholder='Lorem ipsum', value=data.resource_priority_date, error=errors.resource_priority_date, classes=['control-full']) }}
+
 {% call form.input('resource_default_var', id='field-resource_default_var', label=_('Variable por defecto'), placeholder='columna_a', value=data.resource_default_var, error=errors.resource_default_var, classes=['control-full']) %}
 <span class="info-block info-block-small">
   <i class="fa fa-info-circle"></i>

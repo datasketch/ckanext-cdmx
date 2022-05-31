@@ -142,7 +142,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_default_var': [toolkit.get_validator('ignore_missing')],
             'resource_disaggregate': [toolkit.get_validator('ignore_missing')],
             'resource_viz': [toolkit.get_validator('ignore_missing')],
-
+            'resource_priority_date': [toolkit.get_validator('ignore_missing')]
         })
         schema['resources'].update({
             'date_format': [
@@ -180,6 +180,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_default_var': [toolkit.get_validator('ignore_missing')],
             'resource_disaggregate': [toolkit.get_validator('ignore_missing')],
             'resource_viz': [toolkit.get_validator('ignore_missing')],
+            'resource_priority_date': [toolkit.get_validator('ignore_missing')]
         })
         schema['resources'].update({
             'date_format': [
