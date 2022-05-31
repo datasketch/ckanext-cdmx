@@ -1,13 +1,35 @@
 {% ckan_extends %}
 
 {% block basic_fields %}
+
 {{ super() }}
-<p>-</p>
+
 {{ form.input('resource_subtitle', id='field-resource_subtitle', label=_('Subtítulo'), placeholder='Lorem ipsum', value=data.resource_subtitle, error=errors.resource_subtitle, classes=['control-full']) }}
 
 {{ form.input('resource_chart', id='field-resource_chart', label=_('Gráfico'), placeholder='bar', value=data.resource_chart, error=errors.resource_chart, classes=['control-full']) }}
 
 {{ form.input('resource_default_var', id='field-resource_default_var', label=_('Variable por defecto'), placeholder='columna_a', value=data.resource_default_var, error=errors.resource_default_var, classes=['control-full']) }}
+
+{% call form.input('resource_filters', id='field-resource_filters', label=_('Variables para filtrar'), placeholder='ej:columna_a,columna_d', value=data.resource_filters, error=errors.resource_filters, classes=['control-full']) %}
+<span class="info-block info-block-small">
+  <i class="fa fa-info-circle"></i>
+  {{ _('Utilice comas para separar los campos') }}
+</span>
+{% endcall %}
+
+{% call form.input('resource_disaggregate', id='field-resource_disaggregate', label=_('Variables para desagregar'), placeholder='ej:columna_a,columna_d', value=data.resource_disaggregate, error=errors.resource_disaggregate, classes=['control-full']) %}
+<span class="info-block info-block-small">
+  <i class="fa fa-info-circle"></i>
+  {{ _('Utilice comas para separar los campos') }}
+</span>
+{% endcall %}
+
+{% call form.input('resource_viz', id='field-resource_viz', label=_('Variables a visualizar'), placeholder='ej:columna_a,columna_d', value=data.resource_viz, error=errors.resource_viz, classes=['control-full']) %}
+<span class="info-block info-block-small">
+  <i class="fa fa-info-circle"></i>
+  {{ _('Utilice comas para separar los campos') }}
+</span>
+{% endcall %}
 
 <div class="form-group">
   <label class="control-label" for="field-update_frequency">
@@ -40,5 +62,4 @@
   </div>
 </div>
 
-{{ form.input('resource_filters', id='field-resource_filters', label=_('Filtros'), placeholder='ej:columna_a,columna_d', value=data.resource_filters, error=errors.resource_filters, classes=['control-full']) }}
 {% endblock %}

@@ -95,7 +95,9 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_filters': [toolkit.get_validator('ignore_missing')],
             'resource_subtitle': [toolkit.get_validator('ignore_missing')],
             'resource_chart': [toolkit.get_validator('ignore_missing')],
-            'resource_default_var': [toolkit.get_validator('ignore_missing')]
+            'resource_default_var': [toolkit.get_validator('ignore_missing')],
+            'resource_disaggregate': [toolkit.get_validator('ignore_missing')],
+            'resource_viz': [toolkit.get_validator('ignore_missing')],
 
         })
         schema['resources'].update({
@@ -128,7 +130,9 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_filters': [toolkit.get_validator('ignore_missing')],
             'resource_subtitle': [toolkit.get_validator('ignore_missing')],
             'resource_chart': [toolkit.get_validator('ignore_missing')],
-            'resource_default_var': [toolkit.get_validator('ignore_missing')]
+            'resource_default_var': [toolkit.get_validator('ignore_missing')],
+            'resource_disaggregate': [toolkit.get_validator('ignore_missing')],
+            'resource_viz': [toolkit.get_validator('ignore_missing')],
         })
         schema['resources'].update({
             'date_format': [
