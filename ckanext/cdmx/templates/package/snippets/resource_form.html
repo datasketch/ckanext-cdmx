@@ -9,7 +9,21 @@
 
 {{ form.input('resource_default_var', id='field-resource_default_var', label=_('Variable por defecto'), placeholder='columna_a', value=data.resource_default_var, error=errors.resource_default_var, classes=['control-full']) }}
 
-{{ form.input('resource_update_field', id='field-resource_update_field', label=_('Campo de actualización'), value=data.resource_update_field, error=errors.resource_update_field, classes=['control-full']) }}
+<div class="form-group">
+  <label class="control-label" for="field-update_frequency">
+    {{ _("Período de actualización") }}
+  </label>
+  <div class="controls">
+    <select id="field-update_frequency" name="update_frequency" data-module="autocomplete">
+      <option value="">{{ _('Seleccione un valor') }}</option>
+      {% for update_frequency in h.update_frequencies()  %}
+        <option value="{{ update_frequency }}" {% if update_frequency in data.get('update_frequency', []) %}selected="selected"{% endif %}>
+          {{ update_frequency }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
 
 <div class="form-group">
   <label class="control-label" for="field-date_format">
@@ -27,6 +41,4 @@
 </div>
 
 {{ form.input('resource_filters', id='field-resource_filters', label=_('Filtros'), placeholder='ej:columna_a,columna_d', value=data.resource_filters, error=errors.resource_filters, classes=['control-full']) }}
-
-{{ form.input('resourse_stat_text', id='field-resourse_stat_text', label=_('Texto cintillo'), placeholder='ej: Observaciones', value=data.resourse_stat_text, error=errors.resourse_stat_text, classes=['control-full']) }}
 {% endblock %}

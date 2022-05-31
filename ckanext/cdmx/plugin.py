@@ -34,17 +34,41 @@ def readable_date_formats():
     return {'d_m_a': 'd/m/a', 'a_m_d': 'a/m/d', 'd_m_a HH.MM': 'd/m/a HH:MM', 'a_m_d HH.MM': 'a/m/d HH:MM'}
 
 
+# TODO: update vocabulary
+def create_update_frequencies():
+    user = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+    context = {'user': user['name']}
+    try:
+        data = {'id': 'update_frequency'}
+        toolkit.get_action('vocabulary_show')(context, data)
+    except toolkit.ObjectNotFound:
+        data = {'name': 'update_frequency'}
+        vocab = toolkit.get_action('vocabulary_create')(context, data)
+        for tag in (u'Diario', u'Semanal', u'Quincenal', u'Mensual', u'Bimestral', u'Trimestral', u'Semestral', u'Anual', u'Histórico', u'No aplica'):
+            data = {'name': tag, 'vocabulary_id': vocab['id']}
+            toolkit.get_action('tag_create')(context, data)
+
+
+def update_frequencies():
+    create_update_frequencies()
+    try:
+        tag_list = toolkit.get_action('tag_list')
+        update_frequency = tag_list({}, {'vocabulary_id': 'update_frequency'})
+        return update_frequency
+    except toolkit.ObjectNotFound:
+        return None
+
+
 class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IConfigurable)
     plugins.implements(plugins.ITemplateHelpers)
 
-
     # ITemplateHelpers
 
     def get_helpers(self):
-        return {'date_formats': date_formats, 'readable_date_formats': readable_date_formats}
+        return {'date_formats': date_formats, 'readable_date_formats': readable_date_formats, 'update_frequencies': update_frequencies}
 
     # IConfigurer
 
@@ -52,7 +76,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         """ Reference file """
         # config['licenses_group_url'] = 'file://' + path.dirname(__file__) + '/public/licenses.json'
         """ Reference url """
-        config['licenses_group_url'] = 'https://github.com/datosabiertoscdmx/licencias-portal/blob/main/licencias-portal-cdmx.json'
+        # config['licenses_group_url'] = 'https://github.com/datosabiertoscdmx/licencias-portal/blob/main/licencias-portal-cdmx.json'
         config['ckan.locale_default'] = 'es'
 
     def update_config(self, config_):
@@ -69,9 +93,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     def _modify_package_schema(self, schema):
         schema['resources'].update({
             'resource_filters': [toolkit.get_validator('ignore_missing')],
-            'resourse_stat_text': [toolkit.get_validator('ignore_missing')],
             'resource_subtitle': [toolkit.get_validator('ignore_missing')],
-            'resource_update_field': [toolkit.get_validator('ignore_missing')],
             'resource_chart': [toolkit.get_validator('ignore_missing')],
             'resource_default_var': [toolkit.get_validator('ignore_missing')]
 
@@ -80,6 +102,10 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'date_format': [
                 toolkit.get_validator('ignore_missing'),
                 toolkit.get_converter('convert_to_tags')('date_formats')
+            ],
+            'update_frequency': [
+                toolkit.get_validator('ignore_missing'),
+                toolkit.get_converter('convert_to_tags')('update_frequencies')
             ]
         })
         return schema
@@ -96,18 +122,23 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     def show_package_schema(self):
         schema = super(CdmxPlugin, self).show_package_schema()
-        schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
+        schema['tags']['__extras'].append(
+            toolkit.get_converter('free_tags_only'))
         schema['resources'].update({
             'resource_filters': [toolkit.get_validator('ignore_missing')],
-            'resourse_stat_text': [toolkit.get_validator('ignore_missing')],
             'resource_subtitle': [toolkit.get_validator('ignore_missing')],
-            'resource_update_field': [toolkit.get_validator('ignore_missing')],
             'resource_chart': [toolkit.get_validator('ignore_missing')],
             'resource_default_var': [toolkit.get_validator('ignore_missing')]
         })
         schema['resources'].update({
             'date_format': [
                 toolkit.get_converter('convert_from_tags')('date_formats'),
-                toolkit.get_validator('ignore_missing')]
+                toolkit.get_validator('ignore_missing')
+            ],
+            'update_frequency': [
+                toolkit.get_converter('convert_from_tags')(
+                    'update_frequencies'),
+                toolkit.get_validator('ignore_missing')
+            ]
         })
         return schema
