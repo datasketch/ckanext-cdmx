@@ -53,10 +53,49 @@ def update_frequencies():
     create_update_frequencies()
     try:
         tag_list = toolkit.get_action('tag_list')
-        update_frequencies = tag_list({}, {'vocabulary_id': 'update_frequencies'})
+        update_frequencies = tag_list(
+            {}, {'vocabulary_id': 'update_frequencies'})
         return update_frequencies
     except toolkit.ObjectNotFound:
         return None
+
+
+# TODO: update vocabulary
+def create_chart_types():
+    user = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+    context = {'user': user['name']}
+    try:
+        data = {'id': 'chart_types'}
+        toolkit.get_action('vocabulary_show')(context, data)
+    except toolkit.ObjectNotFound:
+        data = {'name': 'chart_types'}
+        vocab = toolkit.get_action('vocabulary_create')(context, data)
+        for tag in (u'map', u'bar', u'line', u'treemap', u'scatter', u'table', u'map_bubble', u'map_heat'):
+            data = {'name': tag, 'vocabulary_id': vocab['id']}
+            toolkit.get_action('tag_create')(context, data)
+
+
+def chart_types():
+    create_chart_types()
+    try:
+        tag_list = toolkit.get_action('tag_list')
+        chart_types = tag_list({}, {'vocabulary_id': 'chart_types'})
+        return chart_types
+    except toolkit.ObjectNotFound:
+        return None
+
+
+def readable_chart_types():
+    return {
+        'map': 'Mapa coroplético',
+        'bar': 'Barras',
+        'line': 'Líneas',
+        'treemap': 'Treemap',
+        'scatter': 'Dispersión',
+        'table': 'Tabla',
+        'map_bubble': 'Mapa de puntos',
+        'map_heat': 'Mapa de calor'
+    }
 
 
 class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
@@ -68,7 +107,13 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     # ITemplateHelpers
 
     def get_helpers(self):
-        return {'date_formats': date_formats, 'readable_date_formats': readable_date_formats, 'update_frequencies': update_frequencies}
+        return {
+            'date_formats': date_formats,
+            'readable_date_formats': readable_date_formats,
+            'update_frequencies': update_frequencies,
+            'chart_types': chart_types,
+            'readable_chart_types': readable_chart_types
+        }
 
     # IConfigurer
 
@@ -94,7 +139,6 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         schema['resources'].update({
             'resource_filters': [toolkit.get_validator('ignore_missing')],
             'resource_subtitle': [toolkit.get_validator('ignore_missing')],
-            'resource_chart': [toolkit.get_validator('ignore_missing')],
             'resource_default_var': [toolkit.get_validator('ignore_missing')],
             'resource_disaggregate': [toolkit.get_validator('ignore_missing')],
             'resource_viz': [toolkit.get_validator('ignore_missing')],
@@ -108,6 +152,10 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'update_frequency': [
                 toolkit.get_validator('ignore_missing'),
                 toolkit.get_converter('convert_to_tags')('update_frequencies')
+            ],
+            'chart_type': [
+                toolkit.get_validator('ignore_missing'),
+                toolkit.get_converter('convert_to_tags')('chart_types')
             ]
         })
         return schema
@@ -129,7 +177,6 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         schema['resources'].update({
             'resource_filters': [toolkit.get_validator('ignore_missing')],
             'resource_subtitle': [toolkit.get_validator('ignore_missing')],
-            'resource_chart': [toolkit.get_validator('ignore_missing')],
             'resource_default_var': [toolkit.get_validator('ignore_missing')],
             'resource_disaggregate': [toolkit.get_validator('ignore_missing')],
             'resource_viz': [toolkit.get_validator('ignore_missing')],
@@ -142,6 +189,11 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'update_frequency': [
                 toolkit.get_converter('convert_from_tags')(
                     'update_frequencies'),
+                toolkit.get_validator('ignore_missing')
+            ],
+            'chart_type': [
+                toolkit.get_converter('convert_from_tags')(
+                    'chart_types'),
                 toolkit.get_validator('ignore_missing')
             ]
         })
