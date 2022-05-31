@@ -39,10 +39,10 @@ def create_update_frequencies():
     user = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
     context = {'user': user['name']}
     try:
-        data = {'id': 'update_frequency'}
+        data = {'id': 'update_frequencies'}
         toolkit.get_action('vocabulary_show')(context, data)
     except toolkit.ObjectNotFound:
-        data = {'name': 'update_frequency'}
+        data = {'name': 'update_frequencies'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
         for tag in (u'Diario', u'Semanal', u'Quincenal', u'Mensual', u'Bimestral', u'Trimestral', u'Semestral', u'Anual', u'Histórico', u'No aplica'):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
@@ -53,8 +53,8 @@ def update_frequencies():
     create_update_frequencies()
     try:
         tag_list = toolkit.get_action('tag_list')
-        update_frequency = tag_list({}, {'vocabulary_id': 'update_frequency'})
-        return update_frequency
+        update_frequencies = tag_list({}, {'vocabulary_id': 'update_frequencies'})
+        return update_frequencies
     except toolkit.ObjectNotFound:
         return None
 
