@@ -121,7 +121,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         """ Reference file """
         # config['licenses_group_url'] = 'file://' + path.dirname(__file__) + '/public/licenses.json'
         """ Reference url """
-        # config['licenses_group_url'] = 'https://github.com/datosabiertoscdmx/licencias-portal/blob/main/licencias-portal-cdmx.json'
+        config['licenses_group_url'] = 'https://raw.githubusercontent.com/datosabiertoscdmx/licencias-portal/main/licencias-portal-cdmx.json'
         config['ckan.locale_default'] = 'es'
 
     def update_config(self, config_):
