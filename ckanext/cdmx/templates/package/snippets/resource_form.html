@@ -2,58 +2,34 @@
 
 {% block basic_fields %}
 
-{{ super() }}
+{% block basic_fields_url %}
+  {% set is_upload = (data.url_type == 'upload') %}
+  {{ form.image_upload(data, errors, field_url='url', field_upload='upload', field_clear='clear_upload', is_upload_enabled=h.uploads_enabled(), is_url=data.url and not is_upload, is_upload=is_upload, upload_label=_('Recurso'), url_label=_('URL'), placeholder=_('http://example.com/external-data.csv'), field_name='name') }}
+{% endblock %}
+
+{% block basic_fields_name %}
+  {{ form.input('name', id='field-name', label=_('Título'), placeholder=_('eg. January 2011 Gold Prices'), value=data.name, error=errors.name, classes=['control-full']) }}
+{% endblock %}
 
 {{ form.input('resource_subtitle', id='field-resource_subtitle', label=_('Subtítulo'), placeholder='Lorem ipsum', value=data.resource_subtitle, error=errors.resource_subtitle, classes=['control-full']) }}
 
-<div class="form-group">
-  <label class="control-label" for="field-chart_type">
-    {{ _("Gráfica") }}
-  </label>
-  <div class="controls">
-    <select id="field-chart_type" name="chart_type" data-module="autocomplete">
-      <option value="">{{ _('Seleccione un valor') }}</option>
-      {% set readable_chart_types = h.readable_chart_types() %}
-      {% for chart_type in h.chart_types()  %}
-        <option value="{{ chart_type }}" {% if chart_type in data.get('chart_type', []) %}selected="selected"{% endif %}>{% if chart_type in readable_chart_types %} {{ readable_chart_types[chart_type] }} {% else %} {{ chart_type }} {% endif %}</option>
-      {% endfor %}
-    </select>
-  </div>
-</div>
+{% block basic_fields_description %}
+  {{ form.markdown('description', id='field-description', label=_('Description'), placeholder=_('Some useful notes about the data'), value=data.description, error=errors.description) }}
+{% endblock %}
 
-{{ form.input('resource_priority_date', id='field-resource_priority_date', label=_('Fecha a priorizar'), placeholder='Lorem ipsum', value=data.resource_priority_date, error=errors.resource_priority_date, classes=['control-full']) }}
-
-{% call form.input('resource_default_var', id='field-resource_default_var', label=_('Variable por defecto'), placeholder='columna_a', value=data.resource_default_var, error=errors.resource_default_var, classes=['control-full']) %}
-<span class="info-block info-block-small">
-  <i class="fa fa-info-circle"></i>
-  {{ _('Utilice comas para separar los campos') }}
-</span>
-{% endcall %}
-
-{% call form.input('resource_filters', id='field-resource_filters', label=_('Variables para filtrar'), placeholder='ej:columna_a,columna_d', value=data.resource_filters, error=errors.resource_filters, classes=['control-full']) %}
-<span class="info-block info-block-small">
-  <i class="fa fa-info-circle"></i>
-  {{ _('Utilice comas para separar los campos') }}
-</span>
-{% endcall %}
-
-{% call form.input('resource_disaggregate', id='field-resource_disaggregate', label=_('Variables para desagregar'), placeholder='ej:columna_a,columna_d', value=data.resource_disaggregate, error=errors.resource_disaggregate, classes=['control-full']) %}
-<span class="info-block info-block-small">
-  <i class="fa fa-info-circle"></i>
-  {{ _('Utilice comas para separar los campos') }}
-</span>
-{% endcall %}
-
-{% call form.input('resource_viz', id='field-resource_viz', label=_('Variables a visualizar'), placeholder='ej:columna_a,columna_d', value=data.resource_viz, error=errors.resource_viz, classes=['control-full']) %}
-<span class="info-block info-block-small">
-  <i class="fa fa-info-circle"></i>
-  {{ _('Utilice comas para separar los campos') }}
-</span>
-{% endcall %}
+{% block basic_fields_format %}
+  {% set format_attrs = {'data-module': 'autocomplete', 'data-module-source': '/api/2/util/resource/format_autocomplete?incomplete=?'} %}
+  {% call form.input('format', id='field-format', label=_('Format'), placeholder=_('eg. CSV, XML or JSON'), value=data.format, error=errors.format, classes=['control-medium'], attrs=format_attrs) %}
+    <span class="info-block info-block-small">
+      <i class="fa fa-info-circle"></i>
+      {{ _('This will be guessed automatically. Leave blank if you wish') }}
+    </span>
+  {% endcall %}
+{% endblock %}
 
 <div class="form-group">
   <label class="control-label" for="field-update_frequency">
-    {{ _("Período de actualización") }}
+    {{ _("Frecuencia de actualización") }}
   </label>
   <div class="controls">
     <select id="field-update_frequency" name="update_frequency" data-module="autocomplete">
@@ -67,9 +43,56 @@
   </div>
 </div>
 
+<h5>Ajustes para visualizaciones</h5>
+
+{% call form.input('resource_viz', id='field-resource_viz', label=_('Variables a visualizar'), placeholder='ej:columna_a,columna_d', value=data.resource_viz, error=errors.resource_viz, classes=['control-full']) %}
+<span class="info-block info-block-small">
+  <i class="fa fa-info-circle"></i>
+  {{ _('Utilice comas para separar los campos') }}
+</span>
+{% endcall %}
+
+{% call form.input('resource_disaggregate', id='field-resource_disaggregate', label=_('Variables para desagregar'), placeholder='ej:columna_a,columna_d', value=data.resource_disaggregate, error=errors.resource_disaggregate, classes=['control-full']) %}
+<span class="info-block info-block-small">
+  <i class="fa fa-info-circle"></i>
+  {{ _('Utilice comas para separar los campos') }}
+</span>
+{% endcall %}
+
+{% call form.input('resource_filters', id='field-resource_filters', label=_('Variables para filtrar'), placeholder='ej:columna_a,columna_d', value=data.resource_filters, error=errors.resource_filters, classes=['control-full']) %}
+<span class="info-block info-block-small">
+  <i class="fa fa-info-circle"></i>
+  {{ _('Utilice comas para separar los campos') }}
+</span>
+{% endcall %}
+
+<div class="form-group">
+  <label class="control-label" for="field-chart_type">
+    {{ _("Visualización por defecto") }}
+  </label>
+  <div class="controls">
+    <select id="field-chart_type" name="chart_type" data-module="autocomplete">
+      <option value="">{{ _('Seleccione un valor') }}</option>
+      {% set readable_chart_types = h.readable_chart_types() %}
+      {% for chart_type in h.chart_types()  %}
+        <option value="{{ chart_type }}" {% if chart_type in data.get('chart_type', []) %}selected="selected"{% endif %}>{% if chart_type in readable_chart_types %} {{ readable_chart_types[chart_type] }} {% else %} {{ chart_type }} {% endif %}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+{% call form.input('resource_default_var', id='field-resource_default_var', label=_('Variable por defecto'), placeholder='columna_a', value=data.resource_default_var, error=errors.resource_default_var, classes=['control-full']) %}
+<span class="info-block info-block-small">
+  <i class="fa fa-info-circle"></i>
+  {{ _('Utilice comas para separar los campos') }}
+</span>
+{% endcall %}
+
+{{ form.input('resource_priority_date', id='field-resource_priority_date', label=_('Variable de fecha a priorizar'), placeholder='Lorem ipsum', value=data.resource_priority_date, error=errors.resource_priority_date, classes=['control-full']) }}
+
 <div class="form-group">
   <label class="control-label" for="field-date_format">
-    {{ _("Formato de fecha") }}
+    {{ _("Formato de fechas") }}
   </label>
   <div class="controls">
     <select id="field-date_format" name="date_format" data-module="autocomplete">

@@ -13,3 +13,22 @@
 .font-gotham {
   font-family: Gotham;
 }
+
+.text-aqua {
+  color: #3998A5;
+}
+
+.aspect-16-by-9 {
+  padding-bottom: calc(9 / 16 * 100%);
+  position: relative;
+}
+
+.aspect-16-by-9 > :first-child {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}

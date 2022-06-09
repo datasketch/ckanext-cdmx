@@ -11,15 +11,15 @@
           <p style="font-size: 14px; margin-top: 20px; font-family: Roboto;">Rango de tiempo abarcado: enero/2004 - diciembre/2020</p>
         </div>
       </div>
-      <div style="position: relative;padding-bottom: calc(9 / 16 * 100%);">
-        <iframe style="position: absolute;height: 100%;width: 100%;top: 0;right: 0;bottom: 0;left: 0;" src="https://datasketch.shinyapps.io/cdmxApp-CKAN/" frameborder="0" allowfullscreen></iframe>
+      <div class="aspect-16-by-9">
+        <iframe src="https://datasketch.shinyapps.io/cdmxApp-CKAN/" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
   {% endif %}
 {% endblock %}
 
 {% block resource_read_title %}
-  <div {% if res.resource_subtitle %}style="color: #3998a5"{% endif %}>
+  <div {% if res.resource_subtitle %}class="text-aqua"{% endif %}>
     {{ super() }}
     {% if res.resource_subtitle %}
       <p>{{ res.resource_subtitle }}</p>
