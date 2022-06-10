@@ -27,23 +27,8 @@
   {% endcall %}
 {% endblock %}
 
-{{ form.select("update_frequency", label=_("Frecuencia de actualización"), options=h.update_frequencies(), selected=data.get("update_frequency", "")) }}
-
-<!-- <div class="form-group">
-  <label class="control-label" for="field-update_frequency">
-    {{ _("Frecuencia de actualización") }}
-  </label>
-  <div class="controls">
-    <select id="field-update_frequency" name="update_frequency" data-module="autocomplete">
-      <option value="">{{ _('Seleccione un valor') }}</option>
-      {% for update_frequency in h.update_frequencies()  %}
-        <option value="{{ update_frequency }}" {% if update_frequency in data.get('update_frequency', []) %}selected="selected"{% endif %}>
-          {{ update_frequency }}
-        </option>
-      {% endfor %}
-    </select>
-  </div>
-</div> -->
+{% set update_frequencies = h.update_frequencies() %}
+{{ form.select("update_frequency", label=_("Frecuencia de actualización"), options=update_frequencies['choices'], selected=data.update_frequency or update_frequencies['default']) }}
 
 <h2>Ajustes para visualizaciones</h2>
 

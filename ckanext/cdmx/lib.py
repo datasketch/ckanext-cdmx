@@ -48,48 +48,21 @@ def create_update_frequencies():
 
 
 def update_frequencies():
-  return [
-    {
-      'value': 'Diario',
-      'text': 'Diario'
-    },
-    {
-      'value': 'Semanal',
-      'text': 'Semanal'
-    },
-    {
-      'value': 'Quincenal',
-      'text': 'Quincenal'
-    },
-    {
-      'value': 'Mensual',
-      'text': 'Mensual'
-    },
-    {
-      'value': 'Bimestral',
-      'text': 'Bimestral'
-    },
-    {
-      'value': 'Trimestral',
-      'text': 'Trimestral'
-    },
-    {
-      'value': 'Semestral',
-      'text': 'Semestral'
-    },
-    {
-      'value': 'Anual',
-      'text': 'Anual'
-    },
-    {
-      'value': 'Histórico',
-      'text': 'Histórico'
-    },
-    {
-      'value': 'No aplica',
-      'text': 'No aplica'
-    },
-  ]
+    return {
+        'choices': [
+            {'value': 'Diario', 'text': 'Diario'},
+            {'value': 'Semanal', 'text': 'Semanal'},
+            {'value': 'Quincenal', 'text': 'Quincenal'},
+            {'value': 'Mensual', 'text': 'Mensual'},
+            {'value': 'Bimestral', 'text': 'Bimestral'},
+            {'value': 'Trimestral', 'text': 'Trimestral'},
+            {'value': 'Semestral', 'text': 'Semestral'},
+            {'value': 'Anual', 'text': 'Anual'},
+            {'value': 'Histórico', 'text': 'Histórico'},
+            {'value': 'No aplica', 'text': 'No aplica'},
+        ],
+        'default': 'No aplica'
+    }
 
 
 def create_chart_types():
