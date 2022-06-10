@@ -1,8 +1,9 @@
+from re import M
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import ckan.lib.jobs as jobs
 
-from ckanext.cdmx.lib import date_formats, readable_date_formats, update_frequencies, chart_types
+from ckanext.cdmx.lib import date_formats, update_frequencies, chart_types
 
 
 class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
@@ -17,7 +18,6 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     def get_helpers(self):
         return {
             'date_formats': date_formats,
-            'readable_date_formats': readable_date_formats,
             'update_frequencies': update_frequencies,
             'chart_types': chart_types,
         }
@@ -62,13 +62,8 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_viz': [toolkit.get_validator('ignore_missing')],
             'resource_priority_date': [toolkit.get_validator('ignore_missing')],
             'update_frequency': [toolkit.get_validator('ignore_missing')],
-            'chart_type': [toolkit.get_validator('ignore_missing')]
-        })
-        schema['resources'].update({
-            'date_format': [
-                toolkit.get_converter('convert_from_tags')('date_formats'),
-                toolkit.get_validator('ignore_missing')
-            ],
+            'chart_type': [toolkit.get_validator('ignore_missing')],
+            'date_format': [toolkit.get_validator('ignore_missing')],
         })
         return schema
 
@@ -87,13 +82,8 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_viz': [toolkit.get_validator('ignore_missing')],
             'resource_priority_date': [toolkit.get_validator('ignore_missing')],
             'update_frequency': [toolkit.get_validator('ignore_missing')],
-            'chart_type': [toolkit.get_validator('ignore_missing')]
-        })
-        schema['resources'].update({
-            'date_format': [
-                toolkit.get_validator('ignore_missing'),
-                toolkit.get_converter('convert_to_tags')('date_formats')
-            ]
+            'chart_type': [toolkit.get_validator('ignore_missing')],
+            'date_format': [toolkit.get_validator('ignore_missing')]
         })
         return schema
 
