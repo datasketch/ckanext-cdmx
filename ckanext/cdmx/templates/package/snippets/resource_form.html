@@ -27,8 +27,7 @@
   {% endcall %}
 {% endblock %}
 
-{% set update_frequencies = h.update_frequencies() %}
-{{ form.select("update_frequency", label=_("Frecuencia de actualización"), options=update_frequencies['choices'], selected=data.update_frequency or update_frequencies['default']) }}
+{{ form.select("update_frequency", label=_("Frecuencia de actualización"), options=h.update_frequencies(), selected=data.update_frequency) }}
 
 <h2>Ajustes para visualizaciones</h2>
 
@@ -53,20 +52,7 @@
 </span>
 {% endcall %}
 
-<div class="form-group">
-  <label class="control-label" for="field-chart_type">
-    {{ _("Visualización por defecto") }}
-  </label>
-  <div class="controls">
-    <select id="field-chart_type" name="chart_type" data-module="autocomplete">
-      <option value="">{{ _('Seleccione un valor') }}</option>
-      {% set readable_chart_types = h.readable_chart_types() %}
-      {% for chart_type in h.chart_types()  %}
-        <option value="{{ chart_type }}" {% if chart_type in data.get('chart_type', []) %}selected="selected"{% endif %}>{% if chart_type in readable_chart_types %} {{ readable_chart_types[chart_type] }} {% else %} {{ chart_type }} {% endif %}</option>
-      {% endfor %}
-    </select>
-  </div>
-</div>
+{{ form.select("chart_type", label=_("Visualización por defecto"), options=h.chart_types(), selected=data.chart_type) }}
 
 {% call form.input('resource_default_var', id='field-resource_default_var', label=_('Variable por defecto'), placeholder='columna_a', value=data.resource_default_var, error=errors.resource_default_var, classes=['control-full']) %}
 <span class="info-block info-block-small">

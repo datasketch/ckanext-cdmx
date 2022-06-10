@@ -2,7 +2,7 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import ckan.lib.jobs as jobs
 
-from ckanext.cdmx.lib import date_formats, readable_date_formats, update_frequencies, chart_types, readable_chart_types
+from ckanext.cdmx.lib import date_formats, readable_date_formats, update_frequencies, chart_types
 
 
 class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
@@ -10,7 +10,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IConfigurable)
     plugins.implements(plugins.ITemplateHelpers)
-    plugins.implements(plugins.IResourceController)
+    # plugins.implements(plugins.IResourceController)
 
     # ITemplateHelpers
 
@@ -20,7 +20,6 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'readable_date_formats': readable_date_formats,
             'update_frequencies': update_frequencies,
             'chart_types': chart_types,
-            'readable_chart_types': readable_chart_types
         }
 
     # IConfigurable
@@ -62,18 +61,14 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_disaggregate': [toolkit.get_validator('ignore_missing')],
             'resource_viz': [toolkit.get_validator('ignore_missing')],
             'resource_priority_date': [toolkit.get_validator('ignore_missing')],
-            'update_frequency': [toolkit.get_validator('ignore_missing')]
+            'update_frequency': [toolkit.get_validator('ignore_missing')],
+            'chart_type': [toolkit.get_validator('ignore_missing')]
         })
         schema['resources'].update({
             'date_format': [
                 toolkit.get_converter('convert_from_tags')('date_formats'),
                 toolkit.get_validator('ignore_missing')
             ],
-            'chart_type': [
-                toolkit.get_converter('convert_from_tags')(
-                    'chart_types'),
-                toolkit.get_validator('ignore_missing')
-            ]
         })
         return schema
 
@@ -91,16 +86,13 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_disaggregate': [toolkit.get_validator('ignore_missing')],
             'resource_viz': [toolkit.get_validator('ignore_missing')],
             'resource_priority_date': [toolkit.get_validator('ignore_missing')],
-            'update_frequency': [toolkit.get_validator('ignore_missing')]
+            'update_frequency': [toolkit.get_validator('ignore_missing')],
+            'chart_type': [toolkit.get_validator('ignore_missing')]
         })
         schema['resources'].update({
             'date_format': [
                 toolkit.get_validator('ignore_missing'),
                 toolkit.get_converter('convert_to_tags')('date_formats')
-            ],
-            'chart_type': [
-                toolkit.get_validator('ignore_missing'),
-                toolkit.get_converter('convert_to_tags')('chart_types')
             ]
         })
         return schema
