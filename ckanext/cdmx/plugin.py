@@ -1,7 +1,9 @@
+from re import M
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+import ckan.lib.jobs as jobs
 
-from ckanext.cdmx.lib import date_formats, readable_date_formats, update_frequencies, chart_types, readable_chart_types
+from ckanext.cdmx.lib import date_formats, update_frequencies, chart_types
 
 
 class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
@@ -9,16 +11,15 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IConfigurable)
     plugins.implements(plugins.ITemplateHelpers)
+    # plugins.implements(plugins.IResourceController)
 
     # ITemplateHelpers
 
     def get_helpers(self):
         return {
             'date_formats': date_formats,
-            'readable_date_formats': readable_date_formats,
             'update_frequencies': update_frequencies,
             'chart_types': chart_types,
-            'readable_chart_types': readable_chart_types
         }
 
     # IConfigurable
@@ -59,23 +60,10 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_default_var': [toolkit.get_validator('ignore_missing')],
             'resource_disaggregate': [toolkit.get_validator('ignore_missing')],
             'resource_viz': [toolkit.get_validator('ignore_missing')],
-            'resource_priority_date': [toolkit.get_validator('ignore_missing')]
-        })
-        schema['resources'].update({
-            'date_format': [
-                toolkit.get_converter('convert_from_tags')('date_formats'),
-                toolkit.get_validator('ignore_missing')
-            ],
-            'update_frequency': [
-                toolkit.get_converter('convert_from_tags')(
-                    'update_frequencies'),
-                toolkit.get_validator('ignore_missing')
-            ],
-            'chart_type': [
-                toolkit.get_converter('convert_from_tags')(
-                    'chart_types'),
-                toolkit.get_validator('ignore_missing')
-            ]
+            'resource_priority_date': [toolkit.get_validator('ignore_missing')],
+            'update_frequency': [toolkit.get_validator('ignore_missing')],
+            'chart_type': [toolkit.get_validator('ignore_missing')],
+            'date_format': [toolkit.get_validator('ignore_missing')],
         })
         return schema
 
@@ -92,20 +80,37 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_default_var': [toolkit.get_validator('ignore_missing')],
             'resource_disaggregate': [toolkit.get_validator('ignore_missing')],
             'resource_viz': [toolkit.get_validator('ignore_missing')],
-            'resource_priority_date': [toolkit.get_validator('ignore_missing')]
-        })
-        schema['resources'].update({
-            'date_format': [
-                toolkit.get_validator('ignore_missing'),
-                toolkit.get_converter('convert_to_tags')('date_formats')
-            ],
-            'update_frequency': [
-                toolkit.get_validator('ignore_missing'),
-                toolkit.get_converter('convert_to_tags')('update_frequencies')
-            ],
-            'chart_type': [
-                toolkit.get_validator('ignore_missing'),
-                toolkit.get_converter('convert_to_tags')('chart_types')
-            ]
+            'resource_priority_date': [toolkit.get_validator('ignore_missing')],
+            'update_frequency': [toolkit.get_validator('ignore_missing')],
+            'chart_type': [toolkit.get_validator('ignore_missing')],
+            'date_format': [toolkit.get_validator('ignore_missing')]
         })
         return schema
+
+    # IResourceController
+
+    # def before_create(self, context, resource):
+    #     return
+
+    # def after_create(self, context, resource):
+    #     if resource['format'] == 'SHP':
+    #         jobs.enqueue(log_job, [u'A shapefile was created'])
+    #         jobs.enqueue(to_geojson, [resource['id']])
+    #     print(resource)
+    #     print('........')
+    #     return
+
+    # def before_update(self, context, current, resource):
+    #     return
+
+    # def after_update(self, context, resource):
+    #     return
+
+    # def before_delete(self, context, resource, resources):
+    #     return
+
+    # def after_delete(self, context, resources):
+    #     return
+
+    # def before_show(self, resource_dict):
+    #     return resource_dict

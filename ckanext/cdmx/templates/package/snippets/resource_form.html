@@ -27,21 +27,7 @@
   {% endcall %}
 {% endblock %}
 
-<div class="form-group">
-  <label class="control-label" for="field-update_frequency">
-    {{ _("Frecuencia de actualización") }}
-  </label>
-  <div class="controls">
-    <select id="field-update_frequency" name="update_frequency" data-module="autocomplete">
-      <option value="">{{ _('Seleccione un valor') }}</option>
-      {% for update_frequency in h.update_frequencies()  %}
-        <option value="{{ update_frequency }}" {% if update_frequency in data.get('update_frequency', []) %}selected="selected"{% endif %}>
-          {{ update_frequency }}
-        </option>
-      {% endfor %}
-    </select>
-  </div>
-</div>
+{{ form.select("update_frequency", label=_("Frecuencia de actualización"), options=h.update_frequencies(), selected=data.update_frequency) }}
 
 <h2>Ajustes para visualizaciones</h2>
 
@@ -66,20 +52,7 @@
 </span>
 {% endcall %}
 
-<div class="form-group">
-  <label class="control-label" for="field-chart_type">
-    {{ _("Visualización por defecto") }}
-  </label>
-  <div class="controls">
-    <select id="field-chart_type" name="chart_type" data-module="autocomplete">
-      <option value="">{{ _('Seleccione un valor') }}</option>
-      {% set readable_chart_types = h.readable_chart_types() %}
-      {% for chart_type in h.chart_types()  %}
-        <option value="{{ chart_type }}" {% if chart_type in data.get('chart_type', []) %}selected="selected"{% endif %}>{% if chart_type in readable_chart_types %} {{ readable_chart_types[chart_type] }} {% else %} {{ chart_type }} {% endif %}</option>
-      {% endfor %}
-    </select>
-  </div>
-</div>
+{{ form.select("chart_type", label=_("Visualización por defecto"), options=h.chart_types(), selected=data.chart_type) }}
 
 {% call form.input('resource_default_var', id='field-resource_default_var', label=_('Variable por defecto'), placeholder='columna_a', value=data.resource_default_var, error=errors.resource_default_var, classes=['control-full']) %}
 <span class="info-block info-block-small">
@@ -90,19 +63,6 @@
 
 {{ form.input('resource_priority_date', id='field-resource_priority_date', label=_('Variable de fecha a priorizar'), placeholder='Lorem ipsum', value=data.resource_priority_date, error=errors.resource_priority_date, classes=['control-full']) }}
 
-<div class="form-group">
-  <label class="control-label" for="field-date_format">
-    {{ _("Formato de fechas") }}
-  </label>
-  <div class="controls">
-    <select id="field-date_format" name="date_format" data-module="autocomplete">
-      <option value="">{{ _('Seleccione un formato de fecha') }}</option>
-      {% set readable_date_formats = h.readable_date_formats() %}
-      {% for date_format in h.date_formats()  %}
-        <option value="{{ date_format }}" {% if date_format in data.get('date_format', []) %}selected="selected"{% endif %}>{% if date_format in readable_date_formats %} {{ readable_date_formats[date_format] }} {% else %} {{ date_format }} {% endif %}</option>
-      {% endfor %}
-    </select>
-  </div>
-</div>
+{{ form.select("date_format", label=_("Formato de fechas"), options=h.date_formats(), selected=data.date_format) }}
 
 {% endblock %}
