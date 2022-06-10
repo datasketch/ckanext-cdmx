@@ -48,14 +48,48 @@ def create_update_frequencies():
 
 
 def update_frequencies():
-    create_update_frequencies()
-    try:
-        tag_list = toolkit.get_action('tag_list')
-        update_frequencies = tag_list(
-            {}, {'vocabulary_id': 'update_frequencies'})
-        return update_frequencies
-    except toolkit.ObjectNotFound:
-        return None
+  return [
+    {
+      'value': 'Diario',
+      'text': 'Diario'
+    },
+    {
+      'value': 'Semanal',
+      'text': 'Semanal'
+    },
+    {
+      'value': 'Quincenal',
+      'text': 'Quincenal'
+    },
+    {
+      'value': 'Mensual',
+      'text': 'Mensual'
+    },
+    {
+      'value': 'Bimestral',
+      'text': 'Bimestral'
+    },
+    {
+      'value': 'Trimestral',
+      'text': 'Trimestral'
+    },
+    {
+      'value': 'Semestral',
+      'text': 'Semestral'
+    },
+    {
+      'value': 'Anual',
+      'text': 'Anual'
+    },
+    {
+      'value': 'Histórico',
+      'text': 'Histórico'
+    },
+    {
+      'value': 'No aplica',
+      'text': 'No aplica'
+    },
+  ]
 
 
 def create_chart_types():

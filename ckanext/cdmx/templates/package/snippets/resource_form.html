@@ -27,7 +27,9 @@
   {% endcall %}
 {% endblock %}
 
-<div class="form-group">
+{{ form.select("update_frequency", label=_("Frecuencia de actualización"), options=h.update_frequencies(), selected=data.get("update_frequency", "")) }}
+
+<!-- <div class="form-group">
   <label class="control-label" for="field-update_frequency">
     {{ _("Frecuencia de actualización") }}
   </label>
@@ -41,7 +43,7 @@
       {% endfor %}
     </select>
   </div>
-</div>
+</div> -->
 
 <h2>Ajustes para visualizaciones</h2>
 
