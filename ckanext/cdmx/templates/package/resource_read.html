@@ -13,7 +13,7 @@
           <p style="font-size: 14px; margin-top: 20px; font-family: Roboto;">{{ res.resource_subtitle }}</p>
         {% endif %}
         {% if res.url and h.is_url(res.url) %}
-          <a class="btn btn-primary resource-url-analytics bg-aqua" href="{{ res.url }}">
+          <a class="btn bg-aqua text-white resource-url-analytics bg-aqua" href="{{ res.url }}">
             {{ _('Download') }}
           </a>
         {% endif %}
