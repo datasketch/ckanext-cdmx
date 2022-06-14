@@ -1,8 +1,7 @@
-from re import M
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import ckan.lib.jobs as jobs
-from ckanext.cdmx.geo import shp2geojson
+# from ckanext.cdmx.geo import shp2geojson
 
 from ckanext.cdmx.lib import date_formats, update_frequencies, chart_types
 
@@ -12,7 +11,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IConfigurable)
     plugins.implements(plugins.ITemplateHelpers)
-    plugins.implements(plugins.IResourceController)
+    # plugins.implements(plugins.IResourceController)
 
     # ITemplateHelpers
 
@@ -90,27 +89,27 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     # IResourceController
 
-    def before_create(self, context, resource):
-        return
+    # def before_create(self, context, resource):
+    #     return
 
-    def after_create(self, context, resource):
-        if resource['format'] == 'SHP':
-            jobs.enqueue(shp2geojson, [resource['id']])
-        print(resource)
-        print('........')
-        return
+    # def after_create(self, context, resource):
+    #     if resource['format'] == 'SHP':
+    #         jobs.enqueue(shp2geojson, [resource['id']])
+    #     print(resource)
+    #     print('........')
+    #     return
 
-    def before_update(self, context, current, resource):
-        return
+    # def before_update(self, context, current, resource):
+    #     return
 
-    def after_update(self, context, resource):
-        return
+    # def after_update(self, context, resource):
+    #     return
 
-    def before_delete(self, context, resource, resources):
-        return
+    # def before_delete(self, context, resource, resources):
+    #     return
 
-    def after_delete(self, context, resources):
-        return
+    # def after_delete(self, context, resources):
+    #     return
 
-    def before_show(self, resource_dict):
-        return resource_dict
+    # def before_show(self, resource_dict):
+    #     return resource_dict
