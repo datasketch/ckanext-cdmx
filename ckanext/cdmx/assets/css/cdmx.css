@@ -36,3 +36,29 @@
   top: 0;
   width: 100%;
 }
+
+.resource-banner {
+  position: relative;
+}
+
+.resource-banner-bg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  inset: 0;
+  opacity: 0.3;
+  position: absolute;
+}
+
+.resource-banner-container {
+  color: #3998A5;
+  isolation: isolate;
+  max-width: 1536px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.max-w-screen-2xl {
+  margin: 0 auto;
+  max-width: 1536px;
+}
