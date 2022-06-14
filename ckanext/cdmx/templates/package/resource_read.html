@@ -5,7 +5,7 @@
 
 {% block content %}
   {% block maintag %}{{ super() }}{% endblock %}
-  <div id="content">
+  <div id="content" class="resource-content">
     {% block main_content %}{{ super() }}{% endblock %}
   </div>
 {% endblock %}
