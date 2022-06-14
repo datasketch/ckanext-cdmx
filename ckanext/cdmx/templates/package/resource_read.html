@@ -3,6 +3,13 @@
 {% block breadcrumb_content %}
 {% endblock %}
 
+{% block content %}
+  {% block maintag %}{{ super() }}{% endblock %}
+  <div id="content">
+    {% block main_content %}{{ super() }}{% endblock %}
+  </div>
+{% endblock %}
+
 {% block primary %}
   <div class="primary col-sm-12" role="main">
     <div class="resource-banner">
