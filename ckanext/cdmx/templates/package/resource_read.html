@@ -1,27 +1,37 @@
 {% ckan_extends %}
 
-{% block content %}
-  {{ super() }}
-  <div style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
-    <div style="position: relative;">
-      <div style="position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; opacity: 0.3; background-image: url(/images/banner-bg.png);"></div>
-      <div style="margin: 0 auto; padding: 40px 20px; text-align: center; isolation: isolate; color: #3998a5;">
-        <h2 style="font-size: 30px;" class="font-gotham">
-          {{ res.name }}
-        </h2>
-        {% if res.resource_subtitle %}
-          <p style="font-size: 14px; margin-top: 20px; font-family: Roboto;">{{ res.resource_subtitle }}</p>
-        {% endif %}
-        {% if res.url and h.is_url(res.url) %}
-          <a class="btn bg-aqua text-white resource-url-analytics bg-aqua" href="{{ res.url }}">
-            {{ _('Download') }}
-          </a>
-        {% endif %}
+{% block breadcrumb_content %}
+{% endblock %}
+
+{% block secondary_content %}
+{% endblock %}
+
+{% block primary %}
+  <div class="primary col-xs-12" role="main">
+    <div style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+      <div style="position: relative;">
+        <div style="position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; opacity: 0.3; background-image: url(/images/banner-bg.png);"></div>
+        <div style="margin: 0 auto; padding: 40px 20px; text-align: center; isolation: isolate; color: #3998a5;">
+          <h2 style="font-size: 30px;" class="font-gotham">
+            {{ res.name }}
+          </h2>
+          {% if res.resource_subtitle %}
+            <p style="font-size: 14px; margin-top: 20px; font-family: Roboto;">{{ res.resource_subtitle }}</p>
+          {% endif %}
+          {% if h.check_access('package_update', {'id':pkg.id }) %}
+            {% link_for _('Manage'), named_route=pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id, class_='btn btn-default', icon='wrench' %}
+          {% endif %}
+          {% if res.url and h.is_url(res.url) %}
+            <a class="btn bg-aqua text-white resource-url-analytics bg-aqua" href="{{ res.url }}">
+              {{ _('Download') }}
+            </a>
+          {% endif %}
+        </div>
       </div>
-    </div>
-    <div class="aspect-16-by-9">
-      {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
-      <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+      <div class="aspect-16-by-9">
+        {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
+        <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 {% endblock %}
