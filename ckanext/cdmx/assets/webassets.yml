@@ -15,5 +15,6 @@ cdmx_css:
     - css/colors.css
     - css/spacing.css
     - css/utils.css
+    - css/text.css
     - css/layout.css
     - css/cdmx.css
