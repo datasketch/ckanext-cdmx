@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Gotham";
+  src: url(/fonts/Gotham-Black.otf);
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url(/fonts/Gotham-Black.otf);
+  font-weight: 700;
+}
+
+.font-gotham {
+  font-family: "Gotham";
+}
+
+.font-roboto {
+  font-family: "Roboto";
+}
+
+.font-source-sans-pro {
+  font-family: "Source Sans Pro";
+}

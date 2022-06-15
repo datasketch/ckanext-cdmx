@@ -1,0 +1,59 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.aspect-16-by-9 {
+  padding-bottom: calc(9 / 16 * 100%);
+  position: relative;
+}
+
+.aspect-16-by-9 > :first-child {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.max-w-screen-xl {
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+.max-w-screen-2xl {
+  margin: 0 auto;
+  max-width: 1536px;
+}
+
+.w-52 {
+  width: 208px;
+}
+
+@media (min-width: 1024px) {
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+
+  .lg\:items-start {
+    align-items: flex-start;
+  }
+
+  .lg\:justify-between {
+    justify-content: space-between;
+  }
+}

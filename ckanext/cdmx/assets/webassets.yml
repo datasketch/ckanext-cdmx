@@ -11,4 +11,9 @@ cdmx_css:
   filter: cssmin
   output: ckanext-cdmx/%(version)s-cdmx.css
   contents:
+    - css/typography.css
+    - css/colors.css
+    - css/spacing.css
+    - css/utils.css
+    - css/layout.css
     - css/cdmx.css
