@@ -21,3 +21,13 @@
 .font-source-sans-pro {
   font-family: "Source Sans Pro";
 }
+
+.font-bold {
+  font-weight: 700;
+}
+
+@media (min-width: 1024px) {
+  .lg\:text-left {
+    text-align: left;
+  }
+}
