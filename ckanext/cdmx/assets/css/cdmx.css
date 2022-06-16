@@ -2,7 +2,7 @@
  * Navbar
  */
 #nav-menu {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
   font-size: 14px;
@@ -11,7 +11,7 @@
 }
 
 #nav-menu a {
-  color: #6f7271;
+  color: #6f7271 !important;
 }
 
 @media (min-width: 992px) {
