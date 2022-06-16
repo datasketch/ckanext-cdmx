@@ -30,6 +30,10 @@
   font-size: 16px;
 }
 
+.text-sm {
+  font-size: 14px;
+}
+
 @media (min-width: 1024px) {
   .lg\:text-left {
     text-align: left !important;
