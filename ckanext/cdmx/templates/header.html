@@ -1,0 +1,43 @@
+{% ckan_extends %}
+
+{% block header_wrapper %}
+{% block header_account %}{{ super() }}{% endblock %}
+
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ h.url_for('home.index') }}">
+      <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" height="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav-menu" aria-controls="main-nav-menu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="main-nav-menu">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Explora temas y variables</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Consulta el catálogo de datasets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sube tus datos</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<nav id="nav-menu" class="navbar navbar-expand-lg py-0">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"><i class="fas fa-bars text-light pt-1"></i></span>
+  </button>
+  <div class="collapse navbar-collapse w-100 justify-content-center" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link mx-2" aria-current="page" href="{{ h.url_for('home.index') }}">Inicio</a>
+      <a class="nav-item nav-link mx-2" href="{{ h.url_for('dataset.search') }}">Conjuntos de datos</a>
+      <a class="nav-item nav-link mx-2" href="https://visorseguridad.cdmx.gob.mx/">Explora datos de carpetas</a>
+      <a class="nav-item nav-link mx-2" href="https://plandeapertura.cdmx.gob.mx/" target="_blank">Plan de apertura</a>
+    </div>
+  </div>
+</nav>
+
+{% endblock %}
