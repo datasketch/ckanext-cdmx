@@ -14,10 +14,10 @@
     <div class="collapse navbar-collapse" id="main-nav-menu">
       <ul class="navbar-nav ml-auto font-gotham text-sm">
         <li class="nav-item">
-          <a class="nav-link" href="#">Explora temas y variables</a>
+          <a class="nav-link" href="{{ h.url_for('home.index') }}">Explora temas y variables</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Consulta el catálogo de datasets</a>
+          <a class="nav-link" href="{{ h.url_for('dataset.search') }}">Consulta el catálogo de datasets</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Sube tus datos</a>
