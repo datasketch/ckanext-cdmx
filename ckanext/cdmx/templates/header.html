@@ -3,7 +3,7 @@
 {% block header_wrapper %}
 {% block header_account %}{{ super() }}{% endblock %}
 
-<nav class="navbar navbar-light bg-white font-roboto">
+<nav id="main-nav" class="navbar navbar-light navbar-expand-lg bg-white font-roboto">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ h.url_for('home.index') }}">
       <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" height="50">
@@ -14,13 +14,13 @@
     <div class="collapse navbar-collapse" id="main-nav-menu">
       <ul class="navbar-nav ml-auto font-gotham text-sm">
         <li class="nav-item">
-          <a class="nav-link text-eerie-black" href="#">Explora temas y variables</a>
+          <a class="nav-link" href="#">Explora temas y variables</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-eerie-black" href="#">Consulta el catálogo de datasets</a>
+          <a class="nav-link" href="#">Consulta el catálogo de datasets</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-eerie-black" href="#">Sube tus datos</a>
+          <a class="nav-link" href="#">Sube tus datos</a>
         </li>
       </ul>
     </div>
