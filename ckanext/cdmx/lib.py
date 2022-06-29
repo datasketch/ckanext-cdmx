@@ -1,4 +1,10 @@
-import ckan.plugins.toolkit as toolkit
+import logging
+import os
+import ckanapi
+import requests
+from uuid import uuid4
+from shutil import copyfileobj
+from geopandas import read_file
 
 
 def date_formats():
@@ -42,3 +48,27 @@ def chart_types():
         {'value': 'map_heat', 'text': 'Mapa de calor'},
     ]
     return choices
+
+def log(msg, level=logging.INFO, logger=u'ckan'):
+    logger = logging.getLogger(logger)
+    logger.log(level, msg)
+
+
+def shp2json(resource_id, site_url, apikey):
+    ckan = ckanapi.RemoteCKAN(site_url, apikey=apikey)
+    resource = ckan.action.resource_show(id=resource_id)
+    resource_url = resource['url']
+    response = requests.get(resource_url)
+
+    if response.status_code != 200:
+        raise Exception("{0} could not be downloaded".format(resource_url))
+
+    tmp_file_name = "{}.{}".format(uuid4(), 'shp.zip')
+
+    with open(os.path.join('/tmp', tmp_file_name), 'wb') as out_file:
+        copyfileobj(response.raw, out_file)
+
+    log(tmp_file_name)
+    log('*** --- ***')
+
+

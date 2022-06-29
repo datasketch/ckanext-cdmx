@@ -85,6 +85,7 @@ setup(
     entry_points='''
         [ckan.plugins]
         cdmx=ckanext.cdmx.plugin:CdmxPlugin
+        cdmxgeo=ckanext.cdmx.plugin:CdmxGeoPlugin
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan

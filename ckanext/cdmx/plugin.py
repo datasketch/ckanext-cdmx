@@ -1,9 +1,9 @@
+import ckan.lib.jobs as jobs
+import ckan.model as model
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-import ckan.lib.jobs as jobs
-# from ckanext.cdmx.geo import shp2geojson
-
-from ckanext.cdmx.lib import date_formats, update_frequencies, chart_types
+from ckan.model.domain_object import DomainObjectOperation
+from ckanext.cdmx.lib import chart_types, date_formats, shp2json, update_frequencies
 
 
 class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
@@ -11,7 +11,6 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IConfigurable)
     plugins.implements(plugins.ITemplateHelpers)
-    # plugins.implements(plugins.IResourceController)
 
     # ITemplateHelpers
 
@@ -87,29 +86,20 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         })
         return schema
 
-    # IResourceController
 
-    # def before_create(self, context, resource):
-    #     return
+class CdmxGeoPlugin(plugins.SingletonPlugin):
+    plugins.implements(plugins.IDomainObjectModification)
 
-    # def after_create(self, context, resource):
-    #     if resource['format'] == 'SHP':
-    #         jobs.enqueue(shp2geojson, [resource['id']])
-    #     print(resource)
-    #     print('........')
-    #     return
+    def notify(self, entity, operation=None):
+        if isinstance(entity, model.Resource):
+            resource_id = entity.id
+            state = entity.state
+            file_format = entity.format
+            is_new_or_update = operation in [
+                DomainObjectOperation.new, DomainObjectOperation.changed
+            ]
 
-    # def before_update(self, context, current, resource):
-    #     return
-
-    # def after_update(self, context, resource):
-    #     return
-
-    # def before_delete(self, context, resource, resources):
-    #     return
-
-    # def after_delete(self, context, resources):
-    #     return
-
-    # def before_show(self, resource_dict):
-    #     return resource_dict
+            if is_new_or_update and file_format.upper() == 'SHP' and state != 'deleted':
+                site_url = toolkit.config.get('ckan.site_url', 'http://localhost/')
+                apikey = model.User.get('default').apikey
+                jobs.enqueue(shp2json, [resource_id, site_url, apikey])
