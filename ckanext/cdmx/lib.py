@@ -52,4 +52,4 @@ def humanize_date(date_str):
 
 
 def get_package_categories(package):
-    return ", ".join([item['title'] for item in package.groups])
+    return ", ".join([item['title'] for item in package['groups']])
