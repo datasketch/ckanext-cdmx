@@ -49,3 +49,7 @@ def chart_types():
 def humanize_date(date_str):
     date_obj = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S.%f')
     return format_date(date_obj, "d 'de' MMMM yyyy", locale="es")
+
+
+def get_package_categories(package):
+    return ", ".join([item['title'] for item in package.groups])
