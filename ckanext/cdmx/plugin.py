@@ -1,9 +1,8 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import ckan.lib.jobs as jobs
-# from ckanext.cdmx.geo import shp2geojson
 
-from ckanext.cdmx.lib import date_formats, update_frequencies, chart_types
+from ckanext.cdmx.lib import date_formats, update_frequencies, chart_types, humanize_date
 
 
 class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
@@ -20,6 +19,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'date_formats': date_formats,
             'update_frequencies': update_frequencies,
             'chart_types': chart_types,
+            'humanize_date': humanize_date
         }
 
     # IConfigurable

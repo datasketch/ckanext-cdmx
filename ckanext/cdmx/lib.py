@@ -1,3 +1,5 @@
+from datetime import datetime
+from babel.dates import format_date
 import ckan.plugins.toolkit as toolkit
 
 
@@ -42,3 +44,8 @@ def chart_types():
         {'value': 'map_heat', 'text': 'Mapa de calor'},
     ]
     return choices
+
+
+def humanize_date(date_str):
+    date_obj = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S.%f')
+    return format_date(date_obj, "d 'de' MMMM yyyy", locale="es")

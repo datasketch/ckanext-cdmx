@@ -4,7 +4,7 @@
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 {% set group = package.groups[0] %}
 
-<div class="card dataset-card" data-package="{{ package }}">
+<div class="card dataset-card">
   <div class="d-flex align-items-start">
     <div class="card-body text-center pr-0">
       {% if group %}
@@ -18,7 +18,7 @@
         </a>
       </h5>
       <p class="card-text">
-        <strong>Última Actualización</strong>: 30 de septiembre 2020
+        <strong>Última Actualización</strong>: {{ h.humanize_date(package.metadata_modified) }}
       </p>
       {% block notes %}
         {% if notes %}
