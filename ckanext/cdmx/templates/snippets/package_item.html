@@ -1,0 +1,43 @@
+{% set truncate = truncate or 180 %}
+{% set truncate_title = truncate_title or 80 %}
+{% set title = package.title or package.name %}
+{% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
+{% set group = package.groups[0] %}
+
+<div class="card dataset-card" data-package="{{ package }}">
+  <div class="d-flex align-items-start">
+    <div class="card-body text-center pr-0">
+      {% if group %}
+        <img class="img-fluid" style="width: 120px;" src="{{ group.image_display_url }}" alt="">
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">
+        <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-dark-electric-blue">
+          <u>{{ h.truncate(title, truncate_title) }}</u>
+        </a>
+      </h5>
+      <p class="card-text">
+        <strong>Última Actualización</strong>: 30 de septiembre 2020
+      </p>
+      {% block notes %}
+        {% if notes %}
+          <p class="card-text">{{ notes | urlize }} <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-dark-electric-blue font-weight-bold">
+            <u>Ver conjunto</u>
+          </a></p>
+        {% else %}
+          <p class="empty">{{ _("This dataset has no description") }} <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-dark-electric-blue font-weight-bold">
+            <u>Ver conjunto</u>
+          </a></p>
+        {% endif %}
+      {% endblock %}
+      <p class="card-text">
+        <strong>Categoría:</strong> <span class="text-blue-munsell">Covid-19, Movilidad, Desarrollo urbano,
+          vivienda y territorio, Seguridad</span>
+      </p>
+      <p class="card-text">
+        <strong>Institución:</strong> <span class="text-blue-munsell">{{ package.organization.title }}</span>
+      </p>
+    </div>
+  </div>
+</div>

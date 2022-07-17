@@ -28,7 +28,6 @@
   }
 }
 
-
 .resource-banner {
   position: relative;
 }
@@ -53,4 +52,26 @@
 .resource-content .toolbar {
   padding: 0;
   margin-bottom: 0;
+}
+
+.filter {
+  padding: 16px 0;
+  border-top: 1px solid #EDF2F7;
+}
+
+.filter-toggle {
+  width: 100%;
+  background-color: transparent;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.filter-choices > * ~ * {
+  margin-top: 16px;
+}
+
+.filter-count {
+  color: #4A5568;
+  background-color: #EDF2F7;
+  width: 48px;
 }
