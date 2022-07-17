@@ -31,10 +31,11 @@
           </a></p>
         {% endif %}
       {% endblock %}
-      <p class="card-text">
-        <strong>Categoría:</strong> <span class="text-blue-munsell">Covid-19, Movilidad, Desarrollo urbano,
-          vivienda y territorio, Seguridad</span>
-      </p>
+      {% if package.groups %}
+        <p class="card-text">
+          <strong>Categoría:</strong> <span class="text-blue-munsell">{{ ", ".join([group['display_name'] for group in package.groups]) }}</span>
+        </p>
+      {% endif %}
       <p class="card-text">
         <strong>Institución:</strong> <span class="text-blue-munsell">{{ package.organization.title }}</span>
       </p>
