@@ -57,3 +57,7 @@
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
+
+.dataset-resource:not(:first-child) {
+  margin-top: 24px;
+}
