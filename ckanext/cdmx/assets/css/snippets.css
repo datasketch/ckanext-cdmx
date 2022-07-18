@@ -22,6 +22,10 @@
   margin-top: 16px;
 }
 
+.filter-choices .form-check-label::after {
+  content: '';
+}
+
 .filter-count {
   color: #4A5568;
   background-color: #EDF2F7;
