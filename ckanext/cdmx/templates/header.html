@@ -3,6 +3,9 @@
 {% block header_wrapper %}
 {% block header_account %}{{ super() }}{% endblock %}
 
+<pre>{{ h.full_current_url() }}</pre>
+<pre>{{ h.current_url() }}</pre>
+
 <nav id="main-nav" class="navbar navbar-light navbar-expand-lg bg-white font-roboto">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ h.url_for('home.index') }}">
