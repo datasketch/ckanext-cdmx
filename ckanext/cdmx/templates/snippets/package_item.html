@@ -33,11 +33,11 @@
       {% endblock %}
       {% if package.groups %}
         <p class="card-text">
-          <strong>Categoría:</strong> <span class="text-blue-munsell">{{ h.get_package_categories(package) }}</span>
+          <strong>Categoría:</strong> <span class="text-aqua">{{ h.get_package_categories(package) }}</span>
         </p>
       {% endif %}
       <p class="card-text">
-        <strong>Institución:</strong> <span class="text-blue-munsell">{{ package.organization.title }}</span>
+        <strong>Institución:</strong> <span class="text-aqua">{{ package.organization.title }}</span>
       </p>
     </div>
   </div>

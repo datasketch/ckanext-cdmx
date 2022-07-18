@@ -15,11 +15,15 @@
 }
 
 .font-roboto {
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
 }
 
 .font-source-sans-pro {
-  font-family: "Source Sans Pro";
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif
 }
 
 .font-bold {

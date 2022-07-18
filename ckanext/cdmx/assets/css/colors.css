@@ -14,15 +14,15 @@
   background-color: #54A390;
 }
 
+.bg-white {
+  background-color: #ffffff;
+}
+
 .border-dark-electric-blue {
   border-color: #637381;
 }
 
 .text-aqua {
-  color: #3998A5;
-}
-
-.text-blue-munsell {
   color: #3998A5;
 }
 

@@ -2,7 +2,7 @@
 
 {%- block content %}
   {% block maintag %}<div>{% endblock %}
-  <div id="content">
+  <div id="content" class="bg-white">
     {% block main_content %}
       {% block flash %}{{ super() }}{% endblock %}
       {% block toolbar %}{% endblock %}
@@ -18,10 +18,22 @@
       <div class="container">
         <div class="row {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
           {% block secondary %}
-            {{ super() }}
+            <aside class="secondary col-sm-4 mt-5">
+              <div>
+                {% block secondary_content %}
+                  {% block package_organization %}
+                    {{ super() }}
+                  {% endblock %}
+                {% endblock %}
+              </div>
+            </aside>
           {% endblock %}
           {% block primary %}
-            {{ super() }}
+            <div class="primary col-sm-8 col-xs-12" role="main">
+              {% block primary_content %}
+                {{ super() }}
+              {% endblock %}
+            </div>
           {% endblock %}
         </div>
       </div>
