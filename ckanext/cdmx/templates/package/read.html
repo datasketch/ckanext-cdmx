@@ -77,7 +77,6 @@
               {% block primary_content %}
                 {{ super() }}
                 {% block primary_content_inner %}
-                  {{ super() }}
                   {% block package_description %}
                     {% if pkg.private %}
                       <span class="dataset-private label label-inverse pull-right">
@@ -90,7 +89,7 @@
                     {% endblock %}
                     {% block package_notes %}
                       {% if pkg.notes %}
-                        <div class="notes embedded-content">
+                        <div class="notes embedded-content" style="border-bottom: 1px solid #d3d3d3;">
                           {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
                         </div>
                       {% endif %}
