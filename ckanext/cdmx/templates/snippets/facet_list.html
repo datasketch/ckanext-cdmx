@@ -3,7 +3,7 @@
 {% endblock %}
 
 {% block facet_list_heading %}
-  <h2 class="module-heading">
+  <h2>
     {% set title = title or h.get_facet_title(name) %}
     <button class="filter-toggle border-0 text-dark-electric-blue font-weight-bold text-left">
       {{ title }}
@@ -15,7 +15,7 @@
   {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
     {% if items %}
       <nav aria-label="{{ title }}">
-        <div class="card-body pb-0">
+        <div class="card-body pb-0 pl-0">
           <ul class="filter-choices">
             {% for item in items %}
               {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
@@ -24,8 +24,9 @@
               {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
               <li class="d-flex align-items-start justify-content-between{% if item.active %} active{% endif %}">
                 <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="">
                   <label for="" class="form-check-label">
-                    <a class="py-2" href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
+                    <a class="py-2 text-eerie-black" href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
                       {{ label_truncated }}
                     </a>
                   </label>
