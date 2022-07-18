@@ -1,3 +1,5 @@
+{% ckan_extends %}
+
 {% set url_action = pkg.type ~ ('_resource.edit' if url_is_edit and can_edit else '_resource.read') %}
 {% set url = h.url_for(url_action, id=pkg.id if is_activity_archive else pkg.name, resource_id=res.id, **({'activity_id': request.args['activity_id']} if 'activity_id' in request.args else {})) %}
 
@@ -8,8 +10,9 @@
       {{ h.popular('views', res.tracking_summary.total, min=10) if res.tracking_summary }}
     </a>
   {% endblock %}
-  <div class="mt-2">
-    <strong>Última Actualización</strong>: {{ h.humanize_date(res.metadata_modified) }}
+  <div class="mt-2 d-flex">
+    <span class="text-center rounded font-weight-semibold flex-shrink-0 mr-2 bg-polished-pine" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
+    <p class="m-0"><strong>Última Actualización</strong>: {{ h.humanize_date(res.metadata_modified) }}</p>
   </div>
   {% block resource_item_description %}
     {% if res.description %}
@@ -22,5 +25,3 @@
       {{ super() }}
   {% endblock %}
 </li>
-
-<!-- <span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span> -->
