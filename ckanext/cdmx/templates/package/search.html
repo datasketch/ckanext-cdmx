@@ -1,34 +1,30 @@
 {% ckan_extends %}
 
-{% block form %}
+{% block secondary %}
+  <aside class="secondary col-sm-3 mt-5">
+    <div>
+      {% block secondary_content %}
+        <form id="dataset-query-form" method="get">
+          <div class="searchbox d-flex justify-content-between overflow-hidden">
+            <input type="text" class="searchbox-input border-0 px-3" placeholder="Buscar conjunto de datos" aria-label="Buscar conjunto de datos" name="q" value="{{ query }}" autocomplete="off">
+            <button class="searchbox-button bg-dark-electric-blue border-0 d-inline-flex justify-content-center align-items-center">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </form>
+        <div class="card filters mt-4" style="box-shadow: 0px 0px 0px 0.823214px rgba(26, 26, 26, 0.1), 0px 1.64643px 3.29286px rgba(26, 26, 26, 0.1);">
+          <div class="card-body">
+            <h5>Filtros</h5>
+            <p class="mb-0">Encuentra conjuntos de datos según tus intereses.</p>
+          </div>
+          {% for facet in facet_titles %}
+            {{ h.snippet('snippets/facet_list.html', title=facet_titles[facet], name=facet, search_facets=search_facets) }}
+          {% endfor %}
+        </div>
+        <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
+      {% endblock %}
+    </div>
+  </aside>
 {% endblock %}
 
-{% block secondary_content %}
-  {% block form %}
-    {% set facets = {
-      'fields': fields_grouped,
-      'search': search_facets,
-      'titles': facet_titles,
-      'translated_fields': translated_fields,
-      'remove_field': remove_field }
-    %}
-    {% set sorting = [
-      (_('Relevance'), 'score desc, metadata_modified desc'),
-      (_('Name Ascending'), 'title_string asc'),
-      (_('Name Descending'), 'title_string desc'),
-      (_('Last Modified'), 'metadata_modified desc'),
-      (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
-    %}
-    {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type=dataset_type, query=q, sorting=sorting, sorting_selected=sort_by_selected, count=page.item_count, placeholder=_('Search ' + dataset_type + 's') + '...', facets=facets, show_empty=request.params, error=query_error, fields=fields %}
-  {% endblock %}
-  <div class="card filters" style="box-shadow: 0px 0px 0px 0.823214px rgba(26, 26, 26, 0.1), 0px 1.64643px 3.29286px rgba(26, 26, 26, 0.1);">
-    <div class="card-body">
-      <h5>Filtros</h5>
-      <p class="mb-0">Encuentra conjuntos de datos según tus intereses.</p>
-    </div>
-    {% for facet in facet_titles %}
-      {{ h.snippet('snippets/facet_list.html', title=facet_titles[facet], name=facet, search_facets=search_facets) }}
-    {% endfor %}
-  </div>
-  <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
-{% endblock %}
+

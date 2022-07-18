@@ -31,3 +31,16 @@
   background-color: #EDF2F7;
   width: 48px;
 }
+
+.searchbox {
+  border: 1px solid #637381;
+  border-radius: 8px;
+}
+
+.searchbox-input {
+  width: 100%;
+}
+
+.searchbox-input::placeholder {
+  color: #637381;
+}

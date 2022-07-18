@@ -6,6 +6,18 @@
   background-color: #1B5C4F;
 }
 
+.bg-dark-electric-blue {
+  background-color: #637381;
+}
+
+.bg-polished-pine {
+  background-color: #54A390;
+}
+
+.border-dark-electric-blue {
+  border-color: #637381;
+}
+
 .text-aqua {
   color: #3998A5;
 }
