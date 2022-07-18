@@ -1,0 +1,21 @@
+{% ckan_extends %}
+
+{% block social %}
+  <section class="mt-4">
+    {% block social_title %}
+      <h2 class="text-base text-aqua font-weight-bold mb-2">
+        Compartir
+      </h2>
+    {% endblock %}
+    {% block social_nav %}
+    <ul class="d-flex">
+        <li class="mr-3"><a href="https://www.facebook.com/sharer.php?u={{ current_url }}" target="_blank">
+          <img class="img-fluid" src="/images/facebook.png" alt="">
+        </li>
+        <li><a href="https://twitter.com/share?url={{ current_url }}" target="_blank">
+          <img class="img-fluid" src="/images/twitter.png" alt="">
+        </li>
+      </ul>
+    {% endblock %}
+  </section>
+{% endblock %}
