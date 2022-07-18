@@ -34,8 +34,10 @@
   </button>
   <div class="collapse navbar-collapse w-100 justify-content-center" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link mx-2" aria-current="page" href="{{ h.url_for('home.index') }}">Inicio</a>
-      <a class="nav-item nav-link mx-2" href="{{ h.url_for('dataset.search') }}">Conjuntos de datos</a>
+      {% set home_url = h.url_for("home.index") %}
+      <a class="nav-item nav-link mx-2{% if home_url == current_url %} active{% endif %}" aria-current="page" href="{{ home_url }}">Inicio</a>
+      {% set dataset_url = h.url_for("dataset.search") %}
+      <a class="nav-item nav-link mx-2{% if dataset_url == current_url %} active{% endif %}" href="{{ dataset_url }}">Conjuntos de datos</a>
       <a class="nav-item nav-link mx-2" href="https://visorseguridad.cdmx.gob.mx/">Explora datos de carpetas</a>
       <a class="nav-item nav-link mx-2" href="https://plandeapertura.cdmx.gob.mx/" target="_blank">Plan de apertura</a>
     </div>

@@ -8,7 +8,7 @@
 
 #nav-menu {
   background-color: #F9F9F9 !important;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 14px;
   padding-top: 0 !important;
@@ -19,6 +19,11 @@
 #nav-menu a {
   padding-top: 12px;
   padding-bottom: 12px;
+}
+
+#nav-menu a.active {
+  color: #9F2241;
+  border-bottom: 1px solid #9F2241;
 }
 
 #nav-menu a,
