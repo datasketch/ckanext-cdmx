@@ -29,7 +29,10 @@
               {{ h.markdown_extract(organization.description, 180) }}
             </p>
             <p class="read-more">
-              {% link_for _('read more'), named_route=organization.type ~ '.about', id=organization.name %}
+              <!-- {{ h.url_for(organization.type ~ '.about', id=organization.name) }} -->
+              {% set read_more = h.url_for('%s.about' % organization.type, id=organization.name)%}
+              <pre>{{ read_more }}</pre>
+              <a class="text-aqua" href="#">Leer más</a>
             </p>
           {% else %}
             <p class="empty">{{ h.humanize_entity_type('organization', organization.type, 'no description') or _('There is no description for this organization') }}</p>
