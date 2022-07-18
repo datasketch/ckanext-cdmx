@@ -24,6 +24,18 @@
                   {% block package_organization %}
                     {{ super() }}
                   {% endblock %}
+                  {% if pkg.tags %}
+                    <section class="mt-4">
+                      <h2 class="text-base text-aqua font-weight-bold mb-1">
+                        Etiquetas
+                      </h2>
+                      <ul class="pl-0">
+                        {% for tag in pkg.tags %}
+                          <li>{{ tag.display_name }}</li>
+                        {% endfor %}
+                      </ul>
+                    </section>
+                  {% endif %}
                   {% block package_license %}
                     {{ super() }}
                   {% endblock %}
