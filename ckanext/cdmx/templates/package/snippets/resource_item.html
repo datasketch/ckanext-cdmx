@@ -18,6 +18,9 @@
       </p>
     {% endif %}
   {% endblock %}
+  {% block resource_item_explore %}
+      {{ super() }}
+  {% endblock %}
 </li>
 
 <!-- <span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span> -->
