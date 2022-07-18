@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
 {%- block content %}
-  {% block maintag %}{{ super() }}{% endblock %}
+  {% block maintag %}<div>{% endblock %}
   <div id="content">
     {% block main_content %}
       {% block flash %}{{ super() }}{% endblock %}
@@ -9,40 +9,42 @@
       <div class="jumbotron jumbotron-fluid" style="background-image: url(/images/bg-package-search.png); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <div class="container">
           <div class="my-4">
-            <h1 class="display-4 text-center font-weight-bolder text-white">420 conjuntos de datos</h1>
+            <h1 class="display-4 text-center font-weight-bolder text-white">{{ page.item_count }} conjunto{% if page.item_count != 1 %}s{% endif %} de datos</h1>
           </div>
         </div>
       </div>
       <div class="container">
-        <div class="row wrapper{% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
+        <div class="row {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
           {% block secondary %}
-            <aside class="secondary col-sm-3 mt-5">
-              <div>
-                {% block secondary_content %}
-                  <form id="dataset-query-form" method="get">
-                    <div class="searchbox d-flex justify-content-between overflow-hidden">
-                      <input type="text" class="searchbox-input border-0 px-3" placeholder="Buscar conjunto de datos" aria-label="Buscar conjunto de datos" name="q" value="{{ q }}" autocomplete="off">
-                      <button class="searchbox-button bg-dark-electric-blue border-0 d-inline-flex justify-content-center align-items-center">
-                        <i class="fa fa-search"></i>
-                      </button>
-                    </div>
-                  </form>
-                  <div class="card filters mt-4" style="box-shadow: 0px 0px 0px 0.823214px rgba(26, 26, 26, 0.1), 0px 1.64643px 3.29286px rgba(26, 26, 26, 0.1);">
-                    <div class="card-body">
-                      <h5>Filtros</h5>
-                      <p class="mb-0">Encuentra conjuntos de datos según tus intereses.</p>
-                    </div>
-                    {% for facet in facet_titles %}
-                      {{ h.snippet('snippets/facet_list.html', title=facet_titles[facet], name=facet, search_facets=search_facets) }}
-                    {% endfor %}
+            <aside class="secondary col-sm-4 mt-5">
+              {% block secondary_content %}
+                <form id="dataset-query-form" method="get">
+                  <div class="searchbox d-flex justify-content-between overflow-hidden">
+                    <input type="text" class="searchbox-input border-0 px-3" placeholder="Buscar conjunto de datos" aria-label="Buscar conjunto de datos" name="q" value="{{ q }}" autocomplete="off">
+                    <button class="searchbox-button bg-dark-electric-blue border-0 d-inline-flex justify-content-center align-items-center">
+                      <i class="fa fa-search"></i>
+                    </button>
                   </div>
-                  <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
-                {% endblock %}
-              </div>
+                </form>
+                <div class="card filters mt-4" style="box-shadow: 0px 0px 0px 0.823214px rgba(26, 26, 26, 0.1), 0px 1.64643px 3.29286px rgba(26, 26, 26, 0.1);">
+                  <div class="card-body">
+                    <h5>Filtros</h5>
+                    <p class="mb-0">Encuentra conjuntos de datos según tus intereses.</p>
+                  </div>
+                  {% for facet in facet_titles %}
+                    {{ h.snippet('snippets/facet_list.html', title=facet_titles[facet], name=facet, search_facets=search_facets) }}
+                  {% endfor %}
+                </div>
+                <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
+              {% endblock %}
             </aside>
           {% endblock %}
           {% block primary %}
-            {{ super() }}
+            <div class="primary col-sm-8 col-xs-12" role="main">
+              {% block primary_content %}
+                {{ super() }}
+              {% endblock %}
+            </div>
           {% endblock %}
         </div>
       </div>
