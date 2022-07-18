@@ -76,6 +76,40 @@
             <div class="primary col-sm-9 col-xs-12" role="main">
               {% block primary_content %}
                 {{ super() }}
+                {% block primary_content_inner %}
+                  {{ super() }}
+                  {% block package_description %}
+                    {% if pkg.private %}
+                      <span class="dataset-private label label-inverse pull-right">
+                        <i class="fa fa-lock"></i>
+                        {{ _('Private') }}
+                      </span>
+                    {% endif %}
+                    {% block package_archive_notice %}
+                      {{ super() }}
+                    {% endblock %}
+                    {% block package_notes %}
+                      {% if pkg.notes %}
+                        <div class="notes embedded-content">
+                          {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+                        </div>
+                      {% endif %}
+                    {% endblock %}
+                  {% endblock %}
+                
+                  {% block package_resources %}
+                    {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources, is_activity_archive=is_activity_archive %}
+                  {% endblock %}
+                
+                  {% block package_tags %}
+                    {% snippet "package/snippets/tags.html", tags=pkg.tags %}
+                  {% endblock %}
+                
+                  {% block package_additional_info %}
+                    {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
+                  {% endblock %}
+                
+                {% endblock %}
               {% endblock %}
             </div>
           {% endblock %}
@@ -84,3 +118,5 @@
     {% endblock %}
   </div>
 {% endblock -%}
+
+
