@@ -15,7 +15,7 @@
   {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
     {% if items %}
       <nav aria-label="{{ title }}">
-        <div class="card-body pb-0 pl-0">
+        <div class="card-body pb-0">
           <ul class="filter-choices">
             {% for item in items %}
               {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}

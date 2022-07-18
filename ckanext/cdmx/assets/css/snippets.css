@@ -14,6 +14,10 @@
   font-size: 18px;
 }
 
+.filter-choices {
+  padding-left: 0;
+}
+
 .filter-choices > * ~ * {
   margin-top: 16px;
 }
