@@ -8,8 +8,8 @@
       {{ h.popular('views', res.tracking_summary.total, min=10) if res.tracking_summary }}
     </a>
   {% endblock %}
-  <div class="mt-2 d-flex">
-    <span class="text-center rounded font-weight-semibold flex-shrink-0 mr-2 bg-polished-pine" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
+  <div class="mt-2 d-flex align-items-center">
+    <span class="text-center rounded font-weight-bold flex-shrink-0 mr-2 bg-polished-pine px-2 py-1 text-sm text-white" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
     <p class="m-0"><strong>Última Actualización</strong>: {{ h.humanize_date(res.metadata_modified) }}</p>
   </div>
   {% block resource_item_description %}
