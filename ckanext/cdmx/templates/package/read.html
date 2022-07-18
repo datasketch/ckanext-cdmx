@@ -41,10 +41,10 @@
                       <h2 class="text-base text-aqua font-weight-bold mb-2">
                         Formatos
                       </h2>
-                      <pre>{{ h.extract_from_key(pkg.resources, 'format') }}</pre>
+                      {% set formats = h.extract_from_key(pkg.resources, 'format') | unique | list %}
                       <ul class="list-unstyled">
-                        {% for tag in pkg.tags %}
-                          <li>{{ tag.display_name }}</li>
+                        {% for format in formats %}
+                          <li>{{ format }}</li>
                         {% endfor %}
                       </ul>
                     </section>
