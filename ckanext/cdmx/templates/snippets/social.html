@@ -8,12 +8,16 @@
       </h2>
     {% endblock %}
     {% block social_nav %}
-    <ul class="d-flex">
-        <li class="mr-3"><a href="https://www.facebook.com/sharer.php?u={{ current_url }}" target="_blank">
-          <img class="img-fluid" src="/images/facebook.png" alt="">
+    <ul class="d-flex list-unstyled">
+        <li class="mr-3">
+          <a href="https://www.facebook.com/sharer.php?u={{ current_url }}" target="_blank">
+            <img class="img-fluid" src="/images/facebook.svg" alt="">
+          </a>
         </li>
-        <li><a href="https://twitter.com/share?url={{ current_url }}" target="_blank">
-          <img class="img-fluid" src="/images/twitter.png" alt="">
+        <li>
+          <a href="https://twitter.com/share?url={{ current_url }}" target="_blank">
+            <img class="img-fluid" src="/images/twitter.svg" alt="">
+          </a>
         </li>
       </ul>
     {% endblock %}
