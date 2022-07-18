@@ -19,13 +19,15 @@
       </p>
     {% endif %}
   {% endblock %}
-  {% if res.url and h.is_url(res.url) %}
-    {% if res.has_views or res.url_type == 'upload' %}
-      <a href="{{ res.url }}" class="btn">
-        {{ _('Download') }}
-      </a>
+  <div class="mt-2">
+    {% if res.url and h.is_url(res.url) %}
+      {% if res.has_views or res.url_type == 'upload' %}
+        <a href="{{ res.url }}" class="btn bg-blue-green-color-green text-white rounded">
+          {{ _('Download') }}
+        </a>
+      {% endif %}
     {% endif %}
-  {% endif %}
+  </div>
 </li>
 
 <!-- Previsualización
