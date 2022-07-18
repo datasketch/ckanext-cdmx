@@ -26,10 +26,24 @@
                   {% endblock %}
                   {% if pkg.tags %}
                     <section class="mt-4">
-                      <h2 class="text-base text-aqua font-weight-bold mb-1">
+                      <h2 class="text-base text-aqua font-weight-bold mb-2">
                         Etiquetas
                       </h2>
-                      <ul class="pl-0">
+                      <ul class="list-unstyled">
+                        {% for tag in pkg.tags %}
+                          <li>{{ tag.display_name }}</li>
+                        {% endfor %}
+                      </ul>
+                    </section>
+                  {% endif %}
+                  {% if pkg.resources %}
+                    <section class="mt-4">
+                      <h2 class="text-base text-aqua font-weight-bold mb-2">
+                        Formatos
+                      </h2>
+                      {% set formats = pkg.resources | selectattr("format") | unique | list %}
+                      <pre>{{ formats }}</pre>
+                      <ul class="list-unstyled">
                         {% for tag in pkg.tags %}
                           <li>{{ tag.display_name }}</li>
                         {% endfor %}
