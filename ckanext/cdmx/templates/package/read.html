@@ -93,7 +93,7 @@
                         {% endblock %}
                         {% block package_notes %}
                           {% if pkg.notes %}
-                            <div class="notes embedded-content" style="border-bottom: 1px solid #d3d3d3;">
+                            <div class="notes embedded-content" style="border-bottom: 2px solid #d3d3d3;">
                               {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
                             </div>
                           {% endif %}

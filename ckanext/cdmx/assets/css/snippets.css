@@ -58,6 +58,11 @@
   border-bottom-left-radius: 8px;
 }
 
+.dataset-resource {
+  border-bottom: 2px solid #d3d3d3;
+  padding-bottom: 24px;
+}
+
 .dataset-resource:not(:first-child) {
   margin-top: 24px;
 }
