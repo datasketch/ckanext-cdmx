@@ -17,10 +17,10 @@
                   {% set label = label_function(item) if label_function else item.display_name %}
                   {% set label_truncated = h.truncate(label, 22) if not label_function else label %}
                   {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
-                  <li class="d-flex align-items-start justify-content-between{% if item.active %} active{% endif %}" data-item={{ item }} data-item-name="{{ item.name }}">
+                  <li class="d-flex align-items-start justify-content-between{% if item.active %} active{% endif %}">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="">
-                      <label for="" class="form-check-label">
+                      <input id={{ item.name }} class="form-check-input" type="checkbox" value={{ item.name }} {% if item.active %}checked{% endif %}>
+                      <label for={{ item.name }} class="form-check-label">
                         <a class="py-2 text-eerie-black" href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
                           {{ label }}
                         </a>
