@@ -7,25 +7,23 @@
 }
 
 #nav-menu {
-  background-color: #ffffff !important;
+  background-color: #F9F9F9 !important;
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
   font-size: 14px;
-  padding-top: 24px !important;
-  padding-bottom: 24px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   border-top: 2px solid #9f2241;
+}
+
+#nav-menu a {
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 #nav-menu a,
 #nav-menu .fa-bars {
   color: #6f7271 !important;
-}
-
-@media (min-width: 992px) {
-  #nav-menu a {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
 }
 
 .resource-banner {

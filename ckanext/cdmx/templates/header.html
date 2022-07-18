@@ -3,10 +3,9 @@
 {% block header_wrapper %}
 {% block header_account %}{{ super() }}{% endblock %}
 
-<pre>{{ h.full_current_url() }}</pre>
-<pre>{{ h.current_url() }}</pre>
+{% set current_url = h.current_url() %}
 
-<nav id="main-nav" class="navbar navbar-light navbar-expand-lg bg-white font-roboto">
+<nav id="main-nav" class="navbar navbar-light navbar-expand-lg bg-white font-inter">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ h.url_for('home.index') }}">
       <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" height="50">
@@ -29,7 +28,7 @@
     </div>
   </div>
 </nav>
-<nav id="nav-menu" class="navbar navbar-expand-lg py-0">
+<nav id="nav-menu" class="navbar navbar-expand-lg">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"><i class="fas fa-bars text-light pt-1"></i></span>
   </button>
