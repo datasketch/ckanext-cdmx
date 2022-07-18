@@ -1,0 +1,21 @@
+{% ckan_extends %}
+
+<li class="my-2 text-eerie-black" data-id="{{ res.id }}" data-res="{{ res }}">
+  {% block resource_item_title %}
+    <a class="text-lg text-aqua font-weight-bold" href="{{ url }}" title="{{ res.name or res.description }}">
+      {{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
+      {{ h.popular('views', res.tracking_summary.total, min=10) if res.tracking_summary }}
+    </a>
+  {% endblock %}
+  <div class="mt-2">
+    <strong>Última Actualización</strong>: {{ h.humanize_date(res.metadata_modified) }}
+  </div>
+  {% block resource_item_description %}
+    <p class="text-base mt-2">
+      {% if res.description %}
+        {{ h.markdown_extract(h.get_translated(res, 'description'), extract_length=80) }}
+      {% endif %}
+    </p>
+  {% endblock %}
+
+</li>
