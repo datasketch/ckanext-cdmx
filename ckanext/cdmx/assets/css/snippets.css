@@ -37,6 +37,10 @@
   border-radius: 8px;
 }
 
+.searchbox:focus-within {
+  border-color: #c1e8b6;
+}
+
 .searchbox-input {
   width: 100%;
 }
