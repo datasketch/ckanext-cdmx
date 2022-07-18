@@ -1,4 +1,5 @@
-{% ckan_extends %}
+{% set url_action = pkg.type ~ ('_resource.edit' if url_is_edit and can_edit else '_resource.read') %}
+{% set url = h.url_for(url_action, id=pkg.id if is_activity_archive else pkg.name, resource_id=res.id, **({'activity_id': request.args['activity_id']} if 'activity_id' in request.args else {})) %}
 
 <li class="my-2 text-eerie-black" data-id="{{ res.id }}" data-res="{{ res }}">
   {% block resource_item_title %}
