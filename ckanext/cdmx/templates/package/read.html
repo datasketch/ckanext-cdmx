@@ -24,6 +24,19 @@
                   {% block package_organization %}
                     {{ super() }}
                   {% endblock %}
+                  {% if pkg.groups %}
+                    <section class="mt-4">
+                      <h2 class="text-base text-aqua font-weight-bold mb-2">
+                        Categorías
+                      </h2>
+                      {% set groups = h.extract_from_key(pkg.groups, 'display_name') %}
+                      <ul class="list-unstyled">
+                        {% for group in groups %}
+                          <li>{{ group }}</li>
+                        {% endfor %}
+                      </ul>
+                    </section>
+                  {% endif %}
                   {% if pkg.tags %}
                     <section class="mt-4">
                       <h2 class="text-base text-aqua font-weight-bold mb-2">
