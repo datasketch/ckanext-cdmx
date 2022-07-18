@@ -22,8 +22,9 @@
 }
 
 #nav-menu a.active {
-  color: #9F2241;
+  color: #9F2241 !important;
   border-bottom: 1px solid #9F2241;
+  background-color: transparent !important;
 }
 
 #nav-menu a,
