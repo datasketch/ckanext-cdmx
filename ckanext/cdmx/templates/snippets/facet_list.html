@@ -1,12 +1,10 @@
 {% block facet_list_item %}
   <section class="filter">
     {% block facet_list_heading %}
-      <h2 class="mb-0">
-        {% set title = title or h.get_facet_title(name) %}
-        <button class="filter-toggle border-0 text-dark-electric-blue font-weight-bold text-left">
-          {{ title }}
-        </button>
-      </h2>
+    {% set title = title or h.get_facet_title(name) %}
+      <button class="filter-toggle border-0 text-dark-electric-blue font-weight-bold text-left">
+        {{ title }}
+      </button>
     {% endblock %}
     {% block facet_list_items %}
       {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
@@ -19,7 +17,7 @@
                   {% set label = label_function(item) if label_function else item.display_name %}
                   {% set label_truncated = h.truncate(label, 22) if not label_function else label %}
                   {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
-                  <li class="d-flex align-items-start justify-content-between{% if item.active %} active{% endif %}" data-item={{ item }}>
+                  <li class="d-flex align-items-start justify-content-between{% if item.active %} active{% endif %}" data-item={{ item }} data-item-name="{{ item.name }}">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="">
                       <label for="" class="form-check-label">
