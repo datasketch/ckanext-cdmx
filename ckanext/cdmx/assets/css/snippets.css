@@ -44,3 +44,11 @@
 .searchbox-input::placeholder {
   color: #637381;
 }
+
+.searchbox-button {
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
