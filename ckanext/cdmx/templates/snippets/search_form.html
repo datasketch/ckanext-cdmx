@@ -1,0 +1,18 @@
+{% ckan_extends %}
+
+{% block search_input %}
+  <div class="searchbox d-flex justify-content-between overflow-hidden">
+    <input
+      type="text"
+      class="searchbox-input border-0 px-3"
+      placeholder="Buscar conjunto de datos"
+      aria-label="Buscar conjunto de datos"
+      name="q"
+      value="{{ query }}"
+      autocomplete="off"
+    />
+    <button class="searchbox-button bg-dark-electric-blue border-0 d-inline-flex justify-content-center align-items-center" aria-label="{{_('Submit')}}" type="submit" value="search">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+{% endblock %}

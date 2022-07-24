@@ -8,7 +8,7 @@
   <div class="d-flex align-items-start">
     {% if group %}
       <div class="card-body text-center pr-0">
-        <img class="img-fluid" style="width: 120px;" src="{{ group.image_display_url }}" alt="">
+        <img class="img-fluid" style="max-width: 60px;" src="{{ group.image_display_url }}" alt="">
       </div>
     {% endif %}
     <div class="card-body">
@@ -37,7 +37,7 @@
         </p>
       {% endif %}
       <p class="card-text">
-        <strong>Institución:</strong> <span class="text-aqua">{{ package.organization.title }}</span>
+        <strong>Institución:</strong> <a class="text-aqua" href="{{ h.url_for('%s.read' % package.organization.type, id=package.organization.name) }}">{{ package.organization.title }}</a>
       </p>
     </div>
   </div>

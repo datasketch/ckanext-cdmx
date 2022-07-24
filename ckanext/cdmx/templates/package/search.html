@@ -16,16 +16,8 @@
       <div class="container">
         <div class="row {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
           {% block secondary %}
-            <aside class="secondary col-sm-4 mt-5">
+            <aside class="secondary col-sm-4">
               {% block secondary_content %}
-                <form id="dataset-query-form" method="get">
-                  <div class="searchbox d-flex justify-content-between overflow-hidden">
-                    <input type="text" class="searchbox-input border-0 px-3" placeholder="Buscar conjunto de datos" aria-label="Buscar conjunto de datos" name="q" value="{{ q }}" autocomplete="off">
-                    <button class="searchbox-button bg-dark-electric-blue border-0 d-inline-flex justify-content-center align-items-center">
-                      <i class="fa fa-search"></i>
-                    </button>
-                  </div>
-                </form>
                 <div class="card filters mt-4" style="box-shadow: 0px 0px 0px 0.823214px rgba(26, 26, 26, 0.1), 0px 1.64643px 3.29286px rgba(26, 26, 26, 0.1);">
                   <div class="card-body">
                     <h5>Filtros</h5>
