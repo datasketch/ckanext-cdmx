@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+{% block secondary_content %}
+  {{ super() }}
+  <div class="card filters mt-4" style="box-shadow: 0px 0px 0px 0.823214px rgba(26, 26, 26, 0.1), 0px 1.64643px 3.29286px rgba(26, 26, 26, 0.1);">
+    <div class="card-body">
+      <h5 class="font-weight-bold">Filtros</h5>
+      <p class="mb-0">Encuentra conjuntos de datos según tus intereses.</p>
+    </div>
+    {% for facet in facet_titles %}
+        {{ h.snippet('snippets/facet_list.html', title=facet_titles[facet], name=facet, extras={'id':group_dict.id}, search_facets=search_facets) }}
+    {% endfor %}
+  </div>
+  <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
+{% endblock %}
