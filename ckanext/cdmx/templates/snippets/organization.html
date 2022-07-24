@@ -2,9 +2,9 @@
 
 {% block info %}
   <section>
-    {% if has_context_title %}
+    {% if has_context_title or custom_title %}
       <h2 class="text-base text-aqua font-weight-bold mb-2">
-        {{ h.humanize_entity_type('organization', organization.type, 'sidebar label') or _('Organization') }}
+        {{ h.humanize_entity_type('organization', organization.type, 'sidebar label') or custom_title or _('Organization') }}
       </h2>
     {% endif %}
     {% block inner %}
