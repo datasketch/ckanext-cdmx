@@ -32,13 +32,12 @@
                     {% block primary_content_inner %}
                       <h1 class="hide-heading">{{ h.humanize_entity_type('group', group_type, 'page title') or _('Groups') }}</h1>
                       {% block groups_search_form %}{{ super() }}{% endblock %}
-                      <p class="text-aqua font-weight-bold">{{ page }} categorías encontradas</p>
+                      <p class="text-aqua font-weight-bold">{{ page.__dict__ }} categorías encontradas</p>
                       {% block groups_list %}{{ super() }}{% endblock %}
                       {% block page_pagination %}{{ super() }}{% endblock %}
                     {% endblock %}
                   </div>
                 </article>
-                {{ super() }}
               {% endblock %}
             </div>
           {% endblock %}
