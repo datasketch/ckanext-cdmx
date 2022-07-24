@@ -15,7 +15,8 @@
             <aside class="secondary col-sm-4">
               <div class="text-eerie-black font-inter">
                 {% block secondary_content %}
-                  {{ super() }}
+                  {% snippet 'snippets/organization.html', organization=group_dict, show_nums=true, group_type=group_type, custom_title="Institución" %}
+                  {% block organization_facets %}{% endblock %}
                 {% endblock %}
               </div>
             </aside>
