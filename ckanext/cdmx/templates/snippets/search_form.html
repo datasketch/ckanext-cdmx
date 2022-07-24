@@ -45,9 +45,7 @@
   {% block search_facets %}
     {% if facets %}
       <div class="filter-list mt-4">
-        {% if facet.fields %}
-          <span class="facet">Filtros aplicados:</span>
-        {% endif %}
+        <span class="facet">Filtro</span> aplicados:</span>
         {% for field in facets.fields %}
           {% set search_facets_items = facets.search.get(field)['items'] %}
           {% for value in facets.fields[field] %}
