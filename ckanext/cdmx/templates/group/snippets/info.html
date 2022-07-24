@@ -1,1 +1,10 @@
 {% ckan_extends %}
+
+{% block heading %}
+  <h1 class="text-dark-electric-blue font-weight-bold text-center font-inter" style="font-size: 30px;">
+    {{ group.display_name }}
+    {% if group.state == 'deleted' %}
+      [{{ _('Deleted') }}]
+    {% endif %}
+  </h1>
+{% endblock %}
