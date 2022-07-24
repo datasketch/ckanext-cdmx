@@ -19,3 +19,24 @@
     </button>
   </div>
 {% endblock %}
+
+{% block search_sortby %}
+  {% if sorting %}
+    <div class="d-flex align-items-baseline justify-content-end mt-4">
+      <label class="flex-shrink-0 mr-2" for="field-order-by">{{ _('Order by') }}</label>
+      <div class="flex-shrink-0">
+        <select id="field-order-by" name="sort" class="form-control form-select" style="background-color: rgba(26, 26, 26, 0.04);
+        border: none;">
+          {% for label, value in sorting %}
+            {% if label and value %}
+              <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      {% block search_sortby_button %}
+        <button class="btn btn-default js-hide" type="submit">{{ _('Go') }}</button>
+      {% endblock %}
+    </div>
+  {% endif %}
+{% endblock %}
