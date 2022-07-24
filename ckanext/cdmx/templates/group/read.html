@@ -2,7 +2,7 @@
 
 {%- block content %}
   {% block maintag %}<div>{% endblock %}
-  <div id="content" class="bg-white" data-test="{{ group }}">
+  <div id="content" class="bg-white">
     {% block main_content %}
       {% block flash %}{{ super() }}{% endblock %}
       {% block toolbar %}{% endblock %}
