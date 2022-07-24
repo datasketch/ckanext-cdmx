@@ -16,7 +16,9 @@
               <div class="text-eerie-black font-inter">
                 {% block secondary_content %}
                   {% snippet 'snippets/organization.html', organization=group_dict, show_nums=true, group_type=group_type, custom_title="Institución" %}
-                  {% block organization_facets %}{% endblock %}
+                  {% block organization_facets %}
+                    {{ super() }}
+                  {% endblock %}
                 {% endblock %}
               </div>
             </aside>
