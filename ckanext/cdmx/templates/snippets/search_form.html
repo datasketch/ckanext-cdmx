@@ -45,23 +45,25 @@
   {% if facets %}
     <div class="filter-list mt-5">
       {% if facets.fields | length > 0 %}
-        <span class="text-spanish-gray mr-2 font-inter font-weight-bold">Filtros aplicados:</span>
+        <div class="mt-5">
+          <span class="text-spanish-gray mr-2 font-inter font-weight-bold">Filtros aplicados:</span>
+          {% for field in facets.fields %}
+            {% set search_facets_items = facets.search.get(field)['items'] %}
+            {% for value in facets.fields[field] %}
+              <span class="d-inline-block bg-polished-pine text-white rounded-lg px-2 py-1 text-sm">
+                <a href="{{ facets.remove_field(field, value) }}" class="remove text-white mr-1" title="{{ _('Remove') }}"><i class="fa fa-times"></i> </a> 
+                {%- if facets.translated_fields and (field,value) in facets.translated_fields -%}
+                  {{ facets.translated_fields[(field,value)] }}
+                {%- else -%}
+                  {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
+                {%- endif %}
+              </span>
+            {% endfor %}
+          {% endfor %}
+          <a class="show-filters btn btn-default">{{ _('Filter Results') }}</a>
+        </div>
       {% endif %}
-      {% for field in facets.fields %}
-        {% set search_facets_items = facets.search.get(field)['items'] %}
-        {% for value in facets.fields[field] %}
-          <span class="d-inline-block bg-polished-pine text-white rounded-lg px-2 py-1 text-sm">
-            <a href="{{ facets.remove_field(field, value) }}" class="remove text-white mr-1" title="{{ _('Remove') }}"><i class="fa fa-times"></i> </a> 
-            {%- if facets.translated_fields and (field,value) in facets.translated_fields -%}
-              {{ facets.translated_fields[(field,value)] }}
-            {%- else -%}
-              {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
-            {%- endif %}
-          </span>
-        {% endfor %}
-      {% endfor %}
     </div>
-    <a class="show-filters btn btn-default">{{ _('Filter Results') }}</a>
   {% endif %}
 {% endblock %}
 
