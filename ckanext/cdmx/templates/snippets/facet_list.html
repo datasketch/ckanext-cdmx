@@ -33,7 +33,7 @@
               <div class="text-right mt-4">
                 {% if h.get_param_int('_%s_limit' % name) %}
                   {% if h.has_more_facets(name, search_facets or c.search_facets) %}
-                    <a href="{{ h.remove_url_param('_%s_limit' % name, replace=0, extras=extras, alternative_url=alternative_url) }}" class="text-dark-electric-blue font-weight-bold"><u>{{ _('Show More {facet_type}').format(facet_type=title) }}</u></a>
+                    <a href="{{ h.remove_url_param('_%s_limit' % name, replace=0, extras=extras, alternative_url=alternative_url) }}" class="font-inter text-blue-green-color-wheel font-weight-semibold"><u>{{ _('Show More {facet_type}').format(facet_type=title) }}</u></a>
                   {% endif %}
                 {% else %}
                   <a href="{{ h.remove_url_param('_%s_limit' % name, extras=extras, alternative_url=alternative_url) }}" class="text-dark-electric-blue font-weight-bold"><u>{{ _('Show Only Popular {facet_type}').format(facet_type=title) }}</u></a>

@@ -6,7 +6,7 @@
   background-color: #1B5C4F;
 }
 
-.bg-blue-green-color-green {
+.bg-blue-green-color-wheel {
   background-color: #235B4E;
 }
 
@@ -40,6 +40,10 @@
 
 .text-cultured {
   color: #fefefe;
+}
+
+.text-blue-green-color-wheel {
+  color: #235B4E;
 }
 
 .text-dark-electric-blue {
