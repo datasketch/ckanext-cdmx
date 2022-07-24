@@ -7,16 +7,7 @@
       {% block flash %}{{ super() }}{% endblock %}
       {% block toolbar %}{% endblock %}
       {% set title = h.dataset_display_name(pkg) %}
-      {% snippet 'snippets/jumbotron.html', title=title %}
-      <div class="jumbotron jumbotron-fluid" style="background-image: url(/images/bg-package-search.png); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0px 3.28661px 24.6496px rgba(0, 0, 0, 0.25);;">
-        <div class="container">
-          <div class="my-4">
-            <h1 class="display-4 text-center font-weight-bolder text-white">
-              {{ h.dataset_display_name(pkg) }}
-            </h1>
-          </div>
-        </div>
-      </div>
+      {% snippet 'snippets/jumbotron.html', title=h.dataset_display_name(pkg) %}
       <div class="container">
         <div class="row {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
           {% block secondary %}
