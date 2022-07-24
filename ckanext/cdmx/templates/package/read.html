@@ -6,7 +6,8 @@
     {% block main_content %}
       {% block flash %}{{ super() }}{% endblock %}
       {% block toolbar %}{% endblock %}
-      {% snippet 'snippets/jumbtron.html', title={{ h.dataset_display_name(pkg) }} %}
+      {% set title = h.dataset_display_name(pkg) %}
+      {% snippet 'snippets/jumbtron.html', title=title %}
       <div class="jumbotron jumbotron-fluid" style="background-image: url(/images/bg-package-search.png); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0px 3.28661px 24.6496px rgba(0, 0, 0, 0.25);;">
         <div class="container">
           <div class="my-4">
