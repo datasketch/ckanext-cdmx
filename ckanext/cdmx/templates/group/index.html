@@ -22,6 +22,13 @@
             <div class="primary col-sm-9 col-xs-12" role="main">
               {% block primary_content %}
                 {{ super() }}
+                {% block primary_content_inner %}
+                  <h1 class="hide-heading">{{ h.humanize_entity_type('group', group_type, 'page title') or _('Groups') }}</h1>
+                  {% block groups_search_form %}{{ super() }}{% endblock %}
+                  <p class="text-aqua font-weight-bold">{{ page.items }} categorías encontradas</p>
+                  {% block groups_list %}{{ super() }}{% endblock %}
+                  {% block page_pagination %}{{ super() }}{% endblock %}
+                {% endblock %}
               {% endblock %}
             </div>
           {% endblock %}
