@@ -44,7 +44,7 @@
 {% block search_facets %}
   {% if facets %}
     <div class="filter-list mt-5">
-      {% if facets.fields | length > 1 %}
+      {% if facets.fields | length > 0 %}
         <span class="text-spanish-gray mr-2 font-inter font-weight-bold">Filtros aplicados:</span>
       {% endif %}
       {% for field in facets.fields %}
