@@ -6,8 +6,9 @@
       <div class="organization-item-inner">
         <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" alt="{{ organization.name }}" class="organization-item-image">
         <h2 class="organization-item-header">{{ organization.display_name }}</h2>
+        {% block description %}{{ super() }}{% endblock %}
       </div>
-      <div class="bg-dark-electric-blue text-white py-2 font-weight-bold">
+      <div class="bg-dark-electric-blue text-white py-2 font-weight-bold text-center">
         {% if organization.package_count %}
           <span>{{ ungettext('{num} Dataset', '{num} Datasets', organization.package_count).format(num=organization.package_count) }}</span>
         {% elif organization.package_count == 0 %}
