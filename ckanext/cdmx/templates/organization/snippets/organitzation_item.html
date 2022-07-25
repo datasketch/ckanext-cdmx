@@ -1,0 +1,19 @@
+{% ckan_extends %}
+
+{% block item %}
+  <li class="grid-list-item">
+    <a href="{{ url }}" title="{{ _('View {name}').format(name=organization.display_name) }}" aria-label="{{ _('View {name}').format(name=organization.display_name) }}" class="grid-list-item-container">
+      <div class="grid-list-item-inner">
+        <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" alt="{{ organization.name }}" class="grid-list-item-image">
+        <h2 class="grid-list-item-header">{{ organization.display_name }}</h2>
+      </div>
+      <div class="bg-dark-electric-blue text-white py-2 font-weight-bold">
+        {% if organization.package_count %}
+          <span>{{ ungettext('{num} Dataset', '{num} Datasets', organization.package_count).format(num=organization.package_count) }}</span>
+        {% elif organization.package_count == 0 %}
+          <span>{{ _('0 Datasets') }}</span>
+        {% endif %}
+      </div>
+    </a>
+  </li>
+{% endblock %}
