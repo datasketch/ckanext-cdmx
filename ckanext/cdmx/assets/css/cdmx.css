@@ -71,8 +71,11 @@
 }
 
 .grid-list-item {
-  text-align: center;
   background: #ffffff;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+  text-align: center;
 }
 
 .grid-list-item-image {
@@ -82,7 +85,14 @@
 }
 
 .grid-list-item-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.grid-list-item-inner {
   padding: 16px 16px 24px;
+  flex-grow: 1;
 }
 
 .grid-list-item-header {
