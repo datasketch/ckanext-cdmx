@@ -26,8 +26,8 @@
   font-family: "Inter", sans-serif
 }
 
-.font-bold {
-  font-weight: 700;
+.font-weight-semibold {
+  font-weight: 600;
 }
 
 .text-base {
