@@ -6,11 +6,11 @@
 {% set current_url = h.current_url() %}
 
 <nav id="main-nav" class="navbar navbar-light navbar-expand-lg bg-white font-inter">
-  <div class="container-fluid">
+  <div class="container">
     <a class="navbar-brand" href="{{ h.url_for('home.index') }}">
       <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" height="50">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav-menu" aria-controls="main-nav-menu" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav-menu" aria-controls="main-nav-menu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="main-nav-menu">
@@ -25,7 +25,7 @@
           <a class="nav-link" href="#">Sube tus datos</a>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </nav>
 <nav id="nav-menu" class="navbar navbar-expand-lg">
