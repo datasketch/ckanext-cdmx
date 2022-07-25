@@ -61,3 +61,18 @@
 .search-form {
   margin-bottom: 0 !important;
 }
+
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-list-item {
+  text-align: center;
+}
+
+.grid-list-item-image {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}

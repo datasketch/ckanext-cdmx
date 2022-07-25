@@ -2,7 +2,7 @@
 
 
 {% block group_list %}
-  <ul class="list-unstyled">
+  <ul class="list-unstyled grid-list">
     {% block group_list_inner %}
       {% for group in groups %}
         {% snippet "group/snippets/group_item.html", group=group, position=loop.index %}
