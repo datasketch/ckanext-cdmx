@@ -1,3 +1,4 @@
+import mimetypes
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import ckan.lib.jobs as jobs
@@ -39,6 +40,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_resource('assets', 'cdmx_assets')
+        mimetypes.add_type('application/pdf', '.pdf')
 
     # IDatasetForm
 
