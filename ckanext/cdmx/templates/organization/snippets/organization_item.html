@@ -11,7 +11,6 @@
             <p>{{ h.markdown_extract(organization.description, extract_length=80) }}</p>
           </div>
         {% endif %}
-        {% block description %}{{ super() }}{% endblock %}
       </div>
       <div class="bg-dark-electric-blue text-white py-2 font-weight-bold text-center">
         {% if organization.package_count %}
