@@ -6,6 +6,11 @@
       <div class="organization-item-inner">
         <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" alt="{{ organization.name }}" class="organization-item-image">
         <h2 class="organization-item-header">{{ organization.display_name }}</h2>
+        {% if organization.description %}
+          <div class="mt-3 text-sm">
+            <p>{{ h.markdown_extract(organization.description, extract_length=80) }}</p>
+          </div>
+        {% endif %}
         {% block description %}{{ super() }}{% endblock %}
       </div>
       <div class="bg-dark-electric-blue text-white py-2 font-weight-bold text-center">
