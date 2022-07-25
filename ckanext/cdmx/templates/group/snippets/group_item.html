@@ -1,11 +1,11 @@
 {% ckan_extends %}
 
 {% block item %}
-  <li class="grid-list-item">
-    <a href="{{ url }}" title="{{ _('View {name}').format(name=group.display_name) }}" aria-label="{{ _('View {name}').format(name=group.display_name) }}" class="grid-list-item-container">
-      <div class="grid-list-item-inner">
-        <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" class="grid-list-item-image">
-        <h2 class="grid-list-item-header">{{ group.display_name }}</h2>
+  <li class="group-item">
+    <a href="{{ url }}" title="{{ _('View {name}').format(name=group.display_name) }}" aria-label="{{ _('View {name}').format(name=group.display_name) }}" class="group-item-container">
+      <div class="group-item-inner">
+        <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" class="group-item-image">
+        <h2 class="group-item-header">{{ group.display_name }}</h2>
       </div>
       <div class="bg-dark-electric-blue text-white py-2 font-weight-bold">
         {% if group.package_count %}

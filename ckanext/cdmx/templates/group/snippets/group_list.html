@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
 {% block group_list %}
-  <ul class="list-unstyled grid-list">
+  <ul class="list-unstyled group-list">
     {% block group_list_inner %}
       {% for group in groups %}
         {% snippet "group/snippets/group_item.html", group=group, position=loop.index %}

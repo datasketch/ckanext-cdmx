@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
 {% block organization_list %}
-  <ul class="list-unstyled grid-list">
+  <ul class="list-unstyled organization-list">
     {% block organization_list_inner %}
       {% for organization in organizations %}
         {% snippet "organization/snippets/organization_item.html", organization=organization, position=loop.index, show_capacity=show_capacity %}
