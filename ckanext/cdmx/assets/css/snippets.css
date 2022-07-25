@@ -1,0 +1,68 @@
+.dataset-card:not(:first-child) {
+  margin-top: 16px;
+}
+
+.filter {
+  padding: 16px 0;
+  border-top: 1px solid #EDF2F7;
+}
+
+.filter-toggle {
+  width: 100%;
+  background-color: transparent;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.filter-choices {
+  padding-left: 0;
+}
+
+.filter-choices > * ~ * {
+  margin-top: 16px;
+}
+
+.filter-choices .form-check-label::after {
+  content: '';
+}
+
+.filter-count {
+  color: #4A5568;
+  background-color: #EDF2F7;
+  width: 48px;
+}
+
+.searchbox {
+  border: 1px solid #637381;
+  border-radius: 8px;
+}
+
+.searchbox:focus-within {
+  border-color: #c1e8b6;
+}
+
+.searchbox-input {
+  outline: 0;
+  width: 100%;
+}
+
+.searchbox-input::placeholder {
+  color: #637381;
+}
+
+.searchbox-button {
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.dataset-resource {
+  border-bottom: 2px solid #d3d3d3;
+  padding-bottom: 24px;
+}
+
+.dataset-resource:not(:first-child) {
+  margin-top: 24px;
+}

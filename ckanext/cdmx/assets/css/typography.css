@@ -15,15 +15,19 @@
 }
 
 .font-roboto {
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
 }
 
 .font-source-sans-pro {
-  font-family: "Source Sans Pro";
+  font-family: "Source Sans Pro", sans-serif;
 }
 
-.font-bold {
-  font-weight: 700;
+.font-inter {
+  font-family: "Inter", sans-serif
+}
+
+.font-weight-semibold {
+  font-weight: 600;
 }
 
 .text-base {
@@ -32,6 +36,10 @@
 
 .text-sm {
   font-size: 14px;
+}
+
+.text-lg {
+  font-size: 18px;
 }
 
 @media (min-width: 1024px) {

@@ -17,3 +17,4 @@ cdmx_css:
     - css/utils.css
     - css/layout.css
     - css/cdmx.css
+    - css/snippets.css

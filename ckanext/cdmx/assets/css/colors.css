@@ -6,16 +6,64 @@
   background-color: #1B5C4F;
 }
 
+.bg-blue-green-color-wheel {
+  background-color: #235B4E;
+}
+
+.bg-cadmium-orange {
+  background-color: #ED8936;
+}
+
+.bg-cultured {
+  background-color: #f9f9f9;
+}
+
+.bg-dark-electric-blue {
+  background-color: #637381;
+}
+
+.bg-phthalo-green {
+  background-color: #10312B;
+}
+
+.bg-polished-pine {
+  background-color: #54A390;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.border-dark-electric-blue {
+  border-color: #637381;
+}
+
 .text-aqua {
   color: #3998A5;
+}
+
+.text-big-dip-oruby {
+  color: #9F2241;
 }
 
 .text-cultured {
   color: #fefefe;
 }
 
+.text-blue-green-color-wheel {
+  color: #235B4E;
+}
+
+.text-dark-electric-blue {
+  color: #637381;
+}
+
 .text-eerie-black {
   color: #141414;
+}
+
+.text-spanish-gray {
+  color: #929190;
 }
 
 .text-white {

@@ -1,0 +1,41 @@
+{% ckan_extends %}
+
+{%- block content %}
+  {% block maintag %}<div>{% endblock %}
+  <div id="content" class="bg-white">
+    {% block main_content %}
+      {% block flash %}{{ super() }}{% endblock %}
+      {% block toolbar %}{% endblock %}
+      {% set pluralized = 'conjuntos' if page.item_count != 1 else 'conjunto' %}
+      {% set title = page.item_count ~ ' ' ~ pluralized ~ ' de datos' %}
+      {% snippet 'snippets/jumbotron.html', title=title %}
+      <div class="container">
+        <div class="row {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
+          {% block secondary %}
+            <aside class="secondary col-sm-4">
+              {% block secondary_content %}
+                <div class="card filters mt-4" style="box-shadow: 0px 0px 0px 0.823214px rgba(26, 26, 26, 0.1), 0px 1.64643px 3.29286px rgba(26, 26, 26, 0.1);">
+                  <div class="card-body">
+                    <h5 class="font-weight-bold">Filtros</h5>
+                    <p class="mb-0">Encuentra conjuntos de datos según tus intereses.</p>
+                  </div>
+                  {% for facet in facet_titles %}
+                    {{ h.snippet('snippets/facet_list.html', title=facet_titles[facet], name=facet, search_facets=search_facets) }}
+                  {% endfor %}
+                </div>
+                <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
+              {% endblock %}
+            </aside>
+          {% endblock %}
+          {% block primary %}
+            <div class="primary col-sm-8 col-xs-12" role="main">
+              {% block primary_content %}
+                {{ super() }}
+              {% endblock %}
+            </div>
+          {% endblock %}
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+{% endblock -%}

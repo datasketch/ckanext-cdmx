@@ -1,0 +1,115 @@
+{% ckan_extends %}
+
+{%- block content %}
+  {% block maintag %}<div>{% endblock %}
+  <div id="content" class="bg-white">
+    {% block main_content %}
+      {% block flash %}{{ super() }}{% endblock %}
+      {% block toolbar %}{% endblock %}
+      {% snippet 'snippets/jumbotron.html', title=h.dataset_display_name(pkg) %}
+      <div class="container">
+        <div class="row {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
+          {% block secondary %}
+            <aside class="secondary col-sm-3">
+              <div class="text-eerie-black font-inter">
+                {% block secondary_content %}
+                  {% block package_organization %}
+                    {{ super() }}
+                  {% endblock %}
+                  {% if pkg.groups %}
+                    <section class="mt-4">
+                      <h2 class="text-base text-aqua font-weight-bold mb-2">
+                        Categorías
+                      </h2>
+                      {% set groups = h.extract_from_key(pkg.groups, 'display_name') %}
+                      <ul class="list-unstyled">
+                        {% for group in groups %}
+                          <li>{{ group }}</li>
+                        {% endfor %}
+                      </ul>
+                    </section>
+                  {% endif %}
+                  {% if pkg.tags %}
+                    <section class="mt-4">
+                      <h2 class="text-base text-aqua font-weight-bold mb-2">
+                        Etiquetas
+                      </h2>
+                      <ul class="list-unstyled">
+                        {% for tag in pkg.tags %}
+                          <li>{{ tag.display_name }}</li>
+                        {% endfor %}
+                      </ul>
+                    </section>
+                  {% endif %}
+                  {% if pkg.resources %}
+                    <section class="mt-4">
+                      <h2 class="text-base text-aqua font-weight-bold mb-2">
+                        Formatos
+                      </h2>
+                      {% set formats = h.extract_from_key(pkg.resources, 'format') | unique | list %}
+                      <ul class="list-unstyled">
+                        {% for format in formats %}
+                          <li>{{ format }}</li>
+                        {% endfor %}
+                      </ul>
+                    </section>
+                  {% endif %}
+                  {% block package_license %}
+                    {{ super() }}
+                  {% endblock %}
+                  {% block package_social %}
+                    {{ super() }}
+                  {% endblock %}
+                {% endblock %}
+              </div>
+            </aside>
+          {% endblock %}
+          {% block primary %}
+            <div class="primary col-sm-9 col-xs-12" role="main">
+              {% block primary_content %}
+                <article class="module">
+                  {% block page_header %}
+                    {{ super() }}
+                  {% endblock %}
+                  <div class="module-content">
+                    {% block primary_content_inner %}
+                      {% block package_description %}
+                        {% if pkg.private %}
+                          <span class="dataset-private label label-inverse pull-right">
+                            <i class="fa fa-lock"></i>
+                            {{ _('Private') }}
+                          </span>
+                        {% endif %}
+                        {% block package_archive_notice %}
+                          {{ super() }}
+                        {% endblock %}
+                        {% block package_notes %}
+                          {% if pkg.notes %}
+                            <div class="notes embedded-content" style="border-bottom: 2px solid #d3d3d3;">
+                              {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+                            </div>
+                          {% endif %}
+                        {% endblock %}
+                      {% endblock %}
+                    
+                      {% block package_resources %}
+                        {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources, is_activity_archive=is_activity_archive %}
+                      {% endblock %}
+                    
+                      {% block package_additional_info %}
+                        {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
+                      {% endblock %}
+                    
+                    {% endblock %}
+                  </div>
+                </article>
+              {% endblock %}
+            </div>
+          {% endblock %}
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+{% endblock -%}
+
+

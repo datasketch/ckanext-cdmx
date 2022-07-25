@@ -1,0 +1,49 @@
+{% block facet_list_item %}
+  <section class="filter">
+    {% block facet_list_heading %}
+    {% set title = title or h.get_facet_title(name) %}
+      <button class="filter-toggle border-0 text-dark-electric-blue font-weight-bold text-left">
+        {{ title }}
+      </button>
+    {% endblock %}
+    {% block facet_list_items %}
+      {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
+        {% if items %}
+          <nav aria-label="{{ title }}">
+            <div class="card-body pb-0">
+              <ul class="filter-choices">
+                {% for item in items %}
+                  {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
+                  {% set label = label_function(item) if label_function else item.display_name %}
+                  {% set label_truncated = h.truncate(label, 22) if not label_function else label %}
+                  {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
+                  <li class="d-flex align-items-start justify-content-between{% if item.active %} active{% endif %}">
+                    <div class="form-check">
+                      <input id={{ item.name }} class="form-check-input" type="checkbox" value={{ item.name }} {% if item.active %}checked{% endif %}>
+                      <label for={{ item.name }} class="form-check-label font-weight-normal">
+                        <a class="py-2 text-eerie-black" href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
+                          {{ label }}
+                        </a>
+                      </label>
+                    </div>
+                    <span class="filter-count flex-shrink-0 text-center rounded font-weight-semibold ml-1">{{ count }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+              {% if h.get_param_int('_%s_limit' % name) %}
+                {% if h.has_more_facets(name, search_facets or c.search_facets) %}
+                  <div class="text-right mt-4"><a href="{{ h.remove_url_param('_%s_limit' % name, replace=0, extras=extras, alternative_url=alternative_url) }}" class="font-inter text-blue-green-color-wheel font-weight-semibold text-sm"><u>{{ _('Show More {facet_type}').format(facet_type=title) }}</u></a></div>
+                {% endif %}
+              {% else %}
+                <div class="text-right mt-4"><a href="{{ h.remove_url_param('_%s_limit' % name, extras=extras, alternative_url=alternative_url) }}" class="text-dark-electric-blue font-weight-bold"><u>{{ _('Show Only Popular {facet_type}').format(facet_type=title) }}</u></a></div>
+              {% endif %}
+            </div>
+          </nav>
+        {% else %}
+          <p class="module-content empty">{{ _('There are no {facet_type} that match this search').format(facet_type=title) }}</p>
+        {% endif %}
+      {% endwith %}
+    {% endblock %}
+  </section>
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{% set truncate = truncate or 180 %}
+{% set truncate_title = truncate_title or 80 %}
+{% set title = package.title or package.name %}
+{% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
+{% set group = package.groups[0] %}
+
+<div class="card dataset-card">
+  <div class="d-flex align-items-start">
+    {% if group %}
+      <div class="card-body text-center pr-0">
+        <img class="img-fluid" style="max-width: 60px;" src="{{ group.image_display_url }}" alt="">
+      </div>
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">
+        <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-dark-electric-blue">
+          <u>{{ h.truncate(title, truncate_title) }}</u>
+        </a>
+      </h5>
+      <p class="card-text">
+        <strong>Última Actualización</strong>: {{ h.humanize_date(package.metadata_modified) }}
+      </p>
+      {% block notes %}
+        {% if notes %}
+          <p class="card-text">{{ notes | urlize }} <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-dark-electric-blue font-weight-bold">
+            <u>Ver conjunto</u>
+          </a></p>
+        {% else %}
+          <p class="empty">{{ _("This dataset has no description") }} <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-dark-electric-blue font-weight-bold">
+            <u>Ver conjunto</u>
+          </a></p>
+        {% endif %}
+      {% endblock %}
+      {% if package.groups %}
+        <p class="card-text">
+          <strong>Categoría:</strong> <span class="text-aqua">{{ h.get_package_categories(package) }}</span>
+        </p>
+      {% endif %}
+      <p class="card-text">
+        <strong>Institución:</strong> <a class="text-aqua" href="{{ h.url_for('%s.read' % package.organization.type, id=package.organization.name) }}">{{ package.organization.title }}</a>
+      </p>
+    </div>
+  </div>
+</div>

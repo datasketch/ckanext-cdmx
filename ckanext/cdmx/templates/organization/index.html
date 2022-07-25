@@ -1,0 +1,48 @@
+{% ckan_extends %}
+
+{%- block content %}
+  {% block maintag %}<div>{% endblock %}
+  <div id="content" class="bg-white" data-test="{{ page }}">
+    {% block main_content %}
+      {% block flash %}{{ super() }}{% endblock %}
+      {% block toolbar %}{% endblock %}
+      {% snippet 'snippets/jumbotron.html', title="Instituciones" %}
+      <div class="container">
+        <div class="row {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
+          {% block secondary %}
+            <aside class="secondary col-sm-3">
+              <div class="text-eerie-black font-inter">
+                {% block secondary_content %}
+                  {{ super() }}
+                {% endblock %}
+              </div>
+            </aside>
+          {% endblock %}
+          {% block primary %}
+            <div class="primary col-sm-9 col-xs-12" role="main">
+              {% block primary_content %}
+                <article class="module">
+                  {% block page_header %}{{ super() }}{% endblock %}
+                  <div class="module-content">
+                    {% if self.page_primary_action() | trim %}
+                      <div class="page_primary_action">
+                        {% block page_primary_action %}{% endblock %}
+                      </div>
+                    {% endif %}
+                    {% block primary_content_inner %}
+                      <h1 class="hide-heading">{{ h.humanize_entity_type('group', group_type, 'page title') or _('Groups') }}</h1>
+                      {% block organizations_search_form %}{{ super() }}{% endblock %}
+                      <p class="text-aqua font-weight-bold text-lg">{{ page.item_count }} instituciones encontradas</p>
+                      {% block organizations_list %}{{ super() }}{% endblock %}
+                      {% block page_pagination %}{{ super() }}{% endblock %}
+                    {% endblock %}
+                  </div>
+                </article>
+              {% endblock %}
+            </div>
+          {% endblock %}
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+{% endblock -%}
