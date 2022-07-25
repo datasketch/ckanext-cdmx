@@ -7,11 +7,13 @@
         <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" class="grid-list-item-image">
         <h2 class="grid-list-item-header">{{ group.display_name }}</h2>
       </div>
-      {% if group.package_count %}
-        <strong class="count">{{ ungettext('{num} Dataset', '{num} Datasets', group.package_count).format(num=group.package_count) }}</strong>
-      {% elif group.package_count == 0 %}
-        <span class="count">{{ _('0 Datasets') }}</span>
-      {% endif %}
+      <div class="bg-dark-electric-blue text-white py-2">
+        {% if group.package_count %}
+          <span>{{ ungettext('{num} Dataset', '{num} Datasets', group.package_count).format(num=group.package_count) }}</span>
+        {% elif group.package_count == 0 %}
+          <span>{{ _('0 Datasets') }}</span>
+        {% endif %}
+      </div>
     </a>
   </li>
 {% endblock %}
