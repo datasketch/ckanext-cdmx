@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+{% block item %}
+  <li>
+    <a href="{{ url }}" title="{{ _('View {name}').format(name=group.display_name) }}" aria-label="{{ _('View {name}').format(name=group.display_name) }}">
+      <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" class="media-image img-fluid">
+      <h2 class="media-heading">{{ group.display_name }}</h2>
+      {% if group.package_count %}
+        <strong class="count">{{ ungettext('{num} Dataset', '{num} Datasets', group.package_count).format(num=group.package_count) }}</strong>
+      {% elif group.package_count == 0 %}
+        <span class="count">{{ _('0 Datasets') }}</span>
+      {% endif %}
+    </a>
+  </li>
+{% endblock %}
