@@ -81,8 +81,13 @@
   width: 64px;
 }
 
+.grid-list-item-container {
+  padding: 16px 16px 24px;
+}
+
 .grid-list-item-header {
   color: #6f7271;
   font-size: 20px;
   font-weight: 700;
+  margin: 12px 0 0;
 }
