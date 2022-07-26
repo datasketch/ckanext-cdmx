@@ -1,3 +1,7 @@
+.bg-alice-blue {
+  background-color: #EDF2F7;
+}
+
 .bg-aqua {
   background-color: #3998A5;
 }
@@ -64,6 +68,10 @@
 
 .text-eerie-black {
   color: #141414;
+}
+
+.text-raisin-black {
+  color: #1A202C;
 }
 
 .text-spanish-gray {
