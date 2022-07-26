@@ -1,4 +1,6 @@
-<div class="card rounded-lg">
+{% set datasets = h.get_popular_datasets() %}
+
+<div class="card rounded-lg" data-datasets="{{ datasets }}">
   <div class="card-header bg-platinum">
     <h3 class="font-weight-bold text-dark-electric-blue mb-0 text-3xl">
       Conjuntos más utilizados
@@ -6,27 +8,15 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <div class="col-sm">
-        <p class="mb-0 font-weight-semibold text-lg">
-          <a href="" class="text-dark-electric-blue">
-            Contratos de adquisiciones de la Ciudad de México
-          </a>
-        </p>
-      </div>
-      <div class="col-sm">
-        <p class="mb-0 font-weight-semibold text-lg">
-          <a href="" class="text-dark-electric-blue">
-            Remuneraciones al personal
-          </a>
-        </p>
-      </div>
-      <div class="col-sm">
-        <p class="mb-0 font-weight-semibold text-lg">
-          <a href="" class="text-dark-electric-blue">
-            Declaraciones patrimonial y de intereses
-          </a>
-        </p>
-      </div>
+      {% for package in datasets.results %}
+        <div class="col-md">
+          <p class="mb-0 font-weight-semibold text-lg">
+            <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-dark-electric-blue">
+              {{ package.title or package.name }}
+            </a>
+          </p>
+        </div>
+      {% endfor %}
     </div>
   </div>
   <div class="card-footer bg-white border-0 pt-0">
