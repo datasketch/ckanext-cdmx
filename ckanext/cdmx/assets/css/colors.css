@@ -1,3 +1,7 @@
+.bg-alice-blue {
+  background-color: #EDF2F7;
+}
+
 .bg-aqua {
   background-color: #3998A5;
 }
@@ -24,6 +28,10 @@
 
 .bg-phthalo-green {
   background-color: #10312B;
+}
+
+.bg-platinum {
+  background-color: #EAE8E861;
 }
 
 .bg-polished-pine {
@@ -60,6 +68,10 @@
 
 .text-eerie-black {
   color: #141414;
+}
+
+.text-raisin-black {
+  color: #1A202C;
 }
 
 .text-spanish-gray {

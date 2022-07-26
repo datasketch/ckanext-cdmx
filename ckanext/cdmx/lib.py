@@ -57,3 +57,12 @@ def get_package_categories(package):
 
 def extract_from_key(list, key):
     return [item[key] for item in list]
+
+
+def get_popular_datasets():
+    data_dict = {
+        'sort': 'views_total desc',
+        'rows': 3
+    }
+    datasets = toolkit.get_action('package_search')(context=None, data_dict=data_dict)
+    return datasets

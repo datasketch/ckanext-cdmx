@@ -13,8 +13,8 @@ cdmx_css:
   contents:
     - css/typography.css
     - css/colors.css
-    - css/spacing.css
     - css/utils.css
     - css/layout.css
     - css/cdmx.css
+    - css/homepage.css
     - css/snippets.css
