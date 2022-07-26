@@ -1,5 +1,3 @@
-{% set stats = h.get_site_statistics() %}
-
 <div class="jumbotron jumbotron-fluid" style="background-image: url(/images/bg-home.png); background-position: center; background-size: cover; background-repeat: no-repeat;" role="main">
   <div class="container text-white text-center py-5">
     <h1 class="display-4 font-weight-bold mb-0">Portal de Datos Abiertos</h1>
@@ -32,35 +30,55 @@
 </div>
 <!---->
 <div class="container">
-  <div class="row text-dark-electric-blue">
-    <div class="col-sm text-center">
-      <h3 class="font-weight-bold text-5xl">
-        {{ stats.dataset_count }}
-      </h3>
-      <p class="text-lg">
-        {{ _('dataset') if stats.dataset_count == 1 else _('datasets') }}
-      </p>
-    </div>
-    <div class="col-sm text-center">
-      <h3 class="font-weight-bold text-5xl">
-        {{ stats.organization_count }}
-      </h3>
-      <p class="text-lg">
-        {{ _('organization') if stats.organization_count == 1 else _('organizations') }}
-      </p>
-    </div>
-    <div class="col-sm text-center">
-      <h3 class="font-weight-bold text-5xl">
-        {{ stats.group_count }}
-      </h3>
-      <p class="text-lg">
-        {{ _('group') if stats.group_count == 1 else _('groups') }}
-      </p>
-    </div>
-  </div>
+  {% snippet "home/snippets/cdmx_stats.html" %}
   <!---->
-  <div style="margin-top: 48px;">
+  <section style="margin-top: 48px;">
     {% snippet "home/snippets/cdmx_featured_groups.html" %}
-  </div>
+  </section>
   <!---->
+  <section style="margin-top: 48px;">
+    <div class="card rounded-lg">
+      <div class="card-header bg-platinum">
+        <h3 class="font-weight-bold text-dark-electric-blue mb-0 text-3xl">
+          Sistemas de información
+        </h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm">
+            <a href="#" class="d-block text-dark-electric-blue text-center bg-platinum rounded-xl py-3" style="height: 100%;">
+              <img src="/images/pc-1.png" class="img-fluid" alt="">
+              <p class="mb-0 font-weight-bold">
+                Reporte mensual de <br />seguridad
+              </p>
+            </a>
+          </div>
+          <div class="col-sm">
+            <a href="#" class="d-block text-dark-electric-blue  text-center bg-platinum rounded-xl py-3" style="height: 100%;">
+              <img src="/images/pc-1.png" class="img-fluid" alt="">
+              <p class="mb-0 font-weight-bold">
+                Reporte diario <br />COVID-19
+              </p>
+            </a>
+          </div>
+          <div class="col-sm">
+            <a href="#" class="d-block text-dark-electric-blue  text-center bg-platinum rounded-xl py-3" style="height: 100%;">
+              <img src="/images/pc-1.png" class="img-fluid" alt="">
+              <p class="mb-0 font-weight-bold">
+                Transparencia <br />presupuestaria
+              </p>
+            </a>
+          </div>
+          <div class="col-sm">
+            <a href="#" class="d-block text-dark-electric-blue  text-center bg-platinum rounded-xl py-3" style="height: 100%;">
+              <img src="/images/pc-1.png" class="img-fluid" alt="">
+              <p class="mb-0 font-weight-bold">
+                Sistema de Información <br />Geográfica
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

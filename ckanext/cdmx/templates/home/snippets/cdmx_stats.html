@@ -1,0 +1,28 @@
+{% set stats = h.get_site_statistics() %}
+
+<div class="row text-dark-electric-blue" data-stats="{{ stats }}">
+  <div class="col-sm text-center">
+    <h3 class="font-weight-bold text-5xl">
+      {{ stats.dataset_count }}
+    </h3>
+    <p class="text-lg">
+      {{ _('dataset') if stats.dataset_count == 1 else _('datasets') }}
+    </p>
+  </div>
+  <div class="col-sm text-center">
+    <h3 class="font-weight-bold text-5xl">
+      {{ stats.organization_count }}
+    </h3>
+    <p class="text-lg">
+      {{ _('organization') if stats.organization_count == 1 else _('organizations') }}
+    </p>
+  </div>
+  <div class="col-sm text-center">
+    <h3 class="font-weight-bold text-5xl">
+      {{ stats.group_count }}
+    </h3>
+    <p class="text-lg">
+      {{ _('group') if stats.group_count == 1 else _('groups') }}
+    </p>
+  </div>
+</div>
