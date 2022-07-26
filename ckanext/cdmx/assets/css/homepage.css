@@ -36,7 +36,7 @@
 }
 
 .btn-home {
-  border-radius: 9999px;
+  border-radius: 9999px !important;
   background-color: rgba(0, 0, 0, 0.7);
   color: #ffffff;
 }
