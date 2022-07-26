@@ -3,7 +3,7 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import ckan.lib.jobs as jobs
 
-from ckanext.cdmx.lib import date_formats, extract_from_key, update_frequencies, chart_types, humanize_date, get_package_categories
+from ckanext.cdmx.lib import date_formats, extract_from_key, get_popular_datasets, update_frequencies, chart_types, humanize_date, get_package_categories
 
 
 class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
@@ -11,7 +11,6 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IConfigurable)
     plugins.implements(plugins.ITemplateHelpers)
-    # plugins.implements(plugins.IResourceController)
 
     # ITemplateHelpers
 
@@ -22,7 +21,8 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'chart_types': chart_types,
             'humanize_date': humanize_date,
             'get_package_categories': get_package_categories,
-            'extract_from_key': extract_from_key
+            'extract_from_key': extract_from_key,
+            'get_popular_datasets': get_popular_datasets
         }
 
     # IConfigurable
@@ -90,30 +90,3 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'date_format': [toolkit.get_validator('ignore_missing')]
         })
         return schema
-
-    # IResourceController
-
-    # def before_create(self, context, resource):
-    #     return
-
-    # def after_create(self, context, resource):
-    #     if resource['format'] == 'SHP':
-    #         jobs.enqueue(shp2geojson, [resource['id']])
-    #     print(resource)
-    #     print('........')
-    #     return
-
-    # def before_update(self, context, current, resource):
-    #     return
-
-    # def after_update(self, context, resource):
-    #     return
-
-    # def before_delete(self, context, resource, resources):
-    #     return
-
-    # def after_delete(self, context, resources):
-    #     return
-
-    # def before_show(self, resource_dict):
-    #     return resource_dict
