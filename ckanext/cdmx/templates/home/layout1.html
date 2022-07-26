@@ -2,14 +2,22 @@
   <div class="container text-white text-center py-5">
     <h1 class="display-4 font-weight-bold mb-0">Portal de Datos Abiertos</h1>
     <h2 class="font-weight-normal mt-4 text-2xl">Centro de Información y Análisis de la Ciudad de México</h2>
-    <div class="row">
+    <div class="row mt-5">
       <div class="col-lg-8 offset-lg-2">
-        <div class="mt-5 main-search">
-          <input type="text" class="main-search-input" placeholder="¿Qué datos estás buscando?" />
+        <form class="main-search" method="get" action="{% url_for 'dataset.search' %}">
+          <input
+            type="search"
+            class="main-search-input"
+            placeholder="¿Qué datos estás buscando?"
+            aria-label="{% block header_site_search_label %}¿Qué datos estás buscando?{% endblock %}"
+            name="q"
+            value=""
+            autocomplete="off"
+          />
           <button aria-label="Buscar" class="main-search-button">
             <img src="/images/search-home.png" alt="">
           </button>
-        </div>
+        </form>
       </div>
     </div>
     <div class="d-flex flex-wrap justify-content-center mt-5">
