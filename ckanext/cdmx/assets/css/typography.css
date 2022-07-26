@@ -46,6 +46,10 @@
   font-size: 24px;
 }
 
+.text-3xl {
+  font-size: 30px;
+}
+
 @media (min-width: 1024px) {
   .lg\:text-left {
     text-align: left !important;
