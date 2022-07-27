@@ -32,6 +32,10 @@
   color: #6f7271 !important;
 }
 
+.banner-title {
+  font-size: 2rem;
+}
+
 .resource-banner {
   position: relative;
 }
@@ -126,6 +130,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .banner-title {
+    font-size: 3rem;
+  }
   .organization-list,
   .group-list {
     grid-template-columns: repeat(2, 1fr);
@@ -133,6 +140,9 @@
 }
 
 @media screen and (min-width: 1200px) {
+  .banner-title {
+    font-size: 3.5rem;
+  }
   .organization-list,
   .group-list {
     grid-template-columns: repeat(3, 1fr);
