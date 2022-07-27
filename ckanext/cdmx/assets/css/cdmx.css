@@ -67,7 +67,7 @@
   background-color: #f3f3f3;
   display: grid;
   gap: 24px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   padding: 24px;
 }
 
@@ -123,4 +123,18 @@
   font-size: 16px;
   font-weight: 600;
   margin: 12px 0 0;
+}
+
+@media screen and (min-width: 768px) {
+  .organization-list,
+  .group-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .organization-list,
+  .group-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

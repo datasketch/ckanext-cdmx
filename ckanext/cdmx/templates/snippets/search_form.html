@@ -22,7 +22,7 @@
   
 {% block search_sortby %}
   {% if sorting %}
-    <div class="d-flex align-items-baseline justify-content-end mt-3">
+    <div class="d-flex flex-column align-items-baseline justify-content-end mt-3 flex-lg-row">
       <label class="flex-shrink-0 mr-2 font-weight-normal" for="field-order-by">{{ _('Order by') }}</label>
       <div class="flex-shrink-0">
         <select id="field-order-by" name="sort" class="form-control form-select" style="background-color: rgba(26, 26, 26, 0.04);
@@ -60,7 +60,6 @@
               </span>
             {% endfor %}
           {% endfor %}
-          <a class="show-filters btn btn-default">{{ _('Filter Results') }}</a>
         </div>
       {% endif %}
     </div>

@@ -8,13 +8,13 @@
       {{ h.popular('views', res.tracking_summary.total, min=10) if res.tracking_summary }}
     </a>
   {% endblock %}
-  <div class="mt-2 d-flex align-items-center">
+  <div class="mt-2 d-flex flex-column align-items-start flex-md-row align-items-md-center">
     {% set format_color = h.get_format_color(res.format) %}
     <span class="text-center rounded font-weight-bold flex-shrink-0 mr-2 px-2 py-1 text-sm text-white" property="dc:format" data-format="{{ res.format.lower() or 'data' }}" style="background-color: {{ format_color }};">
       <i class="fas fa-cloud-download-alt"></i>
       <span class="ml-1">{{ h.get_translated(res, 'format') }}</span>
     </span>
-    <p class="m-0"><strong>Última Actualización</strong>: {{ h.humanize_date(res.metadata_modified) }}</p>
+    <p class="mt-2 mb-0 mt-md-0"><strong>Última Actualización</strong>: {{ h.humanize_date(res.metadata_modified) }}</p>
   </div>
   {% block resource_item_description %}
     {% if res.description %}
