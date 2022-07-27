@@ -71,6 +71,10 @@ def get_popular_datasets():
 
 
 def get_format_color(format):
+    default_color = '#B6C9C9'
+    if not format:
+        return default_color
+
     colors = {
         'csv': '#ccc41c',
         'xlsx': '#71b365',
@@ -88,4 +92,4 @@ def get_format_color(format):
     if format_.startswith('.'):
         format_ = format_[1:]
 
-    return colors[format_] or '#B6C9C9'
+    return colors.get(format_, default_color)

@@ -18,7 +18,7 @@
   </div>
   {% block resource_item_description %}
     {% if res.description %}
-      <p class="text-base mt-2">
+      <p class="text-base mt-3 mb-0">
         {{ h.markdown_extract(h.get_translated(res, 'description'), extract_length=80) }}
       </p>
     {% endif %}
