@@ -1,17 +1,17 @@
 {% set truncate = truncate or 180 %}
-{% set truncate_title = truncate_title or 80 %}
+{% set truncate_title = truncate_title or 60 %}
 {% set title = package.title or package.name %}
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 {% set group = package.groups[0] %}
 
 <div class="card dataset-card">
-  <div class="d-flex align-items-start">
+  <div class="d-flex flex-column align-items-start flex-md-row">
     {% if group %}
       <div class="card-body text-center pr-0">
         <img class="img-fluid" style="max-width: 60px;" src="{{ group.image_display_url }}" alt="">
       </div>
     {% endif %}
-    <div class="card-body">
+    <div class="card-body p-2 p-md-3">
       <h5 class="card-title">
         <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-dark-electric-blue">
           <u>{{ h.truncate(title, truncate_title) }}</u>
