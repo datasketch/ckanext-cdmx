@@ -9,7 +9,10 @@
     </a>
   {% endblock %}
   <div class="mt-2 d-flex align-items-center">
-    <span class="text-center rounded font-weight-bold flex-shrink-0 mr-2 bg-polished-pine px-2 py-1 text-sm text-white" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
+    {% set format_color = h.get_format_color(res.format) %}
+    <span class="text-center rounded font-weight-bold flex-shrink-0 mr-2 px-2 py-1 text-sm text-white" property="dc:format" data-format="{{ res.format.lower() or 'data' }}" style="background-color: {{ format_color }};">
+      {{ h.get_translated(res, 'format') }}
+    </span>
     <p class="m-0"><strong>Última Actualización</strong>: {{ h.humanize_date(res.metadata_modified) }}</p>
   </div>
   {% block resource_item_description %}

@@ -1,4 +1,5 @@
 from datetime import datetime
+import string
 from babel.dates import format_date
 import ckan.plugins.toolkit as toolkit
 
@@ -64,5 +65,27 @@ def get_popular_datasets():
         'sort': 'views_total desc',
         'rows': 3
     }
-    datasets = toolkit.get_action('package_search')(context=None, data_dict=data_dict)
+    datasets = toolkit.get_action('package_search')(
+        context=None, data_dict=data_dict)
     return datasets
+
+
+def get_format_color(format):
+    colors = {
+        'csv': '#ccc41c',
+        'xlsx': '#71b365',
+        'shp': '#c9bf9c',
+        'zip': '#696da9',
+        'pdf': '#e0051e',
+        'geojson': '#8b3d08',
+        'json': '#ce5858',
+        'doc': '#3e9fcc',
+        'docx': '#3e9fcc',
+    }
+
+    format_ = format.lower()
+
+    if format_.startswith('.'):
+        format_ = format_[1:]
+
+    return colors[format_] or '#B6C9C9'
