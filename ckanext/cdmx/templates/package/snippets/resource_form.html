@@ -30,10 +30,7 @@
 
 <h2 class="mt-5 mb-4">Ajustes para visualizaciones</h2>
 
-{% call form.checkbox('has_visualization', id='field-has_visualization', label=_('Este recurso no tiene visualizaciones'), value=data.has_visualization, error=errors.has_visualization, classes=['control-full']) %}
-  <i class="fa fa-info-circle"></i>
-  No se verá el dashboard de exploración de datos en la página del recurso
-{% endcall %}
+{% form.checkbox('has_visualization', id='field-has_visualization', label=_('Este recurso no tiene visualizador de datos'), value=data.has_visualization, error=errors.has_visualization) %}
 
 {% call form.input('resource_viz', id='field-resource_viz', label=_('Variables a visualizar'), placeholder='ej:columna_a,columna_d', value=data.resource_viz, error=errors.resource_viz, classes=['control-full']) %}
 <span class="info-block info-block-small">
