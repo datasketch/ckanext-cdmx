@@ -1,7 +1,6 @@
 {% ckan_extends %}
 
 {% block breadcrumb_content %}
-  {{ super() }}
 {% endblock %}
 
 {% block content %}
@@ -33,6 +32,9 @@
       </div>
     </div>
     <div class="max-w-screen-2xl">
+      <p class="my-3">
+        <a href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">Volver al conjunto de datos</a>
+      </p>
       <div class="aspect-16-by-9">
         {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
         <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
