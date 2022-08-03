@@ -70,7 +70,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTra
             'update_frequency': [toolkit.get_validator('ignore_missing')],
             'chart_type': [toolkit.get_validator('ignore_missing')],
             'date_format': [toolkit.get_validator('ignore_missing')],
-            'has_visualization': [toolkit.get_validator('ignore_missing')]
+            'hide_visualization': [toolkit.get_validator('ignore_missing')]
         })
         return schema
 
@@ -91,6 +91,6 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTra
             'update_frequency': [toolkit.get_validator('ignore_missing')],
             'chart_type': [toolkit.get_validator('ignore_missing')],
             'date_format': [toolkit.get_validator('ignore_missing')],
-            'has_visualization': [toolkit.get_validator('boolean_validator')]
+            'hide_visualization': [toolkit.get_validator('boolean_validator')]
         })
         return schema
