@@ -8,8 +8,8 @@
   </div>
   <div class="card-body">
     <div class="row">
-      {% for package in datasets.results %}
-        <div class="col-md">
+      {% for package in datasets.results %}        
+        <div class="col-md" {% if not loop.last %}style="border-right: 1px solid #929190;"{% endif %}>
           <p class="mb-0 font-weight-semibold text-lg">
             <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-dark-electric-blue">
               {{ package.title or package.name }}
