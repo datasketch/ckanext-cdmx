@@ -26,6 +26,10 @@
   background-color: #637381;
 }
 
+.bg-mn-blue {
+  background-color: #2C5282;
+}
+
 .bg-phthalo-green {
   background-color: #10312B;
 }
@@ -64,10 +68,6 @@
 
 .text-dark-electric-blue {
   color: #637381;
-}
-
-.text-mn-blue {
-  background-color: #2C5282;
 }
 
 .text-eerie-black {
