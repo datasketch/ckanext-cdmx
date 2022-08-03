@@ -37,7 +37,7 @@
         </p>
       {% endif %}
       <p class="card-text">
-        <strong>Institución:</strong> <a class="text-aqua" href="{{ h.url_for('%s.read' % package.organization.type, id=package.organization.name) }}">{{ package.organization.title }}</a>
+        <strong>{{ _('Organization') }}:</strong> <a class="text-aqua" href="{{ h.url_for('%s.read' % package.organization.type, id=package.organization.name) }}">{{ package.organization.title }}</a>
       </p>
     </div>
   </div>

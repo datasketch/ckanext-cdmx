@@ -2,9 +2,9 @@
   <section class="filter">
     {% block facet_list_heading %}
     {% set title = title or h.get_facet_title(name) %}
-      <button class="filter-toggle border-0 text-dark-electric-blue font-weight-bold text-left">
+      <div class="filter-toggle border-0 text-dark-electric-blue font-weight-bold text-left">
         {{ title }}
-      </button>
+      </div>
     {% endblock %}
     {% block facet_list_items %}
       {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
