@@ -2,8 +2,8 @@
   <div class="container text-white text-center py-5">
     <h1 class="display-4 font-weight-bold mb-0">Portal de Datos Abiertos</h1>
     <h2 class="font-weight-normal mt-4 text-2xl">Centro de Información y Análisis de la Ciudad de México</h2>
-    <div class="row mt-5">
-      <div class="col-lg-8 offset-lg-2">
+    <div class="row mt-5 justify-content-center">
+      <div class="col-lg-9">
         <form class="main-search" method="get" action="{% url_for 'dataset.search' %}">
           <input
             type="search"
@@ -21,17 +21,17 @@
       </div>
     </div>
     <div class="d-flex flex-wrap justify-content-center mt-5">
-      <div class="p-1 flex-shrink-0">
-        <a href="#" class="btn btn-lg btn-home">Datos abiertos</a>
+      <div class="py-1 px-3 flex-shrink-0">
+        <a href="#" class="btn btn-lg btn-home">Datos estadísticos</a>
       </div>
-      <div class="p-1 flex-shrink-0">
-        <a href="#" class="btn btn-lg btn-home">Datos geográficos</a>
+      <div class="py-1 px-3 flex-shrink-0">
+        <a href="{% url_for 'dataset.search', tags='wifi' %}" class="btn btn-lg btn-home">WiFi</a>
       </div>
-      <div class="p-1 flex-shrink-0">
-        <a href="#" class="btn btn-lg btn-home">Plan de apertura</a>
+      <div class="py-1 px-3 flex-shrink-0">
+        <a href="{% url_for 'dataset.search', tags='Agua' %}" class="btn btn-lg btn-home">Agua</a>
       </div>
-      <div class="p-1 flex-shrink-0">
-        <a href="#" class="btn btn-lg btn-home">Tutoriales</a>
+      <div class="py-1 px-3 flex-shrink-0">
+        <a href="{% url_for 'dataset.search', tags='Seguridad' %}" class="btn btn-lg btn-home">Seguridad</a>
       </div>
     </div>
   </div>
@@ -49,7 +49,7 @@
   </section>
   <!---->
   <section style="margin-top: 48px;">
-    <div class="card rounded-lg">
+    <div class="card rounded-2xl overflow-hidden">
       <div class="card-header bg-platinum">
         <h3 class="font-weight-bold text-dark-electric-blue mb-0 text-3xl">
           Sistemas de información
@@ -94,7 +94,7 @@
     </div>
   </section>
   <section style="margin: 48px 0;">
-    <div class="card">
+    <div class="card rounded-2xl overflow-hidden">
       <div class="card-body">
         <div class="media">
           <img class="img-fluid align-self-center flex-shrink-0" src="/images/servers.png" alt="" style="width: 100%; max-width: 100px; height: auto; object-fit: contain;">

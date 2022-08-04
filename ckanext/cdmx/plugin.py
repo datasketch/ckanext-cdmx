@@ -1,12 +1,13 @@
 import mimetypes
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-import ckan.lib.jobs as jobs
+from ckan.lib.plugins import DefaultTranslation
 
 from ckanext.cdmx.lib import date_formats, extract_from_key, get_format_color, get_popular_datasets, update_frequencies, chart_types, humanize_date, get_package_categories
 
 
-class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
+class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTranslation):
+    plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IConfigurable)
@@ -69,6 +70,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'update_frequency': [toolkit.get_validator('ignore_missing')],
             'chart_type': [toolkit.get_validator('ignore_missing')],
             'date_format': [toolkit.get_validator('ignore_missing')],
+            'hide_visualization': [toolkit.get_validator('ignore_missing')]
         })
         return schema
 
@@ -88,6 +90,7 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'resource_priority_date': [toolkit.get_validator('ignore_missing')],
             'update_frequency': [toolkit.get_validator('ignore_missing')],
             'chart_type': [toolkit.get_validator('ignore_missing')],
-            'date_format': [toolkit.get_validator('ignore_missing')]
+            'date_format': [toolkit.get_validator('ignore_missing')],
+            'hide_visualization': [toolkit.get_validator('boolean_validator')]
         })
         return schema

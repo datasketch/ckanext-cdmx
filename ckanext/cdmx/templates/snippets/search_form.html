@@ -8,8 +8,7 @@
     <input
       type="text"
       class="searchbox-input border-0 px-3"
-      placeholder="Buscar conjunto de datos"
-      aria-label="Buscar conjunto de datos"
+      placeholder="{% block placeholder %}Buscar conjunto de datos{% endblock %}"
       name="q"
       value="{{ query }}"
       autocomplete="off"

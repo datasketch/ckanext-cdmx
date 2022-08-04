@@ -8,7 +8,7 @@
       </h2>
     {% else %}
       <h2 class="text-base text-aqua font-weight-bold mb-2">
-        Institución
+        {{ _('Organization') }}
       </h2>
     {% endif %}
     {% block inner %}
@@ -32,7 +32,7 @@
             {{ h.markdown_extract(organization.description, 180) }}
           </p>
           <p class="read-more">
-            <a class="text-aqua" href="{{ h.url_for('%s.read' % organization.type, id=organization.name) }}">Leer más</a>
+            <a class="text-aqua" href="{{ h.url_for('%s.about' % organization.type, id=organization.name) }}">Leer más</a>
           </p>
         {% else %}
           <p class="empty">{{ h.humanize_entity_type('organization', organization.type, 'no description') or _('There is no description for this organization') }}</p>
