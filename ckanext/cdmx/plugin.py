@@ -3,7 +3,7 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 
-from ckanext.cdmx.lib import date_formats, extract_from_key, get_format_color, get_popular_datasets, update_frequencies, chart_types, humanize_date, get_package_categories
+from ckanext.cdmx.lib import date_formats, extract_from_key, get_format_color, get_popular_datasets, update_frequencies, chart_types, humanize_date, get_package_categories, get_datasets_per_page
 
 
 class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTranslation):
@@ -24,7 +24,8 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTra
             'get_package_categories': get_package_categories,
             'extract_from_key': extract_from_key,
             'get_popular_datasets': get_popular_datasets,
-            'get_format_color': get_format_color
+            'get_format_color': get_format_color,
+            'get_datasets_per_page': get_datasets_per_page
         }
 
     # IConfigurable
