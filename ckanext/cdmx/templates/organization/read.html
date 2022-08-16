@@ -44,4 +44,12 @@
   </div>
 {% endblock %}
 
+{% block page_pagination %}
+  {% set results_text = 'resultados' if page.item_count != 1 else 'resultado' %}
+  <p class="text-center mt-0 mb-2 text-black-coral text-sm">
+    Mostrados {{ page.last_item }} de {{ page.item_count }} {{ results_text }}
+  </p>
+  {{ page.pager(q=q, symbol_first="Inicio", symbol_last="Final", symbol_previous="Anterior", symbol_next="Siguiente", format='<div class="pagination-wrapper"><ul class="pagination pagination-center">$link_first $link_previous ~2~ $link_next $link_last</ul></div>') }}
+{% endblock %}
+
 
