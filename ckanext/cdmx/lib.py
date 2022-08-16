@@ -93,7 +93,3 @@ def get_format_color(format):
         format_ = format_[1:]
 
     return colors.get(format_, default_color)
-
-
-def get_datasets_per_page():
-    return toolkit.config.get("ckan.datasets_per_page")
