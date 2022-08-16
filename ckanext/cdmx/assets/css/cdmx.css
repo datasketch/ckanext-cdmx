@@ -63,6 +63,10 @@
   text-align: center;
 }
 
+.resource-banner-social h2 {
+  color: #637381
+}
+
 .resource-content .toolbar {
   padding: 0;
   margin-bottom: 0;
