@@ -41,5 +41,5 @@
 {% endblock -%}
 
 {% block page_pagination %}
-  {{ page.pager(q=q, symbol_first="Inicio") }}
+  {{ page.pager(q=q, symbol_first="Inicio", symbol_last="Final", symbol_previous="Anterior", symbol_next="Siguiente") }}
 {% endblock %}
