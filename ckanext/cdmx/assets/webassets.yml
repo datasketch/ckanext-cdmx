@@ -18,6 +18,7 @@ cdmx_css:
     - css/cdmx.css
     - css/homepage.css
     - css/snippets.css
+    - css/pagination.css
 
 cdmx_js:
   filter: rjsmin

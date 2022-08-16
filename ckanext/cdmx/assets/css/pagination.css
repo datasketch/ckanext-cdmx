@@ -1,0 +1,19 @@
+.pagination-wrapper {
+  border-top: none !important;
+}
+
+.pagination-wrapper ul.pagination {
+  justify-content: center;
+}
+
+.pagination-wrapper a {
+  background-color: transparent !important;
+  border: none !important;
+  color: #637381;
+  margin-left: 0 !important;
+}
+
+.pagination-wrapper li.active {
+  font-weight: bold;
+  border-bottom: 2px solid #637381;
+}
