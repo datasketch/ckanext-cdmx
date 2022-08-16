@@ -52,16 +52,15 @@
 .resource-banner-grid {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: 1fr;
+  padding: 20px 12px;
 }
 
 .resource-banner-container {
   color: #3998A5;
   isolation: isolate;
   max-width: 1536px;
-  padding: 40px 20px;
   text-align: center;
-  grid-column: 2 / 6;
 }
 
 .resource-content .toolbar {
@@ -143,6 +142,13 @@
   .organization-list,
   .group-list {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .resource-banner-grid {
+    padding: 20px;
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .resource-banner-container {
+    grid-column: 2 / 6;
   }
 }
 
