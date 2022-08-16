@@ -67,6 +67,10 @@
   color: #637381
 }
 
+.resource-banner-social section {
+  margin-top: 0 !important;
+}
+
 .resource-content .toolbar {
   padding: 0;
   margin-bottom: 0;
