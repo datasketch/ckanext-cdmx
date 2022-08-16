@@ -2,13 +2,15 @@
 
 {% block search_title %}
 {% endblock %}
+
+{% set placeholder = placeholder if placeholder else "Buscar conjunto de datos" %}
   
 {% block search_input %}
   <div class="searchbox d-flex justify-content-between overflow-hidden">
     <input
       type="text"
       class="searchbox-input border-0 px-3"
-      placeholder="{% block placeholder %}Buscar conjunto de datos{% endblock %}"
+      placeholder="{{ placeholder }}"
       name="q"
       value="{{ query }}"
       autocomplete="off"
