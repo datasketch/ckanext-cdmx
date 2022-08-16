@@ -49,12 +49,19 @@
   position: absolute;
 }
 
+.resource-banner-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
 .resource-banner-container {
   color: #3998A5;
   isolation: isolate;
   max-width: 1536px;
   padding: 40px 20px;
   text-align: center;
+  grid-column: 2 / 6;
 }
 
 .resource-content .toolbar {
