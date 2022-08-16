@@ -4,9 +4,13 @@ ckan.module('redirect', function (jQuery) {
       href: ''
     },
     initialize: function() {
-      console.log(this)
-      console.log(this.options.href);
-      console.log('******');
+      this.el.on('change', jQuery.proxy(this._onChange, this))
+    },
+    _onChange: function(event) {
+      const origin = window.location.origin
+      const href = this.options.href
+      event.preventDefault()
+      console.log(origin + href);
     }
   }
 })
