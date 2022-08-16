@@ -24,3 +24,9 @@ msgstr "Institución"
 msgid "Organizations"
 msgstr "Instituciones"
 
+msgid "Search organizations..."
+msgstr "Buscar instituciones"
+
+msgid "Search groups..."
+msgstr "Buscar categorías"
+
