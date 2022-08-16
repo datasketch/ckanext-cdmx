@@ -2,7 +2,7 @@
   border-top: none !important;
 }
 
-.pagination-wrapper ul.pagination {
+.pagination-wrapper ul.pagination.pagination-center {
   justify-content: center !important;
 }
 
