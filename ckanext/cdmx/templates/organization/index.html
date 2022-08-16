@@ -1,6 +1,7 @@
 {% ckan_extends %}
 
 {%- block content %}
+  {% set placeholder = "Buscar instituciones" %}
   {% block maintag %}<div>{% endblock %}
   <div id="content" class="bg-white" data-test="{{ page }}">
     {% block main_content %}
@@ -46,5 +47,3 @@
     {% endblock %}
   </div>
 {% endblock -%}
-
-<!-- {% block placeholder %}Buscar instituciones{% endblock %} -->
