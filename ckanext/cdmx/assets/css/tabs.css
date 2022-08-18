@@ -12,6 +12,7 @@
 
 .nav-tabs li.active > a {
   color: #637381 !important;
+  border-color: #dee2e6 #dee2e6 #fff !important;
 }
 
 .nav-tabs a,
