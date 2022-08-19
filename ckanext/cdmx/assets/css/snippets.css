@@ -74,3 +74,8 @@
 .module.module-narrow.resources .nav-item.active {
   background-color: #637381 !important;
 }
+
+.module.module-narrow.resources .nav-item.active > {
+  color: #ffffff !important;
+  background-color: transparent;
+}
