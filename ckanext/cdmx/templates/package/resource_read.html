@@ -55,6 +55,10 @@
 {% endblock %}
 
 {% block secondary %}
+  {% if res.hide_visualization %}
+    <p>Hola?</p>
+    {{ super() }}
+  {% endif %}
 {% endblock %}
 
 {% block resource_read_title %}
