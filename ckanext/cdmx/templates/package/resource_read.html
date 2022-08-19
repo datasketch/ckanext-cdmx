@@ -70,4 +70,7 @@
 {% endblock %}
 
 {% block resource_additional_information_inner %}
+  {% if res.hide_visualization %}
+    {{ super() }}
+  {% endif %}
 {% endblock %}
