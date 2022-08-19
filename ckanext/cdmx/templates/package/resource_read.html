@@ -20,7 +20,7 @@
             {% link_for _('Manage'), named_route=pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id, class_='btn btn-default', icon='wrench' %}
           {% endif %}
           {% if res.url and h.is_url(res.url) %}
-            <a class="btn bg-aqua text-white resource-url-analytics bg-aqua" href="{{ res.url }}">
+            <a class="btn bg-aqua text-white resource-url-analytics" href="{{ res.url }}">
               {{ _('Download') }}
             </a>
           {% endif %}
@@ -53,44 +53,52 @@
             {% block primary %}
               <div class="primary col-lg-9" role="main">
                 <pre>{{ res }}</pre>
+                <h1 class="font-weight-bold text-dark-electric-blue mb-0 text-lg">{{ res.name }}</h1>
+                {% if res.url and h.is_url(res.url) %}
+                  <a class="btn bg-dark-electric-blue text-white resource-url-analytics" href="{{ res.url }}">
+                    {{ _('Download') }}
+                  </a>
+                {% endif %}
                 {% block primary_content %}
                   {% if res %}
-                    <h2 class="font-weight-bold text-dark-electric-blue mb-0 text-lg">{{ _('Additional Information') }}</h2>
-                    <table class="mt-3 table table-bordered table-condensed text-sm" data-module="table-toggle-more">
-                      <thead>
-                        <tr>
-                          <th scope="col">{{ _('Field') }}</th>
-                          <th scope="col">{{ _('Value') }}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">{{ _('Data last updated') }}</th>
-                          <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">{{ _('Metadata last updated') }}</th>
-                          <td>{{ h.render_datetime(res.metadata_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">{{ _('Created') }}</th>
-                          <td>{{ h.render_datetime(res.created) or _('unknown') }}</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">{{ _('Format') }}</th>
-                          <td>{{ res.format or res.mimetype_inner or res.mimetype or _('unknown') }}</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">{{ _('License') }}</th>
-                          <td>{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
-                        </tr>
-                        {% for key, value in h.format_resource_items(res.items()) %}
-                          {% if key not in ('created', 'metadata modified', 'last modified', 'format') %}
-                            <tr class="toggle-more"><th scope="row">{{ key | capitalize }}</th><td>{{ value }}</td></tr>
-                          {% endif %}
-                        {% endfor %}
-                      </tbody>
-                    </table>
+                    <section class="mt-3">
+                      <h2 class="font-weight-bold text-dark-electric-blue mb-0 text-lg">{{ _('Additional Information') }}</h2>
+                      <table class="mt-3 table table-bordered table-condensed text-sm" data-module="table-toggle-more">
+                        <thead>
+                          <tr>
+                            <th scope="col">{{ _('Field') }}</th>
+                            <th scope="col">{{ _('Value') }}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">{{ _('Data last updated') }}</th>
+                            <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">{{ _('Metadata last updated') }}</th>
+                            <td>{{ h.render_datetime(res.metadata_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">{{ _('Created') }}</th>
+                            <td>{{ h.render_datetime(res.created) or _('unknown') }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">{{ _('Format') }}</th>
+                            <td>{{ res.format or res.mimetype_inner or res.mimetype or _('unknown') }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">{{ _('License') }}</th>
+                            <td>{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
+                          </tr>
+                          {% for key, value in h.format_resource_items(res.items()) %}
+                            {% if key not in ('created', 'metadata modified', 'last modified', 'format') %}
+                              <tr class="toggle-more"><th scope="row">{{ key | capitalize }}</th><td>{{ value }}</td></tr>
+                            {% endif %}
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </section>
                   {% endif %}
                 {% endblock %}
               </div>
