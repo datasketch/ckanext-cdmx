@@ -43,12 +43,16 @@
       {% if res.hide_visualization %}
         <div class="px-4">
           <pre>{{ res }}</pre>
+          {% block resource_additional_information %}
+            {{ super() }}
+          {% endblock %}
         </div>
       {% else %}
         <div class="aspect-16-by-9">
           {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
           <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
         </div>
+        {% block resource_additional_information %}{% endblock %}
       {% endif %}
     </div>
   </div>
@@ -76,13 +80,6 @@
 {% endblock %}
 
 {% block data_preview %}
-{% endblock %}
-
-{% block resource_additional_information_inner %}
-  {% if res.hide_visualization %}
-    <p>Hola mundoooooo</p>
-    {{ super() }}
-  {% endif %}
 {% endblock %}
 
 {% block resource_license %}{% endblock %}
