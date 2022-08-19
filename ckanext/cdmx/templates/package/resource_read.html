@@ -43,9 +43,6 @@
       {% if res.hide_visualization %}
         <div class="px-4">
           <pre>{{ res }}</pre>
-          {% block resource_additional_information %}
-            {{ super() }}
-          {% endblock %}
         </div>
       {% else %}
         <div class="aspect-16-by-9">
@@ -56,6 +53,12 @@
       {% endif %}
     </div>
   </div>
+{% endblock %}
+
+{% block primary_content %}
+  {% if res.hide_visualization %}
+    {{ super() }}
+  {% endif %}
 {% endblock %}
 
 {% block secondary %}
