@@ -6,12 +6,6 @@
 {% block content %}
   {% block maintag %}{{ super() }}{% endblock %}
   <div id="content" class="resource-content">
-    {% block main_content %}{{ super() }}{% endblock %}
-  </div>
-{% endblock %}
-
-{% block primary %}
-  <div class="primary col-sm-12" role="main">
     <div class="resource-banner">
       <div class="resource-banner-bg" style="background-image: url(/images/banner-bg.png);"></div>
       <div class="max-w-screen-2xl resource-banner-grid">
@@ -26,7 +20,7 @@
             {% link_for _('Manage'), named_route=pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id, class_='btn btn-default', icon='wrench' %}
           {% endif %}
           {% if res.url and h.is_url(res.url) %}
-            <a class="btn bg-aqua text-white resource-url-analytics bg-aqua" href="{{ res.url }}">
+            <a class="btn bg-aqua text-white resource-url-analytics" href="{{ res.url }}">
               {{ _('Download') }}
             </a>
           {% endif %}
@@ -36,19 +30,93 @@
         </div>
       </div>
     </div>
-    <div class="max-w-screen-2xl">
-      <p class="my-3 px-4">
-        <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
-      </p>
-      <div class="aspect-16-by-9">
-        {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
-        <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
+    {% block main_content %}
+      {% block flash %}{{ super() }}{% endblock %}
+      {% block toolbar %}{% endblock %}
+      {% if res.hide_visualization %}
+        <div class="container">
+          <div class="row">
+            <p class="col-sm-12 my-3">
+              <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
+            </p>
+          </div>
+          <div class="row {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
+            {% block secondary %}
+              <aside class="secondary col-lg-3">
+                <div class="text-eerie-black font-inter">
+                  {% block secondary_content %}
+                    {{ super() }}
+                  {% endblock %}
+                </div>
+              </aside>
+            {% endblock %}
+            {% block primary %}
+              <div class="primary col-lg-9" role="main">
+                <h1 class="font-weight-bold text-dark-electric-blue mb-3 text-lg">{{ res.name }}</h1>
+                {% if res.url and h.is_url(res.url) %}
+                  <a class="btn bg-dark-electric-blue text-white resource-url-analytics" href="{{ res.url }}">
+                    {{ _('Download') }}
+                  </a>
+                {% endif %}
+                {% block primary_content %}
+                  {% if res %}
+                    <section class="mt-5">
+                      <h2 class="font-weight-bold text-dark-electric-blue mb-0 text-lg">{{ _('Additional Information') }}</h2>
+                      <table class="mt-3 table table-bordered table-condensed text-sm" data-module="table-toggle-more">
+                        <thead>
+                          <tr>
+                            <th scope="col">{{ _('Field') }}</th>
+                            <th scope="col">{{ _('Value') }}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">{{ _('Data last updated') }}</th>
+                            <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">{{ _('Metadata last updated') }}</th>
+                            <td>{{ h.render_datetime(res.metadata_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">{{ _('Created') }}</th>
+                            <td>{{ h.render_datetime(res.created) or _('unknown') }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">{{ _('Format') }}</th>
+                            <td>{{ res.format or res.mimetype_inner or res.mimetype or _('unknown') }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">{{ _('License') }}</th>
+                            <td>{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
+                          </tr>
+                          {% for key, value in h.format_resource_items(res.items()) %}
+                            {% if key not in ('created', 'metadata modified', 'last modified', 'format') %}
+                              <tr class="toggle-more"><th scope="row">{{ key | capitalize }}</th><td>{{ value }}</td></tr>
+                            {% endif %}
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </section>
+                  {% endif %}
+                {% endblock %}
+              </div>
+            {% endblock %}
+          </div>
+        </div>
+      {% else %}
+        <div class="max-w-screen-2xl" role="main">
+          <p class="my-3 px-4">
+            <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
+          </p>
+          <div class="aspect-16-by-9">
+            {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
+            <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
   </div>
-{% endblock %}
-
-{% block secondary %}
 {% endblock %}
 
 {% block resource_read_title %}
@@ -63,5 +131,4 @@
 {% block data_preview %}
 {% endblock %}
 
-{% block resource_additional_information_inner %}
-{% endblock %}
+{% block resource_license %}{% endblock %}

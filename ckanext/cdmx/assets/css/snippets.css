@@ -66,3 +66,16 @@
 .dataset-resource:not(:first-child) {
   margin-top: 24px;
 }
+
+.module.module-narrow.resources .nav-item > a {
+  color: #637381 !important;
+}
+
+.module.module-narrow.resources .nav-item.active {
+  background-color: #637381 !important;
+}
+
+.module.module-narrow.resources .nav-item.active > a {
+  color: #ffffff !important;
+  background-color: transparent;
+}
