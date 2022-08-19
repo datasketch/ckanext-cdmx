@@ -105,15 +105,13 @@
           </div>
         </div>
       {% else %}
-        <div class="primary col-sm-12" role="main">
-          <div class="max-w-screen-2xl">
-            <p class="my-3 px-4">
-              <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
-            </p>
-            <div class="aspect-16-by-9">
-              {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
-              <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
-            </div>
+        <div class="max-w-screen-2xl" role="main">
+          <p class="my-3 px-4">
+            <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
+          </p>
+          <div class="aspect-16-by-9">
+            {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
+            <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
       {% endif %}
