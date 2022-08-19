@@ -6,12 +6,6 @@
 {% block content %}
   {% block maintag %}{{ super() }}{% endblock %}
   <div id="content" class="resource-content">
-    {% block main_content %}{{ super() }}{% endblock %}
-  </div>
-{% endblock %}
-
-{% block primary %}
-  <div class="primary col-sm-12" role="main">
     <div class="resource-banner">
       <div class="resource-banner-bg" style="background-image: url(/images/banner-bg.png);"></div>
       <div class="max-w-screen-2xl resource-banner-grid">
@@ -36,6 +30,12 @@
         </div>
       </div>
     </div>
+    {% block main_content %}{{ super() }}{% endblock %}
+  </div>
+{% endblock %}
+
+{% block primary %}
+  <div class="primary col-sm-12{% if res.hide_visualization %} col-lg-9{% endif %}" role="main">
     <div class="max-w-screen-2xl">
       <p class="my-3 px-4">
         <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
@@ -56,8 +56,13 @@
 
 {% block secondary %}
   {% if res.hide_visualization %}
-    <p>Hola?</p>
-    {{ super() }}
+    <aside class="secondary col-lg-3">
+      <div class="text-eerie-black font-inter">
+        {% block secondary_content %}
+          {{ super() }}
+        {% endblock %}
+      </div>
+    </aside>
   {% endif %}
 {% endblock %}
 
@@ -75,6 +80,9 @@
 
 {% block resource_additional_information_inner %}
   {% if res.hide_visualization %}
+    <p>Hola mundoooooo</p>
     {{ super() }}
   {% endif %}
 {% endblock %}
+
+{% block resource_license %}{% endblock %}
