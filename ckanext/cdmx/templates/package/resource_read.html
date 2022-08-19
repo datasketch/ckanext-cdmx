@@ -30,47 +30,47 @@
         </div>
       </div>
     </div>
-    {% block main_content %}{{ super() }}{% endblock %}
-  </div>
-{% endblock %}
-
-{% block primary %}
-  <div class="primary col-sm-12{% if res.hide_visualization %} col-lg-9{% endif %}" role="main">
-    <div class="max-w-screen-2xl">
-      <p class="my-3 px-4">
-        <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
-      </p>
+    {% block main_content %}
+      {% block flash %}{{ super() }}{% endblock %}
+      {% block toolbar %}{% endblock %}
+      <div class="max-w-screen-2xl">
+        <p class="my-3 px-4">
+          <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
+        </p>
+      </div>
       {% if res.hide_visualization %}
-        <div class="px-4">
-          <pre>{{ res }}</pre>
+        <div class="container">
+          <div class="row {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
+            {% block secondary %}
+              <aside class="secondary col-lg-3">
+                <div class="text-eerie-black font-inter">
+                  {% block secondary_content %}
+                    {{ super() }}
+                  {% endblock %}
+                </div>
+              </aside>
+            {% endblock %}
+            {% block primary %}
+              <div class="primary col-lg-9" role="main">
+                {% block primary_content %}
+                  {{ super() }}
+                {% endblock %}
+              </div>
+            {% endblock %}
+          </div>
         </div>
       {% else %}
-        <div class="aspect-16-by-9">
-          {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
-          <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+        <div class="primary col-sm-12{% if res.hide_visualization %} col-lg-9{% endif %}" role="main">
+          <div class="max-w-screen-2xl">
+            <div class="aspect-16-by-9">
+              {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
+              <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
         </div>
-        {% block resource_additional_information %}{% endblock %}
       {% endif %}
-    </div>
+    {% endblock %}
   </div>
-{% endblock %}
-
-{% block primary_content %}
-  {% if res.hide_visualization %}
-    {{ super() }}
-  {% endif %}
-{% endblock %}
-
-{% block secondary %}
-  {% if res.hide_visualization %}
-    <aside class="secondary col-lg-3">
-      <div class="text-eerie-black font-inter">
-        {% block secondary_content %}
-          {{ super() }}
-        {% endblock %}
-      </div>
-    </aside>
-  {% endif %}
 {% endblock %}
 
 {% block resource_read_title %}
