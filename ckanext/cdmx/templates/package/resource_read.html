@@ -52,10 +52,10 @@
             {% endblock %}
             {% block primary %}
               <div class="primary col-lg-9" role="main">
-                <pre>{{ res.__dict__ }}</pre>
+                <pre>{{ res }}</pre>
                 {% block primary_content %}
                   {% if res %}
-                    <h2 class="font-weight-bold text-dark-electric-blue mb-0 text-2xl">{{ _('Additional Information') }}</h2>
+                    <h2 class="font-weight-bold text-dark-electric-blue mb-0 text-lg">{{ _('Additional Information') }}</h2>
                     <table class="mt-3 table table-bordered table-condensed text-sm" data-module="table-toggle-more">
                       <thead>
                         <tr>
