@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-md d-flex" style="border-right: 1px solid #929190;">
         <p class="mb-0 font-weight-semibold text-lg align-self-center">
-          <a href="{% url_for 'dataset.search', q='victimas' %}" class="text-dark-electric-blue">
+          <a href="{{ h.url_for('dataset.read', id='victimas-en-carpetas-de-investigacion-fgj') }}" class="text-dark-electric-blue">
             Víctimas en carpetas de investigación FGJ
           </a>
         </p>
