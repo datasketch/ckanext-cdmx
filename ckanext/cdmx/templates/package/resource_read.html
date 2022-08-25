@@ -52,7 +52,9 @@
             {% endblock %}
             {% block primary %}
               <div class="primary col-lg-9" role="main">
-                <h1 class="font-weight-normal mb-3 text-lg" style="color: #1a1a1a">{{ res.name }}</h1>
+                <div class="font-weight-normal mb-3 text-lg">
+                  {{ res.description }}
+                </div>
                 {% if res.url and h.is_url(res.url) %}
                   <a class="btn bg-dark-electric-blue text-white resource-url-analytics" href="{{ res.url }}">
                     {{ _('Download') }}
