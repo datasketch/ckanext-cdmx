@@ -8,21 +8,21 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <div class="col-md d-flex" {% if not loop.last %}style="border-right: 1px solid #929190;"{% endif %}>
+      <div class="col-md d-flex" style="border-right: 1px solid #929190;">
         <p class="mb-0 font-weight-semibold text-lg align-self-center">
           <a href="{% url_for 'dataset.search', q='victimas' %}" class="text-dark-electric-blue">
             Víctimas en carpetas de investigación FGJ
           </a>
         </p>
       </div>
-      <div class="col-md d-flex" {% if not loop.last %}style="border-right: 1px solid #929190;"{% endif %}>
+      <div class="col-md d-flex" style="border-right: 1px solid #929190;">
         <p class="mb-0 font-weight-semibold text-lg align-self-center">
           <a href="{{ h.url_for('dataset.read', id='0311-locatel') }}" class="text-dark-electric-blue">
             *0311 Locatel
           </a>
         </p>
       </div>
-      <div class="col-md d-flex" {% if not loop.last %}style="border-right: 1px solid #929190;"{% endif %}>
+      <div class="col-md d-flex">
         <p class="mb-0 font-weight-semibold text-lg align-self-center">
           <a href="{{ h.url_for('dataset.read', id='actas-de-defuncion-en-el-registro-civil-de-la-ciudad-de-mexico') }}" class="text-dark-electric-blue">
             Actas de defunción en el Registro Civil de la Ciudad de México
