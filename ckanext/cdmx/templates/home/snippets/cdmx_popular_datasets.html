@@ -1,4 +1,4 @@
-{% set datasets = h.get_popular_datasets() %}
+<!-- {% set datasets = h.get_popular_datasets() %} -->
 
 <div class="card rounded-2xl overflow-hidden">
   <div class="card-header bg-platinum">
@@ -8,15 +8,36 @@
   </div>
   <div class="card-body">
     <div class="row">
-      {% for package in datasets.results %}        
-        <div class="col-md d-flex" {% if not loop.last %}style="border-right: 1px solid #929190;"{% endif %}>
-          <p class="mb-0 font-weight-semibold text-lg align-self-center">
-            <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-dark-electric-blue">
-              {{ package.title or package.name }}
-            </a>
-          </p>
-        </div>
-      {% endfor %}
+      <div class="col-md d-flex" {% if not loop.last %}style="border-right: 1px solid #929190;"{% endif %}>
+        <p class="mb-0 font-weight-semibold text-lg align-self-center">
+          <a href="{% url_for 'dataset.search', q='victimas' %}" class="text-dark-electric-blue">
+            Víctimas en carpetas de investigación FGJ
+          </a>
+        </p>
+      </div>
+      <div class="col-md d-flex" {% if not loop.last %}style="border-right: 1px solid #929190;"{% endif %}>
+        <p class="mb-0 font-weight-semibold text-lg align-self-center">
+          <a href="{{ h.url_for('dataset.read', id='0311-locatel') }}" class="text-dark-electric-blue">
+            *0311 Locatel
+          </a>
+        </p>
+      </div>
+      <div class="col-md d-flex" {% if not loop.last %}style="border-right: 1px solid #929190;"{% endif %}>
+        <p class="mb-0 font-weight-semibold text-lg align-self-center">
+          <a href="{{ h.url_for('dataset.read', id='actas-de-defuncion-en-el-registro-civil-de-la-ciudad-de-mexico') }}" class="text-dark-electric-blue">
+            Actas de defunción en el Registro Civil de la Ciudad de México
+          </a>
+        </p>
+      </div>
+      <!-- {% for package in datasets.results %}        
+      <div class="col-md d-flex" {% if not loop.last %}style="border-right: 1px solid #929190;"{% endif %}>
+        <p class="mb-0 font-weight-semibold text-lg align-self-center">
+          <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-dark-electric-blue">
+            {{ package.title or package.name }}
+          </a>
+        </p>
+      </div>
+      {% endfor %} -->
     </div>
   </div>
   <div class="card-footer bg-white border-0 pt-0">

@@ -1,7 +1,13 @@
 <div class="jumbotron jumbotron-fluid" style="background-image: url(/images/bg-home.png); background-position: center; background-size: cover; background-repeat: no-repeat;" role="main">
   <div class="container text-white text-center py-5">
-    <h1 class="display-4 font-weight-bold mb-0">Portal de Datos Abiertos</h1>
-    <h2 class="font-weight-normal mt-4 text-2xl">Centro de Información y Análisis de la Ciudad de México</h2>
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <h1 class="display-4 font-weight-bold mb-0">Portal de Datos Abiertos</h1>
+        <p class="font-weight-normal mt-4 text-2xl">
+          El Portal de Datos Abiertos de la CDMX se transforma e integra una nueva herramienta de visualización que contribuye a mejorar el acceso, la exploración y el análisis de los conjuntos de datos de los organismos públicos de la CDMX
+        </p>
+      </div>
+    </div>
     <div class="row mt-5 justify-content-center">
       <div class="col-lg-9">
         <form class="main-search" method="get" action="{% url_for 'dataset.search' %}">
@@ -22,7 +28,7 @@
     </div>
     <div class="d-flex flex-wrap justify-content-center mt-5">
       <div class="py-1 px-3 flex-shrink-0">
-        <a href="#" class="btn btn-lg btn-home">Datos estadísticos</a>
+        <a href="{% url_for 'dataset.search', tags='Datos estadísticos' %}" class="btn btn-lg btn-home">Datos estadísticos</a>
       </div>
       <div class="py-1 px-3 flex-shrink-0">
         <a href="{% url_for 'dataset.search', tags='wifi' %}" class="btn btn-lg btn-home">WiFi</a>
@@ -52,13 +58,13 @@
     <div class="card rounded-2xl overflow-hidden">
       <div class="card-header bg-platinum">
         <h3 class="font-weight-bold text-dark-electric-blue mb-0 text-3xl">
-          Sistemas de información
+          Sitios relacionados
         </h3>
       </div>
       <div class="card-body">
         <div class="row">
           <div class="col-sm">
-            <a href="#" class="d-block text-dark-electric-blue text-center bg-platinum rounded-xl py-3" style="height: 100%;">
+            <a href="https://datosseguridad.cdmx.gob.mx/tablero/diario/geografia" target="_blank" class="d-block text-dark-electric-blue text-center bg-platinum rounded-xl py-3" style="height: 100%;">
               <img src="/images/pc-1.png" class="img-fluid" alt="">
               <p class="mb-0 font-weight-bold">
                 Reporte mensual de <br />seguridad
@@ -66,15 +72,15 @@
             </a>
           </div>
           <div class="col-sm">
-            <a href="#" class="d-block text-dark-electric-blue  text-center bg-platinum rounded-xl py-3" style="height: 100%;">
+            <a href="https://tablero311.cdmx.gob.mx/" target="_blank" class="d-block text-dark-electric-blue  text-center bg-platinum rounded-xl py-3" style="height: 100%;">
               <img src="/images/pc-1.png" class="img-fluid" alt="">
               <p class="mb-0 font-weight-bold">
-                Reporte diario <br />COVID-19
+                Tablero de solicitudes <br />*0311
               </p>
             </a>
           </div>
           <div class="col-sm">
-            <a href="#" class="d-block text-dark-electric-blue  text-center bg-platinum rounded-xl py-3" style="height: 100%;">
+            <a href="https://tudinero.cdmx.gob.mx/" target="_blank" class="d-block text-dark-electric-blue  text-center bg-platinum rounded-xl py-3" style="height: 100%;">
               <img src="/images/pc-1.png" class="img-fluid" alt="">
               <p class="mb-0 font-weight-bold">
                 Transparencia <br />presupuestaria
@@ -82,7 +88,7 @@
             </a>
           </div>
           <div class="col-sm">
-            <a href="#" class="d-block text-dark-electric-blue  text-center bg-platinum rounded-xl py-3" style="height: 100%;">
+            <a href="https://sig.cdmx.gob.mx/" target="_blank" class="d-block text-dark-electric-blue  text-center bg-platinum rounded-xl py-3" style="height: 100%;">
               <img src="/images/pc-1.png" class="img-fluid" alt="">
               <p class="mb-0 font-weight-bold">
                 Sistema de Información <br />Geográfica
@@ -100,7 +106,7 @@
           <img class="img-fluid align-self-center flex-shrink-0" src="/images/servers.png" alt="" style="width: 100%; max-width: 100px; height: auto; object-fit: contain;">
           <div class="media-body px-4">
             <h2 class="font-weight-bold text-3xl mb-3">¿Quieres realizar una solicitud o queja de algún conjunto de datos?</h2>
-            <a href="#" class="btn bg-alice-blue font-weight-semibold text-raisin-black">Ir a Centro de Apertura</a>
+            <a href="https://plazapublica.cdmx.gob.mx/assemblies/mesa-datos/f/32/" target="_blank" class="btn bg-alice-blue font-weight-semibold text-raisin-black">Ir a Centro de Apertura</a>
           </div>
         </div>
       </div>
