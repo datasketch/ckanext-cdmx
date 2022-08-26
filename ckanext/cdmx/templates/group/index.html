@@ -31,6 +31,7 @@
                       </div>
                     {% endif %}
                     {% block primary_content_inner %}
+                      {% block page_primary_action %}{{ super() }}{% endblock %}
                       <h1 class="hide-heading">{{ h.humanize_entity_type('group', group_type, 'page title') or _('Groups') }}</h1>
                       {% block groups_search_form %}{{ super() }}{% endblock %}
                       <p class="text-aqua font-weight-bold text-lg">{{ page.item_count }} categorías encontradas</p>
