@@ -53,7 +53,9 @@
             {% block primary %}
               <div class="primary col-lg-9" role="main">
                 <div class="font-weight-normal mb-3 text-lg">
-                  {{ res.description }}
+                  {% if res.description %}
+                    {{ h.render_markdown(res.description) }}
+                  {% endif %}
                 </div>
                 {% if res.url and h.is_url(res.url) %}
                   <a class="btn bg-dark-electric-blue text-white resource-url-analytics" href="{{ res.url }}">
