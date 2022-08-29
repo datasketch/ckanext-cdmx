@@ -114,7 +114,7 @@
             <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
           </p>
           <div class="aspect-16-by-9">
-            {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
+            {% set iframe_src = 'https://visdatos.cdmx.gob.mx/app_direct_i/cdmx/_/?ckanConf=' + res.id %}
             <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
