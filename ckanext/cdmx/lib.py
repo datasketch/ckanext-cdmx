@@ -93,3 +93,8 @@ def get_format_color(format):
         format_ = format_[1:]
 
     return colors.get(format_, default_color)
+
+
+def get_site_url():
+    site_url = toolkit.config.get('ckan.site_url', '')
+    return site_url
