@@ -66,7 +66,7 @@
                   {% if res %}
                     <section class="mt-5">
                       <h2 class="font-weight-bold text-dark-electric-blue mb-0 text-lg">{{ _('Additional Information') }}</h2>
-                      <table class="mt-3 table table-bordered table-condensed text-sm" data-module="table-toggle-more">
+                      <table class="mt-3 table table-bordered table-condensed text-sm" data-module="table-toggle-more" data-items="{{ res }}">
                         <thead>
                           <tr>
                             <th scope="col">{{ _('Field') }}</th>
@@ -94,11 +94,30 @@
                             <th scope="row">{{ _('License') }}</th>
                             <td>{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
                           </tr>
-                          {% for key, value in h.format_resource_items(res.items()) %}
-                            {% if key not in ('created', 'metadata modified', 'last modified', 'format') %}
-                              <tr class="toggle-more"><th scope="row">{{ key | capitalize }}</th><td>{{ value }}</td></tr>
-                            {% endif %}
-                          {% endfor %}
+                          {% if res.update_frequency %}
+                            <tr class="toggle-more">
+                              <th scope="row">Frecuencia de actualización</th>
+                              <td>{{ res.update_frequency }}</td>
+                            </tr>
+                          {% endif %}
+                          {% if res.size %}
+                            <tr class="toggle-more">
+                              <th scope="row">Tamaño</th>
+                              <td>{{ h.humanize_filesize(res.size) }}</td>
+                            </tr>
+                          {% endif %}
+                          {% if res.size %}
+                            <tr class="toggle-more">
+                              <th scope="row">Id de recurso</th>
+                              <td>{{ res.id }}</td>
+                            </tr>
+                          {% endif %}
+                          {% if res.size %}
+                            <tr class="toggle-more">
+                              <th scope="row">Id de conjunto</th>
+                              <td>{{ res.package_id }}</td>
+                            </tr>
+                          {% endif %}
                         </tbody>
                       </table>
                     </section>

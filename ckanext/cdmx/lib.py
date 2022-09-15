@@ -1,7 +1,7 @@
 from datetime import datetime
-import string
 from babel.dates import format_date
 import ckan.plugins.toolkit as toolkit
+from ckan.lib.formatters import localised_filesize
 
 
 def date_formats():
@@ -98,3 +98,7 @@ def get_format_color(format):
 def get_site_url():
     site_url = toolkit.config.get('ckan.site_url', '')
     return site_url
+
+
+def humanize_filesize(value):
+    return localised_filesize(int(value))
