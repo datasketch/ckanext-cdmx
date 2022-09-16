@@ -105,7 +105,9 @@ class CdmxPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTra
         return facets_dict
 
     def group_facets(self, facets_dict, group_type, package_type):
+        facets_dict.pop('tags')
         return facets_dict
 
     def organization_facets(self, facets_dict, organization_type, package_type):
+        facets_dict.pop('tags')
         return facets_dict
