@@ -89,6 +89,10 @@
                               {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
                             </div>
                           {% endif %}
+                          <div class="mt-3">
+                            {% set mailto = "mailto:datoasabiertos@cdmx.gob.mx?subject=Dudas sobre la base en " ~ h.dataset_display_name(pkg) %}
+                            <p class="mb-0">¿Tienes alguna duda sobre este conjunto de datos? <a href="{{ mailto }}">Contáctanos por correo</a></p>
+                          </div>
                         {% endblock %}
                       {% endblock %}
                     
