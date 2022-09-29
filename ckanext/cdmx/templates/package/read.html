@@ -73,6 +73,9 @@
                   {% endblock %}
                   <div class="module-content">
                     {% block primary_content_inner %}
+                      <div class="alert alert-warning" role="alert">
+                        <p><i class="fas fa-info-circle"></i> Algunos conjuntos de datos pueden incluir actualizaciones retroactivas por lo que la información histórica puede cambiar en actualizaciones posteriores</p>
+                      </div>
                       {% block package_description %}
                         {% if pkg.private %}
                           <span class="dataset-private label label-inverse pull-right">
