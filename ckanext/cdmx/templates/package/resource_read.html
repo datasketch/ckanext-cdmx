@@ -5,7 +5,7 @@
 
 {% block content %}
   {% block maintag %}{{ super() }}{% endblock %}
-  <div id="content" class="resource-content" data-g="{{ g }}">
+  <div id="content" class="resource-content">
     <div class="resource-banner">
       <div class="resource-banner-bg" style="background-image: url(/images/banner-bg.png);"></div>
       <div class="max-w-screen-2xl resource-banner-grid">
@@ -33,7 +33,7 @@
     {% block main_content %}
       {% block flash %}{{ super() }}{% endblock %}
       {% block toolbar %}{% endblock %}
-      {% if res.hide_visualization %}
+      {% if res.hide_visualization and res.format != "PDF" %}
         <div class="container">
           <div class="row">
             <p class="col-sm-12 my-3">
@@ -126,6 +126,12 @@
               </div>
             {% endblock %}
           </div>
+        </div>
+      {% elif res.hide_visualization and res.format == "PDF" %}
+        <div class="max-w-screen-2xl my-3">
+          <object style="margin:auto; max-height:100%; min-height:100vh; min-width:100%; display:block" data="{{ resource.get('url') }}?preview=1" type="application/pdf">
+            <p>{{ _('Your browser does not support object tags.') }}</p>
+          </object>
         </div>
       {% else %}
         <div class="max-w-screen-2xl" role="main">
