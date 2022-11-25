@@ -20,8 +20,8 @@
             {% link_for _('Manage'), named_route=pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id, class_='btn btn-default', icon='wrench' %}
           {% endif %}
           {% if res.url and h.is_url(res.url) %}
-            <a class="btn bg-aqua text-white resource-url-analytics" href="{{ res.url }}">
-              {{ _('Download') }}
+            <a class="resource-url-analytics" href="{{ res.url }}" style="color: #97989a; text-decoration: underline; font-size: 14px;">
+              Descarga completa de conjunto de datos
             </a>
           {% endif %}
         </div>
