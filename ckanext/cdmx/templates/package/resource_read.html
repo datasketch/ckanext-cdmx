@@ -5,6 +5,7 @@
 
 {% block content %}
   {% block maintag %}{{ super() }}{% endblock %}
+  {% set site_url = h.get_site_url() %}
   <div id="content" class="resource-content">
     <div class="resource-banner">
       <div class="resource-banner-bg" style="background-image: url(/images/banner-bg.png);"></div>
@@ -33,7 +34,7 @@
     {% block main_content %}
       {% block flash %}{{ super() }}{% endblock %}
       {% block toolbar %}{% endblock %}
-      {% if res.hide_visualization and res.format != "PDF" %}
+      {% if res.hide_visualization %}
         <div class="container">
           <div class="row">
             <p class="col-sm-12 my-3">
@@ -127,30 +128,41 @@
             {% endblock %}
           </div>
         </div>
-      {% elif res.hide_visualization and res.format == "PDF" %}
-        <div class="max-w-screen-2xl">
-          <p class="my-3 px-4">
-            <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
-          </p>
-          <object class="mb-3" style="margin:auto; max-height:100%; min-height:100vh; min-width:100%; display:block" data="{{ resource.get('url') }}?preview=1" type="application/pdf">
-            <p>{{ _('Your browser does not support object tags.') }}</p>
-          </object>
-        </div>
       {% else %}
         <div class="max-w-screen-2xl" role="main">
           <p class="my-3 px-4">
             <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
           </p>
-          <div class="aspect-16-by-9">
-            {% set site_url = h.get_site_url() %}
-            {% if site_url == 'https://datos-prueba.cdmx.gob.mx' %}
-              {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
+          {% if res.dashboard == "pdf" %}
+            <object class="mb-3" style="margin:auto; max-height:100%; min-height:100vh; min-width:100%; display:block" data="{{ resource.get('url') }}?preview=1" type="application/pdf">
+              <p>{{ _('Your browser does not support object tags.') }}</p>
+            </object>
+          {% elif res.dashboard === "shp" %}
+            <div class="aspect-16-by-9">
+              {% set iframe_src = 'https://datasketch.shinyapps.io/cdmx-shapes-app/?ckanConf=' + res.id %}
               <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
-            {% else %}
-              {% set iframe_src = 'https://visdatos.cdmx.gob.mx/app_direct_i/cdmx/_/?ckanConf=' + res.id %}
-              <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
-            {% endif %}
-          </div>
+            </div>
+          {% elif res.dashboard === "table" %}
+            <div class="aspect-16-by-9">
+              {% if site_url == 'https://datos-prueba.cdmx.gob.mx' %}
+                {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
+                <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+              {% else %}
+                {% set iframe_src = 'https://visdatos.cdmx.gob.mx/app_direct_i/cdmx/_/?ckanConf=' + res.id %}
+                <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+              {% endif %}
+            </div>
+          {% else %}
+            <div class="aspect-16-by-9">
+              {% if site_url == 'https://datos-prueba.cdmx.gob.mx' %}
+                {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
+                <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+              {% else %}
+                {% set iframe_src = 'https://visdatos.cdmx.gob.mx/app_direct_i/cdmx/_/?ckanConf=' + res.id %}
+                <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+              {% endif %}
+            </div>
+          {% endif %}
         </div>
       {% endif %}
     {% endblock %}
