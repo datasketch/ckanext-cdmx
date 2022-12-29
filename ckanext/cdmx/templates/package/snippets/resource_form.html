@@ -53,6 +53,8 @@
 </span>
 {% endcall %}
 
+{{ form.select("dashboard", label=_("Seleccione un visor"), options=h.dashboard_types(), selected=data.dashboard) }}
+
 {{ form.select("chart_type", label=_("Visualización por defecto"), options=h.chart_types(), selected=data.chart_type) }}
 
 {% call form.input('resource_default_var', id='field-resource_default_var', label=_('Variable por defecto'), placeholder='columna_a', value=data.resource_default_var, error=errors.resource_default_var, classes=['control-full']) %}
