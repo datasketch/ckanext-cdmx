@@ -1,7 +1,7 @@
 {% set url_action = pkg.type ~ ('_resource.edit' if url_is_edit and can_edit else '_resource.read') %}
 {% set url = h.url_for(url_action, id=pkg.id if is_activity_archive else pkg.name, resource_id=res.id, **({'activity_id': request.args['activity_id']} if 'activity_id' in request.args else {})) %}
 
-<li class="text-eerie-black dataset-resource resource-item" data-id="{{ res.id }}" data-res="{{ res }}">
+<li class="text-eerie-black dataset-resource resource-item" data-id="{{ res.id }}">
   {% block resource_item_title %}
     <a class="text-lg text-aqua font-weight-bold" href="{{ url }}" title="{{ res.name or res.description }}">
       {{ h.resource_display_name(res) | truncate(50) }}

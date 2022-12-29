@@ -68,6 +68,15 @@
   margin-top: 24px;
 }
 
+.resource-list.reordering .resource-item .handle::before {
+  content: '\2261';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  line-height: 20px
+}
+
 .module.module-narrow.resources .nav-item > a {
   color: #637381 !important;
 }
