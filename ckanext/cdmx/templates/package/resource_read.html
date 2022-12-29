@@ -137,12 +137,12 @@
             <object class="mb-3" style="margin:auto; max-height:100%; min-height:100vh; min-width:100%; display:block" data="{{ resource.get('url') }}?preview=1" type="application/pdf">
               <p>{{ _('Your browser does not support object tags.') }}</p>
             </object>
-          {% elif res.dashboard === "shp" %}
+          {% elif res.dashboard == "shp" %}
             <div class="aspect-16-by-9">
               {% set iframe_src = 'https://datasketch.shinyapps.io/cdmx-shapes-app/?ckanConf=' + res.id %}
               <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
             </div>
-          {% elif res.dashboard === "table" %}
+          {% elif res.dashboard == "table" %}
             <div class="aspect-16-by-9">
               {% if site_url == 'https://datos-prueba.cdmx.gob.mx' %}
                 {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
