@@ -144,13 +144,8 @@
             </div>
           {% elif res.dashboard == "table" %}
             <div class="aspect-16-by-9">
-              {% if site_url == 'https://datos-prueba.cdmx.gob.mx' %}
-                {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
-                <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
-              {% else %}
-                {% set iframe_src = 'https://visdatos.cdmx.gob.mx/app_direct_i/cdmx/_/?ckanConf=' + res.id %}
-                <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
-              {% endif %}
+              {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxTableApp/?ckanConf=' + res.id %}
+              <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
             </div>
           {% else %}
             <div class="aspect-16-by-9">
