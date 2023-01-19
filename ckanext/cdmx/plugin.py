@@ -106,6 +106,7 @@ class CdmxPlugin(
                 "chart_type": [toolkit.get_validator("ignore_missing")],
                 "date_format": [toolkit.get_validator("ignore_missing")],
                 "dashboard": [toolkit.get_validator("ignore_missing")],
+                "resource_tooltip": [toolkit.get_validator("ignore_missing")],
             }
         )
         return schema
@@ -129,6 +130,7 @@ class CdmxPlugin(
                 "chart_type": [toolkit.get_validator("ignore_missing")],
                 "date_format": [toolkit.get_validator("ignore_missing")],
                 "dashboard": [toolkit.get_validator("ignore_missing")],
+                "resource_tooltip": [toolkit.get_validator("ignore_missing")],
             }
         )
         return schema
