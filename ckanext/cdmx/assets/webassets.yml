@@ -1,12 +1,3 @@
-# cdmx-js:
-#   filter: rjsmin
-#   output: ckanext-cdmx/%(version)s-cdmx.js
-#   contents:
-#     - js/cdmx.js
-#   extra:
-#     preload:
-#       - base/main
-
 cdmx_css:
   filter: cssmin
   output: ckanext-cdmx/%(version)s-cdmx.css
@@ -26,3 +17,4 @@ cdmx_js:
   output: ckanext-cdmx/%(version)s-cdmx.js
   contents:
     - javascript/modules/redirect.js
+    - javascript/modules/select-field-tabs.js

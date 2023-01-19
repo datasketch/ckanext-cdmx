@@ -5,7 +5,6 @@
 
 {% block content %}
   {% block maintag %}{{ super() }}{% endblock %}
-  {% set site_url = h.get_site_url() %}
   <div id="content" class="resource-content">
     <div class="resource-banner">
       <div class="resource-banner-bg" style="background-image: url(/images/banner-bg.png);"></div>
@@ -149,6 +148,7 @@
             </div>
           {% else %}
             <div class="aspect-16-by-9">
+              {% set site_url = h.get_site_url() %}
               {% if site_url == 'https://datos-prueba.cdmx.gob.mx' %}
                 {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxApp/?ckanConf=' + res.id %}
                 <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>

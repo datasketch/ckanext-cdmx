@@ -49,10 +49,11 @@ def chart_types():
 
 def dashboard_types():
     choices = [
-        {"value": "default", "text": "Visor por defecto"},
-        {"value": "pdf", "text": "Visor PDF"},
-        {"value": "shp", "text": "Visor Shapefile"},
+        {"value": "default", "text": "Visor gráficas y mapas"},
         {"value": "table", "text": "Visor tabla"},
+        {"value": "shp", "text": "Visor shapefile"},
+        {"value": "pdf", "text": "Visor PDF"},
+        {"value": "none", "text": "Sin visor"},
     ]
     return choices
 
