@@ -24,7 +24,7 @@
     {% endif %}
   {% endblock %}
   <div class="mt-4">
-    {% if res.hide_visualization %}
+    {% if res.dashboard == "none" %}
       <a href="{{ url }}" class="btn btn-sm bg-cadmium-orange text-white rounded">
         Consultar
       </a>

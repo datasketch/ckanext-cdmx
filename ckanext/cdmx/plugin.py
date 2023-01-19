@@ -15,7 +15,7 @@ from ckanext.cdmx.lib import (
     humanize_date,
     get_package_categories,
     humanize_filesize,
-    dashboard_types
+    dashboard_types,
 )
 
 
@@ -58,7 +58,7 @@ class CdmxPlugin(
             "get_format_color": get_format_color,
             "get_site_url": get_site_url,
             "humanize_filesize": humanize_filesize,
-            "dashboard_types": dashboard_types
+            "dashboard_types": dashboard_types,
         }
 
     # IConfigurable
@@ -105,8 +105,7 @@ class CdmxPlugin(
                 "update_frequency": [toolkit.get_validator("ignore_missing")],
                 "chart_type": [toolkit.get_validator("ignore_missing")],
                 "date_format": [toolkit.get_validator("ignore_missing")],
-                "hide_visualization": [toolkit.get_validator("ignore_missing")],
-                "dashboard": [toolkit.get_validator("ignore_missing")]
+                "dashboard": [toolkit.get_validator("ignore_missing")],
             }
         )
         return schema
@@ -129,8 +128,7 @@ class CdmxPlugin(
                 "update_frequency": [toolkit.get_validator("ignore_missing")],
                 "chart_type": [toolkit.get_validator("ignore_missing")],
                 "date_format": [toolkit.get_validator("ignore_missing")],
-                "hide_visualization": [toolkit.get_validator("boolean_validator")],
-                "dashboard": [toolkit.get_validator("ignore_missing")]
+                "dashboard": [toolkit.get_validator("ignore_missing")],
             }
         )
         return schema

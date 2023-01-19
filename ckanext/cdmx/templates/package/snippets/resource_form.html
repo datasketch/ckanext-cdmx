@@ -30,12 +30,7 @@
 
 <h2 class="mt-5 mb-4">Ajustes para visualizaciones</h2>
 
-{% call form.select("dashboard", label=_("Seleccione un visor"), options=h.dashboard_types(), selected=data.dashboard, attrs={'class': 'form-control', 'data-module': 'select-field-tabs', 'data-module-panels': 'fields-panel' , 'data-module-open': 'default' }) %}
-<span class="info-block info-block-small">
-  <i class="fa fa-info-circle"></i>
-  {{ _('Este campo no tiene efecto si la casilla de verificación de arriba se encuentra marcada.') }}
-</span>
-{% endcall %}
+{{ form.select("dashboard", label=_("Seleccione un visor"), options=h.dashboard_types(), selected=data.dashboard, attrs={'class': 'form-control', 'data-module': 'select-field-tabs', 'data-module-panels': 'fields-panel' , 'data-module-open': 'default' }) }}
 
 <div id="fields-panel">
   <div id="default">
@@ -92,7 +87,4 @@
     {% endcall %}
   </div>
 </div>
-
-{{ form.checkbox('hide_visualization', id='field-hide_visualization', label=_('Este recurso no tiene visualizador de datos'), value=True, checked=data.hide_visualization, error=errors.hide_visualization) }}
-
 {% endblock %}

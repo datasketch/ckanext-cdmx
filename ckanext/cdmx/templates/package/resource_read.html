@@ -33,7 +33,7 @@
     {% block main_content %}
       {% block flash %}{{ super() }}{% endblock %}
       {% block toolbar %}{% endblock %}
-      {% if res.hide_visualization %}
+      {% if if res.dashboard == "none" %}
         <div class="container">
           <div class="row">
             <p class="col-sm-12 my-3">
