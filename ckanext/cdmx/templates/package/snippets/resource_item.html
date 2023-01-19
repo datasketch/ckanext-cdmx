@@ -24,7 +24,7 @@
     {% endif %}
   {% endblock %}
   <div class="mt-4">
-    {% if res.dashboard == "none" %}
+    {% if res.dashboard not in ["default", "tables", "shp"] %}
       <a href="{{ url }}" class="btn btn-sm bg-cadmium-orange text-white rounded">
         Consultar
       </a>
