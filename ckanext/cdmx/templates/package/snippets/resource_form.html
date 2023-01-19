@@ -30,7 +30,7 @@
 
 <h2 class="mt-5 mb-4">Ajustes para visualizaciones</h2>
 
-{{ form.select("dashboard", label=_("Seleccione un visor"), options=h.dashboard_types(), selected=data.dashboard, attrs={'class': 'form-control', 'data-module': 'select-field-tabs', 'data-module-panels': 'fields-panel' , 'data-module-open': 'default' }) }}
+{{ form.select("dashboard", label=_("Seleccione un visor"), options=h.dashboard_types(), selected=data.dashboard, attrs={'class': 'form-control', 'data-module': 'select-field-tabs', 'data-module-panels': 'fields-panel' , 'data-module-open': data.dashboard or 'default' }) }}
 
 <div id="fields-panel">
   <div id="default">
