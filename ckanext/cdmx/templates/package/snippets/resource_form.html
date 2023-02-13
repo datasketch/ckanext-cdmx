@@ -67,6 +67,8 @@
     {{ form.input('resource_priority_date', id='field-resource_priority_date', label=_('Variable de fecha a priorizar'), placeholder='Lorem ipsum', value=data.resource_priority_date, error=errors.resource_priority_date, classes=['control-full']) }}
   
     {{ form.select("date_format", label=_("Formato de fechas"), options=h.date_formats(), selected=data.date_format) }}
+
+    {{ form.input('average_legend', id='field-average_legend', label=_('Leyenda promedio'), placeholder='El promedio se realiza con la unidad mínima de observación.', value=data.average_legend, error=errors.average_legend, classes=['control-full']) }}
   </div>
   
   <div id="table">
