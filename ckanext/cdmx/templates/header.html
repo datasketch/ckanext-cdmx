@@ -7,7 +7,7 @@
 {% set home_url = h.url_for("home.index") %}
 
 <nav id="main-nav" class="navbar navbar-light navbar-expand-lg bg-white font-inter">
-  <div class="container">
+  <div class="container-fluid">
     <a class="navbar-brand" href="{{ h.url_for('home.index') }}">
       <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" height="50">
       {% if current_url != home_url %}
