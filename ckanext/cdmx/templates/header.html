@@ -4,11 +4,15 @@
 {% block header_account %}{{ super() }}{% endblock %}
 
 {% set current_url = h.current_url() %}
+{% set home_url = h.url_for("home.index") %}
 
 <nav id="main-nav" class="navbar navbar-light navbar-expand-lg bg-white font-inter">
   <div class="container">
     <a class="navbar-brand" href="{{ h.url_for('home.index') }}">
       <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" height="50">
+      {% if current_url != home_url %}
+        <img src="/images/sistema-ajolote.png" alt="" style="height: 25px;">
+      {% endif %}
     </a>
     <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav-menu" aria-controls="main-nav-menu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -34,7 +38,6 @@
   </button>
   <div class="collapse navbar-collapse w-100 justify-content-center" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      {% set home_url = h.url_for("home.index") %}
       <a class="nav-item nav-link mx-2{% if home_url == current_url %} active{% endif %}" aria-current="page" href="{{ home_url }}">Inicio</a>
       {% set dataset_url = h.url_for("dataset.search") %}
       <a class="nav-item nav-link mx-2{% if dataset_url == current_url %} active{% endif %}" href="{{ dataset_url }}">Conjuntos de datos</a>
