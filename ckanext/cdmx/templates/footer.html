@@ -1,3 +1,6 @@
+{% set current_url = h.current_url() %}
+{% set home_url = h.url_for("home.index") %}
+
 <footer class="bg-phthalo-green text-white">
   <div class="container py-5">
     <div class="row">
@@ -29,7 +32,20 @@
         <p class="font-weight-bold mb-0 mt-4">Transparencia</p>
         <p class="mb-0 mt-2"><a href="" class="text-white"><u>Ir al portal de Transparencia &rarr;</u></a></p>
       </div>
-      <div class="col-lg"></div>
+      {% if current_url != home_url %}
+        <div class="col-lg-auto align-self-center">
+          <div class="d-flex flex-column font-montserrat text-xl align-items-center justify-content-center">
+            <p class="font-weight-bold mb-0 text-uppercase">Portal de Datos Abiertos</p>
+            <p class="d-flex align-items-center mb-0 mt-2">
+              <span>Sistema</span>
+              <img class="ml-3" src="/images/ajolote-icon-white.png" alt="">
+              <img class="ml-2" src="/images/ajolote-text-white.png" alt="">
+            </p>
+          </div>
+        </div>
+      {% else %}
+        <div class="col-lg"></div>
+      {% endif %}
     </div>
   </div>
   <div style="background-image: url(/images/footer-bg.png); background-position: center; background-size: cover; height: 20px;">
