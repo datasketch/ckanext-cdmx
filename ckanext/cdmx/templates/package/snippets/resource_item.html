@@ -14,7 +14,7 @@
       <i class="fas fa-cloud-download-alt"></i>
       <span class="ml-1">{{ h.get_translated(res, 'format') }}</span>
     </span>
-    <p class="mt-2 mb-0 mt-md-0"><strong>Última Actualización</strong>: {{ h.humanize_date(res.metadata_modified) }}</p>
+    <p class="mt-2 mb-0 mt-md-0"><strong>Última Actualización</strong>: {{ h.humanize_date(res.last_modified) }}</p>
   </div>
   {% block resource_item_description %}
     {% if res.description %}
