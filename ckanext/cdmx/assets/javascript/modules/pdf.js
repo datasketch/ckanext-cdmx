@@ -9,6 +9,7 @@ ckan.module('pdf', function (jQuery) {
       // pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
       const loadingTask = pdfjsLib.getDocument(doc);
       const id = this.el.id
+      console.log(id);
 
       loadingTask.promise.then(function (pdf) {
         pdf.getPage(1).then(function (page) {
