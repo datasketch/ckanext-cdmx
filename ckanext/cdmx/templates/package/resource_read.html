@@ -38,7 +38,7 @@
           <p class="my-3 px-4">
             <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
           </p>
-          <object class="mb-3" style="margin:auto; max-height:100%; min-height:100vh; min-width:100%; display:block" data="{{ resource.get('url') }}?preview=1" type="application/pdf">
+          <object class="mb-3" style="margin:auto; max-height:100%; min-height:100vh; min-width:100%; display:block" data="{{ resource.get('url') }}?preview=1" width="100%" type="application/pdf">
             <p>{{ _('Your browser does not support object tags.') }}</p>
           </object>
         </div>
@@ -99,6 +99,9 @@
                   {{ _('Download') }}
                 </a>
               {% endif %}
+              <div class="alert alert-warning d-md-none mt-2" role="alert">
+                <p><i class="fas fa-info-circle"></i> Para dispositivos móviles, este sitio es únicamente para descarga. Si deseas explorar la información con el visualizador de datos utiliza un dispositivo de escritorio.</p>
+              </div>
               {% block primary_content %}
                 {% if res %}
                   <section class="mt-5">
