@@ -8,7 +8,7 @@ ckan.module('pdf', function (jQuery) {
       // The workerSrc property shall be specified.
       // pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
       const loadingTask = pdfjsLib.getDocument(doc);
-      console.log(loadingTask);
+      const id = this.el.id
 
       loadingTask.promise.then(function (pdf) {
         pdf.getPage(1).then(function (page) {
@@ -16,7 +16,7 @@ ckan.module('pdf', function (jQuery) {
           const viewport = page.getViewport({ scale })
 
           // Prepare canvas using PDF page dimensions
-          const canvas = document.getElementById(this.el.id);
+          const canvas = document.getElementById(id);
           const context = canvas.getContext('2d');
           canvas.height = viewport.height;
           canvas.width = viewport.width;
