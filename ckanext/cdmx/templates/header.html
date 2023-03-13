@@ -11,7 +11,7 @@
     <a class="navbar-brand" href="{{ h.url_for('home.index') }}">
       <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" height="50">
       {% if current_url != home_url %}
-        <img src="/images/sistema-ajolote.png" alt="" style="height: 25px;">
+        <img src="/images/sistema-ajolote.png" alt="" style="height: 25px;" class="d-block ml-auto d-md-inline">
       {% endif %}
     </a>
     <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav-menu" aria-controls="main-nav-menu" aria-expanded="false" aria-label="Toggle navigation">
