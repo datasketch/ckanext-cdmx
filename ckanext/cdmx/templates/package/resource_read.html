@@ -187,7 +187,7 @@
 {% block resource_license %}{% endblock %}
 
 {% block scripts %}
-  <script src="{{ url_for_static '/js/pdf.min.js' }}"></script>
-  <script src="{{ url_for_static '/js/pdf.worker.min.js' }}"></script>
+  <script src="{% url_for_static '/js/pdf.min.js' %}"></script>
+  <script src="{% url_for_static '/js/pdf.worker.min.js' %}"></script>
   {{ super() }}
 {% endblock %}
