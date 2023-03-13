@@ -38,10 +38,9 @@
           <p class="my-3 px-4">
             <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
           </p>
-          <canvas id="pdf-document" data-module="pdf" data-module-doc="{{ resource.get('url') }}"></canvas>
-          <!-- <object class="mb-3" style="margin:auto; max-height:100%; min-width:100%; display:block" data="{{ resource.get('url') }}?preview=1" height="600px" width="100%" type="application/pdf">
+          <object class="mb-3" style="margin:auto; max-height:100%; min-width:100%; display:block" data="{{ resource.get('url') }}?preview=1" height="600px" width="100%" type="application/pdf">
             <p>{{ _('Your browser does not support object tags.') }}</p>
-          </object> -->
+          </object>
         </div>
       {% elif res.dashboard != "none" %}
         <div class="max-w-screen-2xl d-none d-md-block" role="main">
@@ -185,9 +184,3 @@
 {% endblock %}
 
 {% block resource_license %}{% endblock %}
-
-{% block scripts %}
-  <script src="{% url_for_static '/js/pdf.min.js' %}"></script>
-  <script src="{% url_for_static '/js/pdf.worker.min.js' %}"></script>
-  {{ super() }}
-{% endblock %}
