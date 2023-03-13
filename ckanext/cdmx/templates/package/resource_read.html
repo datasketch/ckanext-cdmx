@@ -38,7 +38,7 @@
           <p class="my-3 px-4">
             <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
           </p>
-          <object class="mb-3 px-4" style="margin:auto; max-height:100%; min-width:100%; display:block; min-height: 600px;" data="{{ resource.get('url') }}?preview=1" width="100%" type="application/pdf">
+          <object class="mb-3 px-4" style="margin:auto; max-height:100%; min-width:100%; display:block; min-height: 600px;" data="http://docs.google.com/viewer?url={{ resource.get('url') }}&embedded=true" width="100%" type="application/pdf">
             <p>{{ _('Your browser does not support object tags.') }}</p>
           </object>
         </div>
