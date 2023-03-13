@@ -33,110 +33,21 @@
     {% block main_content %}
       {% block flash %}{{ super() }}{% endblock %}
       {% block toolbar %}{% endblock %}
-      {% if res.dashboard == "none" %}
-        <div class="container">
-          <div class="row">
-            <p class="col-sm-12 my-3">
-              <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
-            </p>
-          </div>
-          <div class="row {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
-            {% block secondary %}
-              <aside class="secondary col-lg-3">
-                <div class="text-eerie-black font-inter">
-                  {% block secondary_content %}
-                    {{ super() }}
-                  {% endblock %}
-                </div>
-              </aside>
-            {% endblock %}
-            {% block primary %}
-              <div class="primary col-lg-9" role="main">
-                <div class="font-weight-normal mb-3 text-lg">
-                  {% if res.description %}
-                    {{ h.render_markdown(res.description) }}
-                  {% endif %}
-                </div>
-                {% if res.url and h.is_url(res.url) %}
-                  <a class="btn bg-dark-electric-blue text-white resource-url-analytics" href="{{ res.url }}">
-                    {{ _('Download') }}
-                  </a>
-                {% endif %}
-                {% block primary_content %}
-                  {% if res %}
-                    <section class="mt-5">
-                      <h2 class="font-weight-bold text-dark-electric-blue mb-0 text-lg">{{ _('Additional Information') }}</h2>
-                      <table class="mt-3 table table-bordered table-condensed text-sm" data-module="table-toggle-more" data-items="{{ res }}">
-                        <thead>
-                          <tr>
-                            <th scope="col">{{ _('Field') }}</th>
-                            <th scope="col">{{ _('Value') }}</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">{{ _('Data last updated') }}</th>
-                            <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">{{ _('Metadata last updated') }}</th>
-                            <td>{{ h.render_datetime(res.metadata_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">{{ _('Created') }}</th>
-                            <td>{{ h.render_datetime(res.created) or _('unknown') }}</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">{{ _('Format') }}</th>
-                            <td>{{ res.format or res.mimetype_inner or res.mimetype or _('unknown') }}</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">{{ _('License') }}</th>
-                            <td>{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
-                          </tr>
-                          {% if res.update_frequency %}
-                            <tr class="toggle-more">
-                              <th scope="row">Frecuencia de actualización</th>
-                              <td>{{ res.update_frequency }}</td>
-                            </tr>
-                          {% endif %}
-                          {% if res.size %}
-                            <tr class="toggle-more">
-                              <th scope="row">Tamaño</th>
-                              <td>{{ h.humanize_filesize(res.size) }}</td>
-                            </tr>
-                          {% endif %}
-                          {% if res.size %}
-                            <tr class="toggle-more">
-                              <th scope="row">Id de recurso</th>
-                              <td>{{ res.id }}</td>
-                            </tr>
-                          {% endif %}
-                          {% if res.size %}
-                            <tr class="toggle-more">
-                              <th scope="row">Id de conjunto</th>
-                              <td>{{ res.package_id }}</td>
-                            </tr>
-                          {% endif %}
-                        </tbody>
-                      </table>
-                    </section>
-                  {% endif %}
-                {% endblock %}
-              </div>
-            {% endblock %}
-          </div>
-        </div>
-      {% else %}
+      {% if res.dashboard == "pdf" %}
         <div class="max-w-screen-2xl" role="main">
           <p class="my-3 px-4">
             <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
           </p>
-          {% if res.dashboard == "pdf" %}
-            <object class="mb-3" style="margin:auto; max-height:100%; min-height:100vh; min-width:100%; display:block" data="{{ resource.get('url') }}?preview=1" type="application/pdf">
-              <p>{{ _('Your browser does not support object tags.') }}</p>
-            </object>
-          {% elif res.dashboard == "shp" %}
+          <object class="mb-3" style="margin:auto; max-height:100%; min-height:100vh; min-width:100%; display:block" data="{{ resource.get('url') }}?preview=1" type="application/pdf">
+            <p>{{ _('Your browser does not support object tags.') }}</p>
+          </object>
+        </div>
+      {% elif res.dashboard != "none" %}
+        <div class="max-w-screen-2xl d-none d-md-block" role="main">
+          <p class="my-3 px-4">
+            <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
+          </p>
+          {% if res.dashboard == "shp" %}
             <div class="aspect-16-by-9">
               {% set iframe_src = 'https://datasketch.shinyapps.io/cdmx-shapes-app/?ckanConf=' + res.id %}
               <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
@@ -160,6 +71,99 @@
           {% endif %}
         </div>
       {% endif %}
+      <div class="container d-none" data-module="resource-info" data-module-dashboard="{{ res.dashboard }}">
+        <div class="row">
+          <p class="col-sm-12 my-3">
+            <a class="text-aqua font-weight-bold text-underline font-inter" href="{{ h.url_for('%s.read' % pkg.type, id=pkg.name) }}">&larr; Volver al conjunto de datos</a>
+          </p>
+        </div>
+        <div class="row {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
+          {% block secondary %}
+            <aside class="secondary col-lg-3">
+              <div class="text-eerie-black font-inter">
+                {% block secondary_content %}
+                  {{ super() }}
+                {% endblock %}
+              </div>
+            </aside>
+          {% endblock %}
+          {% block primary %}
+            <div class="primary col-lg-9" role="main">
+              <div class="font-weight-normal mb-3 text-lg">
+                {% if res.description %}
+                  {{ h.render_markdown(res.description) }}
+                {% endif %}
+              </div>
+              {% if res.url and h.is_url(res.url) %}
+                <a class="btn bg-dark-electric-blue text-white resource-url-analytics" href="{{ res.url }}">
+                  {{ _('Download') }}
+                </a>
+              {% endif %}
+              {% block primary_content %}
+                {% if res %}
+                  <section class="mt-5">
+                    <h2 class="font-weight-bold text-dark-electric-blue mb-0 text-lg">{{ _('Additional Information') }}</h2>
+                    <table class="mt-3 table table-bordered table-condensed text-sm" data-module="table-toggle-more" data-items="{{ res }}">
+                      <thead>
+                        <tr>
+                          <th scope="col">{{ _('Field') }}</th>
+                          <th scope="col">{{ _('Value') }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">{{ _('Data last updated') }}</th>
+                          <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">{{ _('Metadata last updated') }}</th>
+                          <td>{{ h.render_datetime(res.metadata_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">{{ _('Created') }}</th>
+                          <td>{{ h.render_datetime(res.created) or _('unknown') }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">{{ _('Format') }}</th>
+                          <td>{{ res.format or res.mimetype_inner or res.mimetype or _('unknown') }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">{{ _('License') }}</th>
+                          <td>{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
+                        </tr>
+                        {% if res.update_frequency %}
+                          <tr class="toggle-more">
+                            <th scope="row">Frecuencia de actualización</th>
+                            <td>{{ res.update_frequency }}</td>
+                          </tr>
+                        {% endif %}
+                        {% if res.size %}
+                          <tr class="toggle-more">
+                            <th scope="row">Tamaño</th>
+                            <td>{{ h.humanize_filesize(res.size) }}</td>
+                          </tr>
+                        {% endif %}
+                        {% if res.size %}
+                          <tr class="toggle-more">
+                            <th scope="row">Id de recurso</th>
+                            <td>{{ res.id }}</td>
+                          </tr>
+                        {% endif %}
+                        {% if res.size %}
+                          <tr class="toggle-more">
+                            <th scope="row">Id de conjunto</th>
+                            <td>{{ res.package_id }}</td>
+                          </tr>
+                        {% endif %}
+                      </tbody>
+                    </table>
+                  </section>
+                {% endif %}
+              {% endblock %}
+            </div>
+          {% endblock %}
+        </div>
+      </div>
     {% endblock %}
   </div>
 {% endblock %}
