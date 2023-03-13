@@ -6,7 +6,7 @@ ckan.module('pdf', function (jQuery) {
       const pdfjsLib = window['pdfjs-dist/build/pdf'];
       console.log(pdfjsLib);
       // The workerSrc property shall be specified.
-      // pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+      pdfjsLib.GlobalWorkerOptions.workerSrc = window.location.origin + '/js/pdf.worker.min.js'
       const loadingTask = pdfjsLib.getDocument(doc);
       const id = this.el.id
       console.log(id);
