@@ -49,8 +49,14 @@
           </p>
           {% if res.dashboard == "shp" %}
             <div class="aspect-16-by-9">
-              {% set iframe_src = 'https://datasketch.shinyapps.io/cdmx-shapes-app/?ckanConf=' + res.id %}
-              <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+              {% set site_url = h.get_site_url() %}
+              {% if site_url == 'https://datos-prueba.cdmx.gob.mx' %}
+                {% set iframe_src = 'https://datasketch.shinyapps.io/cdmx-shapes-app/?ckanConf=' + res.id %}
+                <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+              {% else %}
+                {% set iframe_src = 'https://visdatos.cdmx.gob.mx/app_direct_i/cdmx-shapes/_/?ckanConf=' + res.id %}
+                <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+              {% endif %}
             </div>
           {% elif res.dashboard == "table" %}
             <div class="aspect-16-by-9">
@@ -114,10 +120,12 @@
                         </tr>
                       </thead>
                       <tbody>
+                        {% if res.last_modified %}
                         <tr>
                           <th scope="row">{{ _('Data last updated') }}</th>
                           <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
                         </tr>
+                        {% endif %}
                         <tr>
                           <th scope="row">{{ _('Metadata last updated') }}</th>
                           <td>{{ h.render_datetime(res.metadata_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
