@@ -60,8 +60,14 @@
             </div>
           {% elif res.dashboard == "table" %}
             <div class="aspect-16-by-9">
-              {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxTableApp/?ckanConf=' + res.id %}
-              <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+              {% set site_url = h.get_site_url() %}
+              {% if site_url == 'https://datos-prueba.cdmx.gob.mx' %}
+                {% set iframe_src = 'https://datasketch.shinyapps.io/cdmxTableApp/?ckanConf=' + res.id %}
+                <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+              {% else %}
+                {% set iframe_src = 'https://visdatos.cdmx.gob.mx/app_direct_i/cdmx-tables/_/?ckanConf=' + res.id %}
+                <iframe src="{{ iframe_src }}" frameborder="0" allowfullscreen></iframe>
+              {% endif %}
             </div>
           {% else %}
             <div class="aspect-16-by-9">
