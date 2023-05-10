@@ -9,8 +9,6 @@ def date_formats():
         {"value": "", "text": "Seleccione una opción"},
         {"value": "d/m/a", "text": "d/m/a"},
         {"value": "a/m/d", "text": "a/m/d"},
-        {"value": "d/m/a HH:MM", "text": "d/m/a HH:MM"},
-        {"value": "a/m/d HH:MM", "text": "a/m/d HH:MM"},
     ]
     return choices
 
