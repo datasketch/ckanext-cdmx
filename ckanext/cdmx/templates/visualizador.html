@@ -1,0 +1,34 @@
+{% extends "page.html" %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid"
+  style="background-image: url(/images/bg-visualizador.png); background-position: center 65%; background-size: cover; background-repeat: no-repeat;"
+  role="main">
+  <div class="container text-white text-center py-5">
+    <div class="d-flex flex-column flex-lg-row justify-content-lg-center">
+      <h1 class="display-4 font-weight-bold mb-0 text-davys-gray font-montserrat lg:text-right" style="font-weight: 700; font-size: 40px;">VISUALIZADOR DE<br />DATOS ABIERTOS</h1>
+      <div class="mx-4" style="width: 4px; background-color: #5f5f5f;"></div>
+      <div class="align-self-center mt-4 mt-lg-0"><img src="/images/poweredbyajolote.png" alt="Sistema ajolote"></div>
+    </div>
+    <div class="row mt-5 justify-content-center">
+      <div class="col-lg-9">
+        <form class="main-search" method="get" action="{% url_for 'dataset.search' %}">
+          <input type="search" class="main-search-input" placeholder="¿Qué datos estás buscando?"
+            aria-label="{% block header_site_search_label %}¿Qué datos estás buscando?{% endblock %}" name="q" value=""
+            autocomplete="off" />
+          <button aria-label="Buscar" class="main-search-button" type="submit">
+            <img src="/images/search-home.png" alt="">
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div>Hello visualizador!</div>
+<div>{{ h.get_package() }}</div>
+<select id="resourceDropdown">
+  {% for item in h.get_package() %}
+  <option value="">{{ item['name'] }}</option>
+  {% endfor %}
+</select>
+{% endblock %}

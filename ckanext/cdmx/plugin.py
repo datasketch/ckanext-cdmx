@@ -2,7 +2,9 @@ import mimetypes
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
-from flask import request
+from flask import request, Blueprint
+
+from ckanext.cdmx import blueprint
 
 from ckanext.cdmx.lib import (
     date_formats,
@@ -18,6 +20,21 @@ from ckanext.cdmx.lib import (
     dashboard_types,
 )
 
+def get_package():
+    lista = toolkit.get_action("current_package_list_with_resources")(data_dict={"all_fields": True})
+
+    values = []
+    for package in lista:
+        for resource in package.get("resources"):
+            if resource.get("dashboard") == "default":
+                tmp = {
+                    "name": resource.get("name"),
+                    "id": resource.get("id")
+                }
+                values.append(tmp)
+
+    return values
+
 
 class CdmxPlugin(
     plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTranslation
@@ -29,6 +46,7 @@ class CdmxPlugin(
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IFacets)
     plugins.implements(plugins.IMiddleware)
+    plugins.implements(plugins.IBlueprint)
 
     # IMiddleware
     def make_middleware(self, app, config):
@@ -59,6 +77,7 @@ class CdmxPlugin(
             "get_site_url": get_site_url,
             "humanize_filesize": humanize_filesize,
             "dashboard_types": dashboard_types,
+            "get_package": get_package
         }
 
     # IConfigurable
@@ -150,3 +169,6 @@ class CdmxPlugin(
     def organization_facets(self, facets_dict, organization_type, package_type):
         facets_dict.pop("tags")
         return facets_dict
+    
+    def get_blueprint(self):
+        return blueprint.validate
