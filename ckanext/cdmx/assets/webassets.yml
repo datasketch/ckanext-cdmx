@@ -19,3 +19,5 @@ cdmx_js:
     - javascript/modules/redirect.js
     - javascript/modules/select-field-tabs.js
     - javascript/modules/resource-info.js
+    - javascript/modules/change-iframe.js
+    - javascript/modules/test.js
