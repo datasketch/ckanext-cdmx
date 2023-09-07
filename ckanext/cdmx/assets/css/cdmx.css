@@ -143,6 +143,25 @@
   margin: 12px 0 0;
 }
 
+.viewer-btn {
+  margin: 20px 60px;
+  padding: 4px 15px;
+  border-radius: 6px;
+  border-color: #667380;
+}
+
+.viewer-landing {
+  background:  #9F225E 40%;
+  border-radius: 0px 9999px 9999px 0px;
+  width: 200px;
+  font-weight: 900;
+  color: white;
+  padding: 5px 8px;
+  border: solid;
+  border-color: #881c50;
+  font-size: larger;
+}
+
 @media screen and (min-width: 768px) {
   .banner-title {
     font-size: 3rem;

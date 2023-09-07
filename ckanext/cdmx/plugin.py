@@ -29,7 +29,7 @@ def get_package():
             if resource.get("dashboard") == "default":
                 tmp = {
                     "name": resource.get("name"),
-                    "id": resource.get("id")
+                    "id": resource.get("id") + ";" + package.get("id")
                 }
                 values.append(tmp)
 

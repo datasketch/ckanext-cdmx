@@ -2,6 +2,7 @@
 
 {% block content %}
 {% set url = h.get_site_url() %}
+{% set lista = h.get_package() %}
 <div data-module="change-iframe" data-module-url={{url}}>
   <div class="jumbotron jumbotron-fluid"
     style="background-image: url(/images/bg-visualizador.png); background-position: center 65%; background-size: cover; background-repeat: no-repeat;"
@@ -33,6 +34,7 @@
       </div>
     </div>
   </div>
+  <button class="viewer-btn font-montserrat" id="resourceButton">Ir al conjunto de datos</button>
   <iframe id="resourceFrame" width="100%" height="600"></iframe>
 </div>
 <!-- <div data-module="change-iframe">
