@@ -21,7 +21,6 @@
             aria-label="{% block header_site_search_label %}¿Qué datos estás buscando?{% endblock %}" name="q" value=""
             autocomplete="off" /> -->
             <select class="main-search-input" id="resourceDropdown">
-              <option value="None">Seleccionar Recurso</option>
               {% for item in h.get_package() %}
               <option value={{item.id}}>{{ item.name }}</option>
               {% endfor %}
@@ -37,13 +36,4 @@
   <button class="viewer-btn font-montserrat" id="resourceButton">Ir al conjunto de datos</button>
   <iframe id="resourceFrame" width="100%" height="600"></iframe>
 </div>
-<!-- <div data-module="change-iframe">
-  <select id="resourceDropdown">
-    <option value="None">Seleccionar</option>
-    {% for item in h.get_package() %}
-    <option value={{item.id}}>{{ item.name }}</option>
-    {% endfor %}
-  </select>
-  <iframe id="resourceFrame" width="100%" height="600"></iframe>
-</div> -->
 {% endblock %}
