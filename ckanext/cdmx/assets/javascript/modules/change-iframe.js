@@ -7,11 +7,12 @@ ckan.module('change-iframe', function (jQuery) {
             this.frame = root.querySelector('#resourceFrame')
             this.button = root.querySelector('#resourceButton')
 
-            
             this.resources.addEventListener('change', () => {
                 const package = this.resources.value.split(";")[1]
-                console.log(package);
                 const resource = this.resources.value.split(";")[0]
+
+                this.button.style.cssText = 'visibility: visible'
+                this.frame.style.cssText ='height: 600px'
 
                 this.button.addEventListener('click', () => {
                     window.open(this.options.url + `/dataset/` + package)
