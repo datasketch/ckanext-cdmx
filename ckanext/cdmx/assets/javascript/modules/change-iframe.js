@@ -12,7 +12,7 @@ ckan.module('change-iframe', function (jQuery) {
                 const resource = this.resources.value.split(";")[0]
 
                 this.button.style.cssText = 'visibility: visible'
-                this.frame.style.cssText ='height: 600px'
+                this.frame.style.cssText ='height: 800px'
 
                 this.button.addEventListener('click', () => {
                     window.open(this.options.url + `/dataset/` + package)
